@@ -45,19 +45,19 @@ const isNavItem = (item: TopLevelItem): item is NavItem => {
 }
 
 const topLevelItems: Array<TopLevelItem> = [
-  { name: "Why go vegan?", description: "The most important reasons to go vegan in one page", href: "#" },
+  { name: "Why go vegan?", description: "The most important reasons to go vegan in one page", href: "/" },
   {
     name: "Resources", description: "A list of resources for activists and new comers alike", children: [
-      { name: "Vegan Map of Amsterdam", description: "Map of Amsterdam with all vegan restaurants", href: "#", icon: MapIcon, },
-      { name: "Fact sheets", description: "Fact sheets for reference during outreach", href: "#", icon: ClipboardDocumentListIcon, },
+      { name: "Vegan Map of Amsterdam", description: "Map of Amsterdam with all vegan restaurants", href: "/mapofamsterdam", icon: MapIcon, },
+      { name: "Fact sheets", description: "Fact sheets for reference during outreach", href: "/factsheets", icon: ClipboardDocumentListIcon, },
     ]
   },
-  { name: "Agenda", description: "Agenda of our upcoming meetings", href: "#" },
+  { name: "Agenda", description: "Agenda of our upcoming meetings", href: "/agenda" },
   {
     name: "About us", description: "Learn about Vegan Future's organization", children: [
-      { name: "Manifesto", description: "Explaination of our philosophy and regulations", href: "#", icon: ShieldCheckIcon, },
-      { name: "Team", description: "Overview of our team members", href: "#", icon: UsersIcon, },
-      { name: "Contact us", description: "Drop us a message!", href: "#", icon: ChatBubbleBottomCenterIcon, },
+      { name: "Manifesto", description: "Explaination of our philosophy and regulations", href: "/manifesto", icon: ShieldCheckIcon, },
+      { name: "Team", description: "Overview of our team members", href: "/team", icon: UsersIcon, },
+      { name: "Contact us", description: "Drop us a message!", href: "/contact", icon: ChatBubbleBottomCenterIcon, },
     ]
   },
 ];
