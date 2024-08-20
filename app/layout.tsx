@@ -18,8 +18,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Navbar />
-        <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-white">
+        <Navbar className="mx-auto lg:max-w-[800px] max-w-full" />
+        <main className="mx-auto lg:max-w-[800px] max-w-full">
           {children}
         </main>
       </body>

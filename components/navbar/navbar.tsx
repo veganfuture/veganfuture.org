@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   Dialog,
   DialogPanel,
@@ -25,6 +25,7 @@ import {
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { ComponentType, SVGProps } from 'react';
+import { useRouter } from 'next/router'
 
 type NavItem = {
   name: string;
@@ -62,17 +63,15 @@ const topLevelItems: Array<TopLevelItem> = [
   },
 ];
 
+type NavBarProps = {
+  className: string;
+}
 
-const products = [
-  { name: 'Vegan Map of Amsterdam', description: 'Get a better understanding of your traffic', href: '#', icon: ChartPieIcon },
-  { name: 'Fact sheets', description: 'Speak directly to your customers', href: '#', icon: CursorArrowRaysIcon },
-]
-
-export function Navbar() {
+export function Navbar({ className }: NavBarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <header className="bg-white">
+    <header className={className}>
       <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
         <div className="flex lg:flex-1">
           <a href="#" className="-m-1.5 p-1.5">
