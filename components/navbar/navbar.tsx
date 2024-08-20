@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import {
   Dialog,
   DialogPanel,
@@ -14,18 +14,14 @@ import {
 } from '@headlessui/react'
 import {
   Bars3Icon,
-  ChartPieIcon,
-  CursorArrowRaysIcon,
   ClipboardDocumentListIcon,
   ShieldCheckIcon,
-  UsersIcon,
   ChatBubbleBottomCenterIcon,
   MapIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { ComponentType, SVGProps } from 'react';
-import { useRouter } from 'next/router'
 
 type NavItem = {
   name: string;
@@ -46,7 +42,7 @@ const isNavItem = (item: TopLevelItem): item is NavItem => {
 }
 
 const topLevelItems: Array<TopLevelItem> = [
-  { name: "Why go vegan?", description: "The most important reasons to go vegan in one page", href: "/" },
+  { name: "Home", description: "The most important reasons to go vegan in one page", href: "/" },
   {
     name: "Resources", description: "A list of resources for activists and new comers alike", children: [
       { name: "Vegan Map of Amsterdam", description: "Map of Amsterdam with all vegan restaurants", href: "/mapofamsterdam", icon: MapIcon, },
@@ -57,7 +53,6 @@ const topLevelItems: Array<TopLevelItem> = [
   {
     name: "About us", description: "Learn about Vegan Future's organization", children: [
       { name: "Manifesto", description: "Explaination of our philosophy and regulations", href: "/manifesto", icon: ShieldCheckIcon, },
-      { name: "Team", description: "Overview of our team members", href: "/team", icon: UsersIcon, },
       { name: "Contact us", description: "Drop us a message!", href: "/contact", icon: ChatBubbleBottomCenterIcon, },
     ]
   },
