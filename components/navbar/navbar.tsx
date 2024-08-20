@@ -71,7 +71,7 @@ export function Navbar({ className }: NavBarProps) {
         <div className="flex lg:flex-1">
           <a href="#" className="-m-1.5 p-1.5">
             <span className="sr-only">Vegan Future</span>
-            <img alt="" src="logo.png" className="h-16 w-auto" />
+            <img alt="Vegan Future of Amsterdam" src="logo.png" className="h-16 w-auto" />
           </a>
         </div>
         <div className="flex lg:hidden">
@@ -133,11 +133,7 @@ export function Navbar({ className }: NavBarProps) {
           <div className="flex items-center justify-between">
             <a href="#" className="-m-1.5 p-1.5">
               <span className="sr-only">Vegan Future</span>
-              <img
-                alt=""
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                className="h-8 w-auto"
-              />
+              <img alt="Vegan Future of Amsterdam" src="logo.png" className="h-16 w-auto" />
             </a>
             <button
               type="button"

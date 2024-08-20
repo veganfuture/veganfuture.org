@@ -1,4 +1,4 @@
-export default () => {
+export default function ContactUs() {
   return (
     <div className="flex justify-center items-center">
       <div className="w-full max-w-md p-8 bg-white shadow-lg rounded-lg">
@@ -56,7 +56,7 @@ export default () => {
               id="message"
               name="message"
               required
-              rows="4"
+              rows={4}
               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
             ></textarea>
           </div>

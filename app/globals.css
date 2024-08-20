@@ -8,6 +8,11 @@
   --background-end-rgb: 255, 255, 255;
 }
 
+html, body {
+  min-height: 100%;
+  margin: 0; /* Ensure no default margin that could cause overflow */
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
