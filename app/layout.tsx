@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Navbar className="mx-auto lg:max-w-[800px] max-w-full" />
-        <main className="mx-auto lg:max-w-[800px] max-w-full">
+        <main className="mx-auto lg:max-w-[800px] max-w-full p-2">
           {children}
         </main>
       </body>

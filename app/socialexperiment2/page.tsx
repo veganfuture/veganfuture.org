@@ -2,7 +2,7 @@ export default function SocialExperiment2() {
   return <>
     <p className="text-2xl">Social Experiment 2.0</p>
     <p>
-      One of the techniques we use for our outreach is what we call the social experiment 2.0. The main idea behind the experiment is that we test people's morality in the safe space of thought experiments. The experiments get increasingly difficult, which is designed to prevent people from experiencing cognitive dissonance. If people do not have a moral framework that aligns with veganism, we simply wish them a nice life and move on to the next person.
+      One of the techniques we use for our outreach is what we call the social experiment 2.0. The main idea behind the experiment is that we test people&apos;s morality in the safe space of thought experiments. The experiments get increasingly difficult, which is designed to prevent people from experiencing cognitive dissonance. If people do not have a moral framework that aligns with veganism, we simply wish them a nice life and move on to the next person.
     </p>
     <p>
       Here is an example of <a href="https://www.youtube.com/@veganpowerlab">Vegan Power Lab</a> conducting the social experiment 2.0:
