@@ -2,6 +2,16 @@
 export default function Home() {
   return (
     <>
+      <div className="pl-8 w-full text-2xl">
+        Welcome to the Vegan Future of Amsterdam
+      </div>
+      <p className="pl-8 py-4">
+        We are a group of activists from Amsterdam. We are dedicated to making the future vegan, one person at a time.
+      </p>
+      <div className="pl-8 w-full text-xl">Not vegan yet?</div>
+      <p className="pl-8 pt-4">
+        Please watch this speech:
+      </p>
       <div className="p-8 w-full">
         <iframe
           src="https://www.youtube.com/embed/uxhL2lsgokY?si=1CMtFfuaLlPGK9IV"

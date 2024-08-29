@@ -16,6 +16,7 @@ import {
   Bars3Icon,
   ClipboardDocumentListIcon,
   ShieldCheckIcon,
+  ClipboardIcon,
   ChatBubbleBottomCenterIcon,
   MapIcon,
   XMarkIcon,
@@ -45,6 +46,7 @@ const topLevelItems: Array<TopLevelItem> = [
   { name: "Home", description: "The most important reasons to go vegan in one page", href: "/" },
   {
     name: "Resources", description: "A list of resources for activists and new comers alike", children: [
+      { name: "Social Experiment 2.0", description: "A script that we use for outreach", href: "/socialexperiment2", icon: ClipboardIcon, },
       { name: "Vegan Map of Amsterdam", description: "Map of Amsterdam with all vegan restaurants", href: "/mapofamsterdam", icon: MapIcon, },
       { name: "Fact sheets", description: "Fact sheets for reference during outreach", href: "/factsheets", icon: ClipboardDocumentListIcon, },
     ]
