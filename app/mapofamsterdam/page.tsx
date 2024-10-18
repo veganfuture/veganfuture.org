@@ -6,10 +6,12 @@ export default function MapOfAmsterdam() {
     </div>
     <div className="p-4">
       <img src="resources/map/VeganMapOfAmsterdam.png" alt="Vegan Map of Amsterdam" width={600} />
+      <p className="text-sm">(This is an out-of-date preview of the map)</p>
     </div>
     <div className="p-4">
-      Download: &nbsp;
-      <a href="resources/map/VeganMapOfAmsterdam.pptx" className="underline">VeganMapOfAmsterdam.pptx</a>
+      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+      <a href="https://docs.google.com/presentation/d/16F4U-JpXus9jmki1cBIgfK4uLjDkWrf8zwSNMA9u8JE/edit?usp=sharing">Download The Vegan Map Of Amsterdam</a>.
+      </button>
     </div>
   </>;
 }
