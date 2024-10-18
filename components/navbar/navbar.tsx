@@ -85,13 +85,13 @@ export function Navbar({ className }: NavBarProps) {
             <span className="sr-only">Open main menu</span>
             <Bars3Icon aria-hidden="true" className="h-6 w-6" />
           </button>
-        </div>
-        <PopoverGroup className="hidden lg:flex lg:gap-x-12">
-          {topLevelItems.map(item =>
-            isNavItem(item) ?
-              <a key={item.name} href={item.href} className="text-sm font-semibold leading-6 text-gray-900">
-                {item.name}
-              </a>
+    </div>
+    <PopoverGroup className="hidden lg:flex lg:gap-x-12">
+      {topLevelItems.map(item =>
+        isNavItem(item) ?
+          <a key={item.name} href={item.href} className="text-sm font-semibold leading-6 text-gray-900 no-underline hover:text-indigo-600">
+            {item.name}
+          </a>
               :
               <Popover key={item.name} className="relative">
                 <PopoverButton className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
@@ -113,7 +113,7 @@ export function Navbar({ className }: NavBarProps) {
                           <childItem.icon aria-hidden="true" className="h-6 w-6 text-gray-600 group-hover:text-indigo-600" />
                         </div>
                         <div className="flex-auto">
-                          <a href={childItem.href} className="block font-semibold text-gray-900">
+                          <a href={childItem.href} className="block font-semibold text-gray-900 no-underline hover:text-indigo-600">
                             {childItem.name}
                             <span className="absolute inset-0" />
                           </a>
@@ -151,7 +151,7 @@ export function Navbar({ className }: NavBarProps) {
               <div className="space-y-2 py-6">
                 {topLevelItems.map(item =>
                   isNavItem(item) ?
-                    <a key={item.name} href={item.href} className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                    <a key={item.name} href={item.href} className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 no-underline hover:text-indigo-600">
                       {item.name}
                     </a>
                     : <Disclosure key={item.name} as="div" className="-mx-3">
@@ -165,7 +165,7 @@ export function Navbar({ className }: NavBarProps) {
                             key={childItem.name}
                             as="a"
                             href={childItem.href}
-                            className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                            className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50 hover:text-indigo-600"
                           >
                             {childItem.name}
                           </DisclosureButton>
