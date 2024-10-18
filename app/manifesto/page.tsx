@@ -36,7 +36,7 @@ export default function Manifesto() {
             <strong>Not all or nothing:</strong> We’ll encourage any step that moves us closer to a vegan Amsterdam (see “how to create a vegan world”, by Tobias Leenaert). We do what is effective and aspire to stop what is not effective.
           </li>
           <li>
-            <strong>Diversity:</strong> We recognize and welcome diversity of our members, supporters, and people who oppose our organization. Everyone is welcome here, and we accept people at all stages in their journey to adopt a more compassionate life. We have a zero-tolerance policy for oppression of any form toward non-human animals and humans, such as racism, sexism, homophobia, transphobia, xenophobia, etc.
+            <strong>Diversity:</strong> We recognize and welcome diversity of our members, supporters, and people who align with our organization's goals. Everyone is welcome here, and we accept people at all stages in their journey to adopt a more compassionate life. We have a zero-tolerance policy for oppression of any form toward non-human animals and humans, such as racism, sexism, homophobia, transphobia, xenophobia, etc. And of course speciesism!
           </li>
           <li>
             <strong>Social, good vibes and fun:</strong> Our mission is serious, but that does not mean we can’t have a laugh while working on it. We value the good times so we are well equipped during the bad times.
