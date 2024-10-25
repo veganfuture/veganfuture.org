@@ -1,12 +1,11 @@
-'use client'
+"use client";
 
-import { useState } from 'react';
+import { useState } from "react";
 
 export default function ContactUs() {
+  const [showProgress, setShowProgress] = useState(false);
 
-  const [showProgress, setShowProgress] = useState(true);
-
-  const onSubmit = () => setShowProgress(true)
+  const onSubmit = () => setShowProgress(true);
 
   return (
     <div className="flex justify-center items-center">
@@ -14,13 +13,25 @@ export default function ContactUs() {
         <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">
           Contact Us
         </h2>
-        {showProgress ? <div className="h-[200px] text-center items-center justify-center flex"><img src="spinner.svg" className="inline" /> <span className="pl-3 font-italic text-gray-800 text-xl">Sending email... (please be patient)</span></div> :
+        {showProgress ? (
+          <div className="h-[200px] text-center items-center justify-center flex">
+            <img src="spinner.svg" className="inline" />{" "}
+            <span className="pl-3 font-italic text-gray-800 text-xl">
+              Sending email... (please be patient)
+            </span>
+          </div>
+        ) : (
           <form
             action="https://formsubmit.co/lodewijk.bogaards@gmail.com"
             method="POST"
             className="space-y-4"
+            onSubmit={onSubmit}
           >
-            <input type="hidden" name="_subject" value="New submission from Vegan Future of Amsterdam" />
+            <input
+              type="hidden"
+              name="_subject"
+              value="New submission from Vegan Future of Amsterdam"
+            />
             <input type="hidden" name="_captcha" value="false" />
 
             <div>
@@ -80,8 +91,8 @@ export default function ContactUs() {
               </button>
             </div>
           </form>
-        }
+        )}
       </div>
     </div>
   );
-};
+}
