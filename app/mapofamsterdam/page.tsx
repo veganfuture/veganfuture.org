@@ -5,7 +5,7 @@ export default function MapOfAmsterdam() {
       Feel free to print this map and give it to people who you&apos; ve met on the streets of Amsterdam!
     </div>
     <div className="p-4">
-      <img src="resources/map/VeganMapOfAmsterdam.png" alt="Vegan Map of Amsterdam" width={600} />
+      <img src="VeganMapOfAmsterdam.png" alt="Vegan Map of Amsterdam" width={600} />
       <p className="text-sm">(This is an out-of-date preview of the map)</p>
     </div>
     <div className="p-4">
