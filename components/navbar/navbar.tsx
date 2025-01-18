@@ -1,6 +1,6 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
+import { useState } from "react";
 import {
   Dialog,
   DialogPanel,
@@ -11,7 +11,7 @@ import {
   PopoverButton,
   PopoverGroup,
   PopoverPanel,
-} from '@headlessui/react'
+} from "@headlessui/react";
 import {
   Bars3Icon,
   ClipboardDocumentListIcon,
@@ -20,60 +20,110 @@ import {
   ChatBubbleBottomCenterIcon,
   MapIcon,
   XMarkIcon,
-} from '@heroicons/react/24/outline'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
-import { ComponentType, SVGProps } from 'react';
+} from "@heroicons/react/24/outline";
+import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import { ComponentType, SVGProps } from "react";
 
 type NavItem = {
   name: string;
   description: string;
   href: string;
-}
+};
 
 type NavDropdown = {
   children: Array<NavItem & { icon: ComponentType<SVGProps<SVGSVGElement>> }>;
   name: string;
   description: string;
-}
+};
 
 type TopLevelItem = NavItem | NavDropdown;
 
 const isNavItem = (item: TopLevelItem): item is NavItem => {
   return item.hasOwnProperty("href");
-}
+};
 
 const topLevelItems: Array<TopLevelItem> = [
-  { name: "Home", description: "The most important reasons to go vegan in one page", href: "/" },
   {
-    name: "Resources", description: "A list of resources for activists and new comers alike", children: [
-      { name: "Social Experiment 2.0", description: "A script that we use for outreach", href: "/socialexperiment2", icon: ClipboardIcon, },
-      { name: "Vegan Map of Amsterdam", description: "Map of Amsterdam with all vegan restaurants", href: "/mapofamsterdam", icon: MapIcon, },
-      { name: "Fact sheets", description: "Fact sheets for reference during outreach", href: "/factsheets", icon: ClipboardDocumentListIcon, },
-    ]
+    name: "Home",
+    description: "The most important reasons to go vegan in one page",
+    href: "/",
   },
-  { name: "Agenda", description: "Agenda of our upcoming meetings", href: "/agenda" },
   {
-    name: "About us", description: "Learn about Vegan Future's organization", children: [
-      { name: "Manifesto", description: "Explaination of our philosophy and regulations", href: "/manifesto", icon: ShieldCheckIcon, },
-      { name: "Contact us", description: "Drop us a message!", href: "/contact", icon: ChatBubbleBottomCenterIcon, },
-    ]
+    name: "Resources",
+    description: "A list of resources for activists and new comers alike",
+    children: [
+      {
+        name: "Social Experiment 2.0",
+        description: "A script that we use for outreach",
+        href: "/socialexperiment2",
+        icon: ClipboardIcon,
+      },
+      {
+        name: "Vegan Map of Amsterdam",
+        description: "Map of Amsterdam with all vegan restaurants",
+        href: "/mapofamsterdam",
+        icon: MapIcon,
+      },
+      {
+        name: "Fact sheets",
+        description: "Fact sheets for reference during outreach",
+        href: "/factsheets",
+        icon: ClipboardDocumentListIcon,
+      },
+      {
+        name: "Outreach content",
+        description: "All you need for doing outreach",
+        href: "/content",
+        icon: ClipboardDocumentListIcon,
+      },
+    ],
+  },
+  {
+    name: "Agenda",
+    description: "Agenda of our upcoming meetings",
+    href: "/agenda",
+  },
+  {
+    name: "About us",
+    description: "Learn about Vegan Future's organization",
+    children: [
+      {
+        name: "Manifesto",
+        description: "Explaination of our philosophy and regulations",
+        href: "/manifesto",
+        icon: ShieldCheckIcon,
+      },
+      {
+        name: "Contact us",
+        description: "Drop us a message!",
+        href: "/contact",
+        icon: ChatBubbleBottomCenterIcon,
+      },
+    ],
   },
 ];
 
 type NavBarProps = {
   className: string;
-}
+};
 
 export function Navbar({ className }: NavBarProps) {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <header className={className}>
-      <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
+      <nav
+        aria-label="Global"
+        className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
+      >
         <div className="flex lg:flex-1">
           <a href="#" className="-m-1.5 p-1.5">
             <span className="sr-only">Vegan Future</span>
-            <img alt="Vegan Future of Amsterdam" src="logo.png" className="h-16 w-auto" />
+            <img
+              alt="Vegan Future of Amsterdam"
+              src="logo.png"
+              className="h-16 w-auto"
+            />
           </a>
         </div>
         <div className="flex lg:hidden">
@@ -85,18 +135,25 @@ export function Navbar({ className }: NavBarProps) {
             <span className="sr-only">Open main menu</span>
             <Bars3Icon aria-hidden="true" className="h-6 w-6" />
           </button>
-    </div>
-    <PopoverGroup className="hidden lg:flex lg:gap-x-12">
-      {topLevelItems.map(item =>
-        isNavItem(item) ?
-          <a key={item.name} href={item.href} className="text-sm font-semibold leading-6 text-gray-900 no-underline hover:text-indigo-600">
-            {item.name}
-          </a>
-              :
+        </div>
+        <PopoverGroup className="hidden lg:flex lg:gap-x-12">
+          {topLevelItems.map((item) =>
+            isNavItem(item) ? (
+              <a
+                key={item.name}
+                href={item.href}
+                className="text-sm font-semibold leading-6 text-gray-900 no-underline hover:text-indigo-600"
+              >
+                {item.name}
+              </a>
+            ) : (
               <Popover key={item.name} className="relative">
                 <PopoverButton className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
                   {item.name}
-                  <ChevronDownIcon aria-hidden="true" className="h-5 w-5 flex-none text-gray-400" />
+                  <ChevronDownIcon
+                    aria-hidden="true"
+                    className="h-5 w-5 flex-none text-gray-400"
+                  />
                 </PopoverButton>
 
                 <PopoverPanel
@@ -104,38 +161,54 @@ export function Navbar({ className }: NavBarProps) {
                   className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in"
                 >
                   <div className="p-4">
-                    {item.children.map(childItem => (
+                    {item.children.map((childItem) => (
                       <div
                         key={childItem.name}
                         className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
                       >
                         <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                          <childItem.icon aria-hidden="true" className="h-6 w-6 text-gray-600 group-hover:text-indigo-600" />
+                          <childItem.icon
+                            aria-hidden="true"
+                            className="h-6 w-6 text-gray-600 group-hover:text-indigo-600"
+                          />
                         </div>
                         <div className="flex-auto">
-                          <a href={childItem.href} className="block font-semibold text-gray-900 no-underline hover:text-indigo-600">
+                          <a
+                            href={childItem.href}
+                            className="block font-semibold text-gray-900 no-underline hover:text-indigo-600"
+                          >
                             {childItem.name}
                             <span className="absolute inset-0" />
                           </a>
-                          <p className="mt-1 text-gray-600">{childItem.description}</p>
+                          <p className="mt-1 text-gray-600">
+                            {childItem.description}
+                          </p>
                         </div>
                       </div>
                     ))}
                   </div>
                 </PopoverPanel>
               </Popover>
+            ),
           )}
         </PopoverGroup>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-        </div>
+        <div className="hidden lg:flex lg:flex-1 lg:justify-end"></div>
       </nav>
-      <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
+      <Dialog
+        open={mobileMenuOpen}
+        onClose={setMobileMenuOpen}
+        className="lg:hidden"
+      >
         <div className="fixed inset-0 z-10" />
         <DialogPanel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
             <a href="#" className="-m-1.5 p-1.5">
               <span className="sr-only">Vegan Future</span>
-              <img alt="Vegan Future of Amsterdam" src="logo.png" className="h-16 w-auto" />
+              <img
+                alt="Vegan Future of Amsterdam"
+                src="logo.png"
+                className="h-16 w-auto"
+              />
             </a>
             <button
               type="button"
@@ -149,15 +222,23 @@ export function Navbar({ className }: NavBarProps) {
           <div className="mt-6 flow-root">
             <div className="-my-6 divide-y divide-gray-500/10">
               <div className="space-y-2 py-6">
-                {topLevelItems.map(item =>
-                  isNavItem(item) ?
-                    <a key={item.name} href={item.href} className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 no-underline hover:text-indigo-600">
+                {topLevelItems.map((item) =>
+                  isNavItem(item) ? (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 no-underline hover:text-indigo-600"
+                    >
                       {item.name}
                     </a>
-                    : <Disclosure key={item.name} as="div" className="-mx-3">
+                  ) : (
+                    <Disclosure key={item.name} as="div" className="-mx-3">
                       <DisclosureButton className="group flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
                         {item.name}
-                        <ChevronDownIcon aria-hidden="true" className="h-5 w-5 flex-none group-data-[open]:rotate-180" />
+                        <ChevronDownIcon
+                          aria-hidden="true"
+                          className="h-5 w-5 flex-none group-data-[open]:rotate-180"
+                        />
                       </DisclosureButton>
                       <DisclosurePanel className="mt-2 space-y-2">
                         {item.children.map((childItem) => (
@@ -172,6 +253,7 @@ export function Navbar({ className }: NavBarProps) {
                         ))}
                       </DisclosurePanel>
                     </Disclosure>
+                  ),
                 )}
               </div>
             </div>
@@ -179,5 +261,5 @@ export function Navbar({ className }: NavBarProps) {
         </DialogPanel>
       </Dialog>
     </header>
-  )
+  );
 }
