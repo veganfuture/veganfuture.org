@@ -1,11 +1,42 @@
 "use client";
 
-import { useState } from "react";
+import { useState, FormEvent } from "react";
+
+enum FormState {
+  UNSENT,
+  SENDING,
+  SENT,
+}
 
 export default function ContactUs() {
-  const [showProgress, setShowProgress] = useState(false);
+  const [formState, setFormState] = useState<FormState>(FormState.UNSENT);
+  const [errorMsg, setErrorMsg] = useState<string | undefined>();
 
-  const onSubmit = () => setShowProgress(true);
+  const submitUrl = "https://formsubmit.co/lodewijk.bogaards@gmail.com";
+
+  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+    setFormState(FormState.SENDING);
+
+    event.preventDefault();
+    const formData = new FormData(event.target as any); // capture form data
+
+    // form needs resubmission to formsubmit.co
+    // because of CORS policy
+    fetch(submitUrl, {
+      method: "POST",
+      body: formData,
+    })
+      .then(() => {
+        setFormState(FormState.SENT);
+      })
+      .catch((error) => {
+        setErrorMsg(
+          "An error occurred, please try again later or sent an email directly to 'veganfutureofamsterdam@gmail.com'.",
+        );
+        console.error(`Error sending email: ${error}`);
+        setFormState(FormState.UNSENT);
+      });
+  };
 
   return (
     <div className="flex justify-center items-center">
@@ -13,20 +44,29 @@ export default function ContactUs() {
         <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">
           Contact Us
         </h2>
-        {showProgress ? (
+        {errorMsg && (
+          <div className="text-red-500 text-center mb-4">{errorMsg}</div>
+        )}
+        {formState == FormState.SENT ? (
           <div className="h-[200px] text-center items-center justify-center flex">
-            <img src="spinner.svg" className="inline" />{" "}
-            <span className="pl-3 font-italic text-gray-800 text-xl">
-              Sending email... (please be patient)
+            <span className="font-italic text-gray-800 text-xl">
+              Thank you for your message!
             </span>
           </div>
+        ) : formState == FormState.SENDING ? (
+          <div className="h-[200px] text-center items-center justify-center flex">
+            <div>
+              <img src="spinner.svg" className="inline" />{" "}
+              <span className="pl-3 font-italic text-gray-800 text-xl">
+                Sending email...
+              </span>
+            </div>
+            <div className="text-gray-800">
+              (Please be patient, this can take up to a minute)
+            </div>
+          </div>
         ) : (
-          <form
-            action="https://formsubmit.co/lodewijk.bogaards@gmail.com"
-            method="POST"
-            className="space-y-4"
-            onSubmit={onSubmit}
-          >
+          <form className="space-y-4" onSubmit={onSubmit}>
             <input
               type="hidden"
               name="_subject"
