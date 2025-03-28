@@ -1,14 +1,14 @@
-"use client";
-
-import { UserGroupIcon } from "@heroicons/react/24/outline";
+import { format } from "date-fns";
 
 type AgendaItemProps = {
   url: string;
   title: string;
   location: string;
-  date: string;
+  date: Date;
   startTime: string;
   endTime: string;
+  description?: string;
+  icon: React.ReactNode;
 };
 
 export function AgendaItem({
@@ -18,11 +18,17 @@ export function AgendaItem({
   date,
   startTime,
   endTime,
+  icon, 
+  description,
 }: AgendaItemProps) {
   return (
     <div
       onClick={() => {
-        window.open(url, "_blank");
+        if (url.startsWith("http")) {
+          window.open(url, "_blank");
+        } else {
+          document.location = url;
+        }
       }}
       className="
           p-4 
@@ -35,7 +41,7 @@ export function AgendaItem({
           mb-4 
           lg:mb-0 
           lg:mr-4 
-          lg:w-[500px]
+          lg:w-[720px]
           hover:shadow-none
           hover:bg-white
           cursor-pointer
@@ -45,15 +51,16 @@ export function AgendaItem({
       role="button"
     >
       <p className="text-xl flex">
-        <UserGroupIcon aria-hidden="true" className="h-6 w-6 mr-2" />
+        {icon}
         {title}
       </p>
       <p>
-        <strong>{date}</strong> from{" "}
+        <strong>{format(date, "do MMMM yyyy")}</strong> from{" "}
         <strong>
           {startTime} to {endTime}
         </strong>
       </p>
+      { description ? <p>{description}</p> : <></>}
       <p>Location: {location}</p>
     </div>
   );

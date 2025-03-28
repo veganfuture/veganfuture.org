@@ -20,6 +20,9 @@ import {
   ChatBubbleBottomCenterIcon,
   MapIcon,
   XMarkIcon,
+  CalendarDaysIcon,
+  MegaphoneIcon,
+  AcademicCapIcon,
 } from "@heroicons/react/24/outline";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { ComponentType, SVGProps } from "react";
@@ -79,9 +82,28 @@ const topLevelItems: Array<TopLevelItem> = [
     ],
   },
   {
-    name: "Agenda",
-    description: "Agenda of our upcoming meetings",
-    href: "/agenda",
+    name: "Events",
+    description: "Events we host",
+    children: [
+      {
+        name: "Agenda",
+        description: "All upcoming events",
+        href: "/agenda",
+        icon: CalendarDaysIcon,
+      },
+      { 
+        name: "Street outreach",
+        description: "Talking to people on the streets about veganism",
+        href: "/street_outreach",
+        icon: MegaphoneIcon,
+      },
+      {
+        name: "RAAF",
+        description: "Revolutionary Animal Advocacy Forum",
+        href: "/raaf",
+        icon: AcademicCapIcon,
+      }
+    ]
   },
   {
     name: "About us",
