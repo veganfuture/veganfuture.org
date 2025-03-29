@@ -6,7 +6,7 @@ export default function StreetOureach() {
     <>
       <div className="text-2xl font-bold p-4">Street outreach</div>
       <div className="p-4">
-        Every two weeks we go out onto the streets of Amsterdam to talk to non-vegans about the benefits of going vegan. We are continously updating our approach. One of the methods is the <Link href="/socialexperiment2">Social experiment 2.0</Link>. We do a number of things though, such as flyering, quizes, selling "dogmeat".
+        Every two weeks we go out onto the streets of Amsterdam to talk to non-vegans about the benefits of going vegan. We are continously updating our approach. One of the methods is the <Link href="/socialexperiment2">Social experiment 2.0</Link>. We do a number of things though, such as flyering, quizes, selling &quot;dogmeat&quot;.
       </div>
       <div className="p-4">
         One of our main goals it to only have <b>positive interactions</b>. If someone becomes defensive or even hostile, we immediatelely and as pleasantly as possible end the conversation. 
