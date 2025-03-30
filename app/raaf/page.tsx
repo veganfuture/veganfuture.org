@@ -1,10 +1,11 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
-import { withBaseUrl } from '@/lib/metadata';
+import { BASE_METADATA, withBaseUrl } from '@/lib/metadata';
 import { SignupForm } from './signup_form';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
+  ...BASE_METADATA,
   title: 'RAAF, 23rd of May in Amsterdam',
   description: '5 inspiring speakers show how you can stand up for animals your way',
   openGraph: {

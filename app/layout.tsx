@@ -2,13 +2,11 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/navbar/navbar";
+import { BASE_METADATA } from "@/lib/metadata";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
-  title: "Vegan Future",
-  description: "Vegan Future of Amsterdam",
-};
+export const metadata = BASE_METADATA;
 
 export default function RootLayout({
   children,
