@@ -57,10 +57,22 @@ Resources:
       PrimaryKey:
         Name: email
         Type: String
+  RAAFHttpApi:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      CorsConfiguration:
+        AllowOrigins:
+        - https://veganfuture.org
+        - http://localhost:3000
+        AllowMethods:
+        - OPTIONS
+        - POST
+        AllowHeaders:
+        - Content-Type
   RAAFSignupFunction:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: RAAFSignupFunction
+      FunctionName: SignupRAAFHandler
       Runtime: nodejs18.x
       Handler: app.handler
       CodeUri: RAAFSignupFunction
@@ -75,18 +87,21 @@ Resources:
           TableName:
             Ref: RAAFSignupsTable
       - SESCrudPolicy:
-          IdentityName:
-            Ref: Domain
+          IdentityName: ${Domain}
       Events:
         SignupApi:
-          Type: Api
+          Type: HttpApi
           Properties:
+            ApiId:
+              Ref: RAAFHttpApi
             Path: /signup_raaf
             Method: post
     Metadata:
       SamResourceId: RAAFSignupFunction
 Outputs:
   SignupApiUrl:
-    Description: RAAF Signup
+    Description: Signup POST endpoint
     Value:
-      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/signup_raaf
+      Fn::GetAtt:
+      - RAAFHttpApi
+      - ApiEndpoint

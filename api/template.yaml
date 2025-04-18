@@ -13,21 +13,17 @@ Globals:
 
 Resources:
 
-  # ─── SES v2 Email Identity ───────────────────────────────────────────────
+  # SES v2 Email Identity
   SESEmailIdentity:
     Type: AWS::SES::EmailIdentity
     Properties:
       EmailIdentity: !Ref Domain
-    # When you verify a domain like this, SES v2 uses “Easy DKIM”:
-    # it will output 3 CNAME tokens (DkimDNSTokenName1/Value1 … etc) that you
-    # need to add to DNS. SES automatically verifies the domain once these
-    # appear :contentReference[oaicite:0]{index=0}.
 
-  # ─── Route 53 RecordSetGroup for all DKIM CNAMEs ──────────────────────────
+  # Route 53 RecordSetGroup for DKIM CNAMEs
   SESDkimRecords:
     Type: AWS::Route53::RecordSetGroup
     Properties:
-      HostedZoneName: !Sub '${Domain}.'     # must end with a dot
+      HostedZoneName: !Sub '${Domain}.'
       RecordSets:
         - Name: !GetAtt SESEmailIdentity.DkimDNSTokenName1
           Type: CNAME
@@ -44,10 +40,8 @@ Resources:
           TTL: 300
           ResourceRecords:
             - !GetAtt SESEmailIdentity.DkimDNSTokenValue3
-      # Once CloudFormation creates these records, SES will detect them and
-      # mark your domain as “Verified” (no manual console clicks needed).
 
-  # ─── DynamoDB table for sign‑ups ────────────────────────────────────────
+  # DynamoDB table for sign‑ups
   RAAFSignupsTable:
     Type: AWS::Serverless::SimpleTable
     Properties:
@@ -56,14 +50,28 @@ Resources:
         Name: email
         Type: String
 
-  # ─── Lambda + public POST /signup_raaf ─────────────────────────────────
+  # HTTP API with CORS for two origins
+  RAAFHttpApi:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      CorsConfiguration:
+        AllowOrigins:
+          - https://veganfuture.org
+          - http://localhost:3000
+        AllowMethods:
+          - OPTIONS
+          - POST
+        AllowHeaders:
+          - Content-Type
+
+  # Lambda + POST /signup_raaf on the HTTP API
   RAAFSignupFunction:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: RAAFSignupFunction 
+      FunctionName: SignupRAAFHandler
       Runtime: nodejs18.x
       Handler: app.handler
-      CodeUri: signup_raaf/        # your handler in signup_raaf/app.js
+      CodeUri: signup_raaf/
       Environment:
         Variables:
           TABLE_NAME:       !Ref RAAFSignupsTable
@@ -72,17 +80,16 @@ Resources:
         - DynamoDBCrudPolicy:
             TableName: !Ref RAAFSignupsTable
         - SESCrudPolicy:
-            # SES v2 policy template expects the *identity* name, which here
-            # is the domain itself
-            IdentityName: !Ref Domain
+            IdentityName: ${Domain}
       Events:
         SignupApi:
-          Type: Api
+          Type: HttpApi
           Properties:
+            ApiId: !Ref RAAFHttpApi
             Path: /signup_raaf
             Method: post
 
 Outputs:
   SignupApiUrl:
-    Description: "RAAF Signup"
-    Value:       !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/signup_raaf"
+    Description: "Signup POST endpoint"
+    Value: !GetAtt RAAFHttpApi.ApiEndpoint
