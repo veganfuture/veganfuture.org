@@ -106,6 +106,11 @@ const topLevelItems: Array<TopLevelItem> = [
     ]
   },
   {
+    name: "Donate",
+    description: "Donate",
+    href: "/donate",
+  },
+  {
     name: "About us",
     description: "Learn about Vegan Future's organization",
     children: [

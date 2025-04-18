@@ -1,0 +1,92 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Parameters:
+  Domain:
+    Type: String
+    Description: "Apex domain you own in Route\_53"
+    Default: veganfuture.org
+Globals:
+  Function:
+    Timeout: 10
+Resources:
+  SESEmailIdentity:
+    Type: AWS::SES::EmailIdentity
+    Properties:
+      EmailIdentity:
+        Ref: Domain
+  SESDkimRecords:
+    Type: AWS::Route53::RecordSetGroup
+    Properties:
+      HostedZoneName:
+        Fn::Sub: ${Domain}.
+      RecordSets:
+      - Name:
+          Fn::GetAtt:
+          - SESEmailIdentity
+          - DkimDNSTokenName1
+        Type: CNAME
+        TTL: 300
+        ResourceRecords:
+        - Fn::GetAtt:
+          - SESEmailIdentity
+          - DkimDNSTokenValue1
+      - Name:
+          Fn::GetAtt:
+          - SESEmailIdentity
+          - DkimDNSTokenName2
+        Type: CNAME
+        TTL: 300
+        ResourceRecords:
+        - Fn::GetAtt:
+          - SESEmailIdentity
+          - DkimDNSTokenValue2
+      - Name:
+          Fn::GetAtt:
+          - SESEmailIdentity
+          - DkimDNSTokenName3
+        Type: CNAME
+        TTL: 300
+        ResourceRecords:
+        - Fn::GetAtt:
+          - SESEmailIdentity
+          - DkimDNSTokenValue3
+  RAAFSignupsTable:
+    Type: AWS::Serverless::SimpleTable
+    Properties:
+      TableName: RAAFSignups
+      PrimaryKey:
+        Name: email
+        Type: String
+  RAAFSignupFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: RAAFSignupFunction
+      Runtime: nodejs18.x
+      Handler: app.handler
+      CodeUri: RAAFSignupFunction
+      Environment:
+        Variables:
+          TABLE_NAME:
+            Ref: RAAFSignupsTable
+          SES_SOURCE_EMAIL:
+            Fn::Sub: noreply@${Domain}
+      Policies:
+      - DynamoDBCrudPolicy:
+          TableName:
+            Ref: RAAFSignupsTable
+      - SESCrudPolicy:
+          IdentityName:
+            Ref: Domain
+      Events:
+        SignupApi:
+          Type: Api
+          Properties:
+            Path: /signup_raaf
+            Method: post
+    Metadata:
+      SamResourceId: RAAFSignupFunction
+Outputs:
+  SignupApiUrl:
+    Description: RAAF Signup
+    Value:
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/signup_raaf

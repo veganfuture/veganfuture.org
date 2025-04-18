@@ -1,0 +1,88 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+
+Parameters:
+  Domain:
+    Type: String
+    Description: Apex domain you own in Route 53
+    Default: veganfuture.org
+
+Globals:
+  Function:
+    Timeout: 10  # seconds
+
+Resources:
+
+  # ─── SES v2 Email Identity ───────────────────────────────────────────────
+  SESEmailIdentity:
+    Type: AWS::SES::EmailIdentity
+    Properties:
+      EmailIdentity: !Ref Domain
+    # When you verify a domain like this, SES v2 uses “Easy DKIM”:
+    # it will output 3 CNAME tokens (DkimDNSTokenName1/Value1 … etc) that you
+    # need to add to DNS. SES automatically verifies the domain once these
+    # appear :contentReference[oaicite:0]{index=0}.
+
+  # ─── Route 53 RecordSetGroup for all DKIM CNAMEs ──────────────────────────
+  SESDkimRecords:
+    Type: AWS::Route53::RecordSetGroup
+    Properties:
+      HostedZoneName: !Sub '${Domain}.'     # must end with a dot
+      RecordSets:
+        - Name: !GetAtt SESEmailIdentity.DkimDNSTokenName1
+          Type: CNAME
+          TTL: 300
+          ResourceRecords:
+            - !GetAtt SESEmailIdentity.DkimDNSTokenValue1
+        - Name: !GetAtt SESEmailIdentity.DkimDNSTokenName2
+          Type: CNAME
+          TTL: 300
+          ResourceRecords:
+            - !GetAtt SESEmailIdentity.DkimDNSTokenValue2
+        - Name: !GetAtt SESEmailIdentity.DkimDNSTokenName3
+          Type: CNAME
+          TTL: 300
+          ResourceRecords:
+            - !GetAtt SESEmailIdentity.DkimDNSTokenValue3
+      # Once CloudFormation creates these records, SES will detect them and
+      # mark your domain as “Verified” (no manual console clicks needed).
+
+  # ─── DynamoDB table for sign‑ups ────────────────────────────────────────
+  RAAFSignupsTable:
+    Type: AWS::Serverless::SimpleTable
+    Properties:
+      TableName: RAAFSignups
+      PrimaryKey:
+        Name: email
+        Type: String
+
+  # ─── Lambda + public POST /signup_raaf ─────────────────────────────────
+  RAAFSignupFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: RAAFSignupFunction 
+      Runtime: nodejs18.x
+      Handler: app.handler
+      CodeUri: signup_raaf/        # your handler in signup_raaf/app.js
+      Environment:
+        Variables:
+          TABLE_NAME:       !Ref RAAFSignupsTable
+          SES_SOURCE_EMAIL: !Sub "noreply@${Domain}"
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref RAAFSignupsTable
+        - SESCrudPolicy:
+            # SES v2 policy template expects the *identity* name, which here
+            # is the domain itself
+            IdentityName: !Ref Domain
+      Events:
+        SignupApi:
+          Type: Api
+          Properties:
+            Path: /signup_raaf
+            Method: post
+
+Outputs:
+  SignupApiUrl:
+    Description: "RAAF Signup"
+    Value:       !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/signup_raaf"

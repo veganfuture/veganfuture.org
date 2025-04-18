@@ -14,6 +14,8 @@
             pkgs.nodejs_22
             pkgs.nodePackages.typescript
             pkgs.nodePackages.typescript-language-server
+            pkgs.awscli
+            pkgs.aws-sam-cli
           ];
         };
       }
