@@ -3,21 +3,20 @@ import { Metadata } from "next";
 export const BASE_URL = "https://veganfuture.org";
 
 export function withBaseUrl(path: string): string {
-  return `${BASE_URL}${path}`
+  return `${BASE_URL}${path}`;
 }
 
 export const BASE_METADATA: Metadata = {
   title: "Vegan Future",
   description: "A vegan future through kindness",
+  metadataBase: new URL(BASE_URL),
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
       { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
       { url: "/favicon.svg", type: "image/svg+xml" },
     ],
-    apple: [
-      { url: "/apple-touch-icon.png", sizes: "180x180" },
-    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
     other: [
       {
         rel: "manifest",
@@ -48,5 +47,4 @@ export const BASE_METADATA: Metadata = {
     images: ["/web-app-manifest-512x512.png"],
     creator: "@your_twitter_handle",
   },
-  themeColor: "#ffffff",
 };

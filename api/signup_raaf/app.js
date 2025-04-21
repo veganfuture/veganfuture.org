@@ -4,16 +4,15 @@ const db = new AWS.DynamoDB.DocumentClient();
 const ses = new AWS.SES();
 
 exports.handler = async (event) => {
-  const { name, email } = JSON.parse(event.body);
+  const { name, email, canEmailUpdates } = JSON.parse(event.body);
 
   console.log("EVENT:", JSON.stringify(event));
-  console.log("SES_SOURCE_EMAIL:", process.env.SES_SOURCE_EMAIL);
 
   // 1) Save to DynamoDB
   await db
     .put({
       TableName: process.env.TABLE_NAME,
-      Item: { email, name, timestamp: Date.now() },
+      Item: { email, name, timestamp: Date.now(), canEmailUpdates },
     })
     .promise();
 

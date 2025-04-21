@@ -8,6 +8,7 @@ const API_URL =
 export function SignupForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [canEmailUpdates, setCanEmailUpdates] = useState(true);
   const [showDonationDialog, setShowDonationDialog] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
@@ -28,7 +29,7 @@ export function SignupForm() {
       const res = await fetch(API_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email }),
+        body: JSON.stringify({ name, email, canEmailUpdates }),
       });
 
       if (!res.ok) {
@@ -36,10 +37,11 @@ export function SignupForm() {
         throw new Error(payload.error || payload.message || res.statusText);
       }
 
-      // success!
+      // success, reset values
       setShowDonationDialog(true);
       setName("");
       setEmail("");
+      setCanEmailUpdates(true);
     } catch (err: any) {
       setError(err.message || "Something went wrong");
     } finally {
@@ -89,13 +91,18 @@ export function SignupForm() {
         </div>
 
         <div>
-          <label htmlFor="keep-updated" className="flex items-center space-x-2">
+          <label
+            htmlFor="canEmailUpdates"
+            className="flex items-center space-x-2"
+          >
             <input
-              id="keep-updated"
+              id="canEmailUpdates"
               type="checkbox"
-              checked
-              readOnly
               className="rounded"
+              checked={canEmailUpdates}
+              onChange={(e) => {
+                setCanEmailUpdates(e.target.checked);
+              }}
             />
             <span>Keep me updated on future RAAFs</span>
           </label>
@@ -168,4 +175,3 @@ export function SignupForm() {
     </>
   );
 }
-
