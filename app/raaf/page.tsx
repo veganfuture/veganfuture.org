@@ -3,6 +3,7 @@ import Image from "next/image";
 import { BASE_METADATA } from "@/lib/metadata";
 import { SignupForm } from "./signup_form";
 import Link from "next/link";
+import { DonateRaaf } from "./donate_raaf";
 
 export const metadata: Metadata = {
   ...BASE_METADATA,
@@ -310,7 +311,7 @@ export default function RAAF() {
                   href="https://nl.linkedin.com/in/tim-reysoo-b57061226"
                   target="_blank"
                 >
-                  Tim's LinkedIn
+                  Tim&apos;s LinkedIn
                 </a>
               </li>
             </ul>
@@ -346,6 +347,10 @@ export default function RAAF() {
           alt="Picture of Torben"
           className="flex-shrink-0"
         />
+      </div>
+      <div className="p-4 text-3xl">Donation based</div>
+      <div className="p-4">
+        <DonateRaaf />
       </div>
       <div className="p-4 text-3xl">Learn more</div>
       <div className="p-4">

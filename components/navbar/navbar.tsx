@@ -56,9 +56,9 @@ const topLevelItems: Array<TopLevelItem> = [
     description: "A list of resources for activists and new comers alike",
     children: [
       {
-        name: "Social Experiment 2.0",
+        name: "Social Experiment",
         description: "A script that we use for outreach",
-        href: "/socialexperiment2",
+        href: "/socialexperiment",
         icon: ClipboardIcon,
       },
       {
@@ -91,7 +91,7 @@ const topLevelItems: Array<TopLevelItem> = [
         href: "/agenda",
         icon: CalendarDaysIcon,
       },
-      { 
+      {
         name: "Street outreach",
         description: "Talking to people on the streets about veganism",
         href: "/street_outreach",
@@ -102,13 +102,8 @@ const topLevelItems: Array<TopLevelItem> = [
         description: "Revolutionary Animal Advocacy Forum",
         href: "/raaf",
         icon: AcademicCapIcon,
-      }
-    ]
-  },
-  {
-    name: "Donate",
-    description: "Donate",
-    href: "/donate",
+      },
+    ],
   },
   {
     name: "About us",

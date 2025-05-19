@@ -26,7 +26,8 @@ export const events: Event[] = [
     date: asDate("24-01-2025"),
     startTime: "18:30",
     endTime: "22:00",
-    description: "A meetup for activists in Amsterdam to come together, inspire each other and talk strategy."
+    description:
+      "A meetup for activists in Amsterdam to come together, inspire each other and talk strategy.",
   },
   {
     type: "outreach",
@@ -75,7 +76,7 @@ export const events: Event[] = [
     date: asDate("6-4-2025"),
     startTime: "13:00",
     endTime: "16:00",
-    description: "Special action: we're selling Konink \"dogmeat\" this time :)"
+    description: 'Special action: we\'re selling Konink "dogmeat" this time :)',
   },
   {
     type: "outreach",
@@ -111,27 +112,51 @@ export const events: Event[] = [
   },
   {
     type: "outreach",
-    url: "https://www.meetup.com/vegan-future-amsterdam/events/305681996/",
-    location: "moco",
+    location: "rijks",
+    url: "/street_outreach",
     date: asDate("1-6-2025"),
-    startTime: "13:00",
-    endTime: "16:00",
+    startTime: "15:15",
+    endTime: "17:30",
   },
   {
     type: "outreach",
-    url: "https://www.meetup.com/vegan-future-amsterdam/events/305681998/",
-    location: "moco",
+    location: "rijks",
+    url: "/street_outreach",
     date: asDate("15-6-2025"),
-    startTime: "13:00",
-    endTime: "16:00",
+    startTime: "14:00",
+    endTime: "17:00",
   },
   {
     type: "outreach",
-    url: "https://www.meetup.com/vegan-future-amsterdam/events/305682001/",
-    location: "moco",
-    date: asDate("28-6-2025"),
-    startTime: "13:00",
-    endTime: "16:00",
+    location: "rijks",
+    url: "/street_outreach",
+    date: asDate("29-6-2025"),
+    startTime: "14:00",
+    endTime: "17:00",
+  },
+  {
+    type: "outreach",
+    location: "rijks",
+    url: "/street_outreach",
+    date: asDate("13-7-2025"),
+    startTime: "14:00",
+    endTime: "17:00",
+  },
+  {
+    type: "outreach",
+    location: "rijks",
+    url: "/street_outreach",
+    date: asDate("27-7-2025"),
+    startTime: "14:00",
+    endTime: "17:00",
+  },
+  {
+    type: "outreach",
+    location: "rijks",
+    url: "/street_outreach",
+    date: asDate("10-8-2025"),
+    startTime: "14:00",
+    endTime: "17:00",
   },
 ];
 
@@ -166,6 +191,6 @@ export function getLocationText(location: Location): string {
     case "EAO":
       return "Effective Altruism Office Amsterdam";
     case "buurtsalon":
-      return "Buurtsalon Jeltje"
+      return "Buurtsalon Jeltje";
   }
 }

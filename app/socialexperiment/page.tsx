@@ -1,10 +1,10 @@
-export default function SocialExperiment2() {
+export default function SocialExperiment() {
   return (
     <>
-      <p className="text-2xl">Social Experiment 2.0</p>
+      <p className="text-2xl">Social Experiment</p>
       <p>
         One of the techniques we use for our outreach is what we call the social
-        experiment 2.0. The main idea behind the experiment is that we test
+        experiment. The main idea behind the experiment is that we test
         people&apos;s morality in the safe space of thought experiments. The
         experiments get increasingly difficult, which is designed to prevent
         people from experiencing cognitive dissonance. If people do not have a
@@ -23,16 +23,27 @@ export default function SocialExperiment2() {
           className="w-full md:h-96 lg:h-[500px]"
         />
       </p>
-      <p className="text-xl">The script</p>
+      <p className="text-xl">The Script</p>
       <p>
-        The full script can be read{" "}
-        <a
-          className="underline"
-          href="https://docs.google.com/document/d/151fNKfkymeYKwzVbq8CEB9iWKL4CJDhcX4BWo5WRB9M/edit?usp=sharing"
-        >
-          here
-        </a>
-        . Feel free to use it!
+        Here are all versions of the script:
+        <ol>
+          <li className="list-disc mx-8">
+            <a
+              className="underline"
+              href="https://docs.google.com/document/d/1NwPWUP1YIPzur1_dO1uM4uGfZgpBCDZ_pBlbE1NNXk0/edit?usp=sharing"
+            >
+              Social Experiment 3.0
+            </a>
+          </li>
+          <li className="list-disc mx-8">
+            <a
+              className="underline"
+              href="https://docs.google.com/document/d/151fNKfkymeYKwzVbq8CEB9iWKL4CJDhcX4BWo5WRB9M/edit?usp=sharing"
+            >
+              Social Experiment 2.0
+            </a>
+          </li>
+        </ol>
       </p>
     </>
   );

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { DonateRaaf } from "./donate_raaf";
 
 const API_URL =
   "https://9iqx4v1ywg.execute-api.eu-central-1.amazonaws.com/signup_raaf";
@@ -128,41 +129,7 @@ export function SignupForm() {
             <h2 className="text-4xl font-bold mb-4 text-green-700">
               Thank you for signing up!
             </h2>
-            <p className="text-lg mb-4">
-              RAAF is a donation-based event. We do have some costs though (e.g.
-              renting the space). To break even, we need about{" "}
-              <strong>5 euros per person</strong>. If you can support us, it
-              would mean the world 🫶
-            </p>
-            <p className="mb-6 text-md text-gray-700">
-              You can donate easily using PayPal below:
-            </p>
-            <div className="flex flex-col md:flex-row gap-4 justify-center items-center mb-6">
-              <a
-                href="https://www.paypal.com/donate/?business=N9L3QJHVHU8R2&amount=5&no_recurring=1&item_name=Revolutionary%20Animal%20Advocacy%20Forum&currency_code=EUR"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-blue-600 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700 transition"
-              >
-                Donate €5 - help us break even
-              </a>
-              <a
-                href="https://www.paypal.com/donate/?business=N9L3QJHVHU8R2&amount=10&no_recurring=1&item_name=Revolutionary%20Animal%20Advocacy%20Forum&currency_code=EUR"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-blue-600 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700 transition"
-              >
-                Donate €10 - help support the next RAAF
-              </a>
-              <a
-                href="https://www.paypal.com/donate/?business=N9L3QJHVHU8R2&no_recurring=1&item_name=Revolutionary%20Animal%20Advocacy%20Forum&currency_code=EUR"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-blue-600 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700 transition"
-              >
-                Other Amount
-              </a>
-            </div>
+            <DonateRaaf />
             <button
               onClick={() => setShowDonationDialog(false)}
               className="mt-2 text-gray-600 underline hover:text-gray-800 transition"
