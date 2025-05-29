@@ -6,50 +6,60 @@ export default function StreetOureach() {
     <>
       <div className="text-2xl font-bold p-4">Street outreach</div>
       <div className="p-4">
-        Every two weeks we go out onto the streets of Amsterdam to talk to
-        non-vegans about the benefits of going vegan. We are continously
-        updating our approach. One of the methods is the{" "}
-        <Link href="/socialexperiment">Social experiment</Link>. We do a number
-        of things though, such as flyering, quizes, selling &quot;dogmeat&quot;.
-      </div>
-      <div className="p-4">
-        One of our main goals it to only have <b>positive interactions</b>. If
-        someone becomes defensive or even hostile, we immediatelely and as
-        pleasantly as possible end the conversation.
-      </div>
-      <div className="p-4">
-        When we talk to non-vegans we try to achieve the following:
-        <ol className="list-decimal pl-6">
-          <li>
-            <b>Inform:</b> about the ethical reasons to go vegan
-          </li>
-          <li>
-            <b>Show:</b> footage of animal agriculture (unless they are younger
-            than 16 years)
-          </li>
-          <li>
-            <b>Supply:</b> resources (e.g. where to go for vegan food, how to
-            become vegan and where they can learn more)
-          </li>
-          <li>
-            <b>Leave:</b> positive feeling about veganism
-          </li>
-        </ol>
-      </div>
-      <div className="p-4">
-        We film some of our interactions and place them on our{" "}
-        <Link href="https://www.youtube.com/@kind-future">youtube channel</Link>
-        . This way we can spread our message wider. Filming is always
-        consensual.
-      </div>
-      <div className="p-4">
         <Image
           src="group_photo.jpg"
-          width={600}
-          height={450}
+          width={300}
+          height={225}
           alt="Group photo"
         />
         (group photo after a street outreach event)
+      </div>
+      <div className="p-4">
+        Every two weeks, we take to the streets of Amsterdam to engage
+        non-vegans in conversations about the benefits of going vegan. Our
+        approach is constantly evolving, with methods like the{" "}
+        <Link href="/socialexperiment">Social Experiment</Link>, flyering,
+        quizzes, and even selling “dog meat” as a thought-provoking tactic.
+      </div>
+      <div className="p-4">
+        Our core principle is to ensure <b>positive interactions</b>. If someone
+        becomes defensive or hostile, we end the conversation politely and
+        immediately.
+      </div>
+      <div className="p-4">
+        During conversations, we aim to:
+        <ol className="list-decimal pl-6">
+          <li>
+            <b>Inform:</b> Explain the ethical reasons to go vegan
+          </li>
+          <li>
+            <b>Show:</b> Footage of animal agriculture (not shown to anyone
+            under 16)
+          </li>
+          <li>
+            <b>Provide:</b> Practical resources on going vegan and where to
+            learn more
+          </li>
+          <li>
+            <b>Leave:</b> A positive impression of veganism and vegans
+          </li>
+        </ol>{" "}
+      </div>{" "}
+      <div className="p-4">
+        {" "}
+        Some conversations are filmed—with consent—and shared on our{" "}
+        <Link href="https://www.youtube.com/@kind-future">
+          YouTube channel
+        </Link>{" "}
+        to reach a broader audience.{" "}
+      </div>
+      <div className="px-4 pt-4 text-2xl">
+        <strong>Join us</strong> — and help build the future we believe in.
+      </div>
+      <div className="p-4">
+        Do you want to join one of our events? Please{" "}
+        <Link href="/contact">contact us</Link> and we'll get you fully up to
+        speed.
       </div>
     </>
   );

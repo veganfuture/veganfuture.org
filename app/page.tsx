@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <>
       <div className="bg-red-200 text-red-900 px-4 py-3 text-center text-sm md:text-base font-medium shadow-sm">
-        <strong>Not vegan yet?{" "}</strong>
+        <strong>Not vegan yet? </strong>
         <Link
           href="https://video.veganfuture.org"
           className="underline font-semibold hover:text-red-600 transition-colors"
@@ -17,13 +17,24 @@ export default function Home() {
         What's <strong>Vegan Future</strong>?
       </div>
       <div className="p-4">
-        We organize events to accelerate the shift toward a vegan world — one that’s compassionate, practical, and sustainable.
+        We organize events to accelerate the shift toward a vegan world — one
+        that’s compassionate, practical, and sustainable.
       </div>
       <ul className="list-disc px-6 space-y-4">
-        <li>For non-vegans, we host <Link href="/street_outreach">outreach</Link> events that <strong>spark change through respectful, motivating conversations.</strong> We hand out leaflets that feature local vegan restaurants and practical tips to help people anyone go vegan with confidence.
+        <li>
+          For non-vegans, we host <Link href="/street_outreach">outreach</Link>{" "}
+          events that{" "}
+          <strong>
+            spark change through respectful, motivating conversations.
+          </strong>{" "}
+          We hand out leaflets that feature local vegan restaurants and
+          practical tips to help people anyone go vegan with confidence.
         </li>
         <li>
-          For activists, we create spaces to grow and connect. Our flagship event, <Link href="/raaf">RAAF</Link>, is a forum where <strong>experienced advocates share insights</strong>, building community through collaboration and storytelling.
+          For activists, we create spaces to grow and connect. Our flagship
+          event, <Link href="/raaf">RAAF</Link>, is a forum where{" "}
+          <strong>experienced advocates share insights</strong>, building
+          community through collaboration and storytelling.
         </li>
       </ul>
       <div className="mt-8 flex flex-col md:flex-row gap-8 px-4 pb-2 items-stretch">
@@ -56,7 +67,9 @@ export default function Home() {
         <strong>Join us</strong> — and help build the future we believe in.
       </div>
       <div className="p-4">
-        Do you want to join one of our events? Please <Link href="/contact">contact us</Link> and we'll get you fully up to speed.
+        Do you want to join one of our events? Please{" "}
+        <Link href="/contact">contact us</Link> and we'll get you fully up to
+        speed.
       </div>
     </>
   );

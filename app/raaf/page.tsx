@@ -87,10 +87,8 @@ export default function RAAF() {
       <div className="p-4 flex flex-col md:flex-row md:justify-between gap-8">
         <div className="flex-1">
           <p className="pb-4">
-            <strong>Spots are limited</strong>, so early registration is
-            strongly recommended.
+            <strong>Signup has ended.</strong>
           </p>
-          <SignupForm />
         </div>
 
         <div className="w-full md:w-[350px] md:ml-8">
