@@ -41,7 +41,7 @@ export function AgendaItem({
           mb-4 
           lg:mb-0 
           lg:mr-4 
-          lg:w-[720px]
+          lg:w-full
           hover:shadow-none
           hover:bg-white
           cursor-pointer
