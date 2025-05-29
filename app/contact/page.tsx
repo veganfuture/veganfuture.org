@@ -57,7 +57,7 @@ export default function ContactUs() {
         ) : formState == FormState.SENDING ? (
           <div className="h-[200px] text-center items-center justify-center flex">
             <div>
-              <Image src="spinner.svg" className="inline" />{" "}
+              <Image src="spinner.svg" className="inline" alt="Please wait" />{" "}
               <span className="pl-3 font-italic text-gray-800 text-xl">
                 Sending email...
               </span>

@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import { AgendaItem } from "../../components/agenda-item/agenda-item";
 import { isAfter } from "date-fns";
-    locationUrl={getLocationUrl(event.location)}
 import {
   events,
   getEventIcon,

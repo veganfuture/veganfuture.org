@@ -7,7 +7,6 @@ export default function Factsheets() {
           <a href="https://drive.google.com/drive/folders/1Wk9vEQPpFHGp9-pdb4E2kcMP1oQvt8Z8?usp=drive_link">
             Download Outreach Content Here
           </a>
-          .
         </button>
       </div>
       <div className="p-4">
