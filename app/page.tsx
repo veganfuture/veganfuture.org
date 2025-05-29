@@ -28,7 +28,7 @@ export default function Home() {
             spark change through respectful, motivating conversations.
           </strong>{" "}
           We hand out leaflets that feature local vegan restaurants and
-          practical tips to help people anyone go vegan with confidence.
+          practical tips to help people go vegan with confidence.
         </li>
         <li>
           For activists, we create spaces to grow and connect. Our flagship
