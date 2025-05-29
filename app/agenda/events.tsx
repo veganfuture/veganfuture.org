@@ -194,3 +194,16 @@ export function getLocationText(location: Location): string {
       return "Buurtsalon Jeltje";
   }
 }
+
+export function getLocationUrl(location: Location): string {
+  switch (location) {
+    case "moco":
+      return "https://maps.app.goo.gl/wciocBEZLbGSwyq4A";
+    case "rijks":
+      return "https://maps.app.goo.gl/UQP221BB2yxwDros7";
+    case "EAO":
+      return "https://maps.app.goo.gl/YLVoWa3kSzMViz5C9";
+    case "buurtsalon":
+      return "https://maps.app.goo.gl/Uq8NWo2djUAw7x7H9";
+  }
+}

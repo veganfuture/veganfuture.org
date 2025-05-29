@@ -1,9 +1,11 @@
 import { format } from "date-fns";
+import Link from "next/link";
 
 type AgendaItemProps = {
   url: string;
   title: string;
   location: string;
+  locationUrl?: string;
   date: Date;
   startTime: string;
   endTime: string;
@@ -15,10 +17,11 @@ export function AgendaItem({
   url,
   title,
   location,
+  locationUrl,
   date,
   startTime,
   endTime,
-  icon, 
+  icon,
   description,
 }: AgendaItemProps) {
   return (
@@ -60,8 +63,11 @@ export function AgendaItem({
           {startTime} to {endTime}
         </strong>
       </p>
-      { description ? <p>{description}</p> : <></>}
-      <p>Location: {location}</p>
+      {description ? <p>{description}</p> : <></>}
+      <p>
+        Location:{" "}
+        {locationUrl ? <Link href={locationUrl}>{location}</Link> : location}
+      </p>
     </div>
   );
 }
