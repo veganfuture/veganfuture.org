@@ -13,8 +13,9 @@ const config: Config = {
       },      
       colors: {
         green: {
-          100: '#e7f1ed', // your custom green-100
-          200: '#b3dfc7', // your custom green-200
+          100: '#f7fcfa', // your custom green-100
+          200: '#e7f1ed', // your custom green-100
+          300: '#b3dfc7', // your custom green-200
         },
       },
     },

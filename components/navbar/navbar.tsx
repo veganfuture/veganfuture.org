@@ -140,7 +140,7 @@ export function Navbar({ className }: NavBarProps) {
         className="mx-auto flex max-w-7xl items-center justify-between lg:px-8"
       >
         <div className="flex lg:flex-1">
-          <a href="#" className="-m-1.5 p-1.5">
+          <a href="#" className="m-2 p-2">
             <span className="sr-only">Vegan Future</span>
             <Image
               alt="Vegan Future of Amsterdam"
@@ -188,7 +188,7 @@ export function Navbar({ className }: NavBarProps) {
                     {item.children.map((childItem) => (
                       <div
                         key={childItem.name}
-                        className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
+                        className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-green-100"
                       >
                         <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
                           <childItem.icon
@@ -226,7 +226,7 @@ export function Navbar({ className }: NavBarProps) {
         <div className="fixed inset-0 z-10" />
         <DialogPanel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
-            <a href="#" className="-m-1.5 p-1.5">
+            <a href="#" className="-m-2 p-2">
               <span className="sr-only">Vegan Future</span>
               <Image
                 alt="Vegan Future"
@@ -253,13 +253,13 @@ export function Navbar({ className }: NavBarProps) {
                     <a
                       key={item.name}
                       href={item.href}
-                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 no-underline hover:text-indigo-600"
+                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-green-100 no-underline hover:text-indigo-600"
                     >
                       {item.name}
                     </a>
                   ) : (
                     <Disclosure key={item.name} as="div" className="-mx-3">
-                      <DisclosureButton className="group flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                      <DisclosureButton className="group flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-4 text-base font-semibold leading-7 text-gray-900 hover:bg-green-100">
                         {item.name}
                         <ChevronDownIcon
                           aria-hidden="true"
@@ -272,7 +272,7 @@ export function Navbar({ className }: NavBarProps) {
                             key={childItem.name}
                             as="a"
                             href={childItem.href}
-                            className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50 hover:text-indigo-600"
+                            className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-green-100 hover:text-indigo-600"
                           >
                             {childItem.name}
                           </DisclosureButton>

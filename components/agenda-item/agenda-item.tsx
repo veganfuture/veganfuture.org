@@ -36,7 +36,7 @@ export function AgendaItem({
       className="
           p-4 
           my-4 
-          bg-gray-100 
+          bg-green-100 
           border 
           border-gray-300 
           rounded-lg 

@@ -36,25 +36,25 @@ export default function SocialExperiment() {
       <p className="text-xl px-4">The Script</p>
       <p className="p-4">
         Here are all versions of the script:
-        <ol className="py-2">
-          <li className="list-disc mx-8">
-            <a
-              className="underline"
-              href="https://docs.google.com/document/d/1NwPWUP1YIPzur1_dO1uM4uGfZgpBCDZ_pBlbE1NNXk0/edit?usp=sharing"
-            >
-              Social Experiment 3.0
-            </a>
-          </li>
-          <li className="list-disc mx-8">
-            <a
-              className="underline"
-              href="https://docs.google.com/document/d/151fNKfkymeYKwzVbq8CEB9iWKL4CJDhcX4BWo5WRB9M/edit?usp=sharing"
-            >
-              Social Experiment 2.0
-            </a>
-          </li>
-        </ol>
       </p>
+      <ol className="py-2">
+        <li className="list-disc mx-8">
+          <a
+            className="underline"
+            href="https://docs.google.com/document/d/1NwPWUP1YIPzur1_dO1uM4uGfZgpBCDZ_pBlbE1NNXk0/edit?usp=sharing"
+          >
+            Social Experiment 3.0
+          </a>
+        </li>
+        <li className="list-disc mx-8">
+          <a
+            className="underline"
+            href="https://docs.google.com/document/d/151fNKfkymeYKwzVbq8CEB9iWKL4CJDhcX4BWo5WRB9M/edit?usp=sharing"
+          >
+            Social Experiment 2.0
+          </a>
+        </li>
+      </ol>
     </>
   );
 }
