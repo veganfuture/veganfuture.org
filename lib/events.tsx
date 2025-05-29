@@ -17,6 +17,7 @@ export type Event = {
   description?: string;
   icon: React.ReactNode;
   id: number;
+  title: string;
 };
 
 const asTime = (str: string): Date => parse(str, "d-M-yyyy H:m", new Date());
@@ -147,15 +148,21 @@ export const events: Event[] = provideExtraField([
 ]);
 
 /* automatically set id field based on index */
-function provideExtraField(events: Omit<Event, 'id' | 'locationUrl' | 'icon' | 'locationText'>[]): Event[] {
+function provideExtraField(
+  events: Omit<
+    Event,
+    "id" | "locationUrl" | "icon" | "locationText" | "title"
+  >[],
+): Event[] {
   return events.map((event, idx) => {
     return {
       ...event,
-      id: idx, 
-      locationUrl: getLocationUrl(event.location), 
-      locationText: getLocationText(event.location), 
-      icon: getEventIcon(event.type)
-    }
+      id: idx,
+      locationUrl: getLocationUrl(event.location),
+      locationText: getLocationText(event.location),
+      icon: getEventIcon(event.type),
+      title: getEventTitle(event.type),
+    };
   });
 }
 

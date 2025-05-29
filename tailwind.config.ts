@@ -9,14 +9,17 @@ const config: Config = {
   theme: {
     extend: {
       backgroundImage: {
-        'leaf-pattern': "url('/vf_texture.png')",
-      },      
+        "leaf-pattern": "url('/vf_texture.png')",
+      },
+      fontFamily: {
+        comfortaa: ["var(--font-comfortaa)", "cursive"],
+      },
       colors: {
         green: {
-          100: '#f7fcfa',
-          200: '#e7f1ed',
-          300: '#b3dfc7',
-          800: '#337a60',
+          100: "#f7fcfa",
+          200: "#e7f1ed",
+          300: "#b3dfc7",
+          800: "#337a60",
         },
       },
     },

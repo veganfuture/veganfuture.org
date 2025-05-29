@@ -13,7 +13,7 @@ export default function Home() {
           Start your journey here!
         </Link>
       </div>
-      <div className="p-4 w-full text-2xl">
+      <div className="p-4 w-full text-2xl font-comfortaa">
         What&apos;s <strong>Vegan Future</strong>?
       </div>
       <div className="p-4">
@@ -63,7 +63,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="px-4 pt-4 text-2xl">
+      <div className="px-4 pt-4 text-2xl font-comfortaa">
         <strong>Join us</strong> — and help build the future we believe in.
       </div>
       <div className="p-4">

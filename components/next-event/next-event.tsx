@@ -2,7 +2,6 @@
 
 import {
   events,
-  getEventIcon,
   getEventTitle,
   getLocationText,
   getLocationUrl,
@@ -17,16 +16,16 @@ export function NextEvent() {
   const event = upcomingEvents[0];
 
   if (upcomingEvents.length == 0) {
-    return <div>No upcoming event!</div>
+    return <div>No upcoming event!</div>;
   } else {
     return (
       <AgendaItem
-        eventId={event.id}  
+        eventId={event.id}
         icon={event.icon}
         url={event.url}
-        title={getEventTitle(event.type)}
-        location={getLocationText(event.location)}
-        locationUrl={getLocationUrl(event.location)}
+        title={event.title}
+        location={event.locationText}
+        locationUrl={event.locationUrl}
         startTime={event.startTime}
         endTime={event.endTime}
         description={event.description}
@@ -34,4 +33,3 @@ export function NextEvent() {
     );
   }
 }
-

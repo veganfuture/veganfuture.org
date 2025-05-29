@@ -1,7 +1,7 @@
 export default function SocialExperiment() {
   return (
     <>
-      <p className="text-2xl px-4">Social Experiment</p>
+      <p className="text-2xl px-4 font-comfortaa">Social Experiment</p>
       <p className="p-4">
         One of the techniques we use for our outreach is what we call the social
         experiment. The main idea behind the experiment is that we test
@@ -34,9 +34,7 @@ export default function SocialExperiment() {
       </p>
 
       <p className="text-xl px-4">The Script</p>
-      <p className="p-4">
-        Here are all versions of the script:
-      </p>
+      <p className="p-4">Here are all versions of the script:</p>
       <ol className="py-2">
         <li className="list-disc mx-8">
           <a

@@ -3,7 +3,9 @@ import Image from "next/image";
 export default function MapOfAmsterdam() {
   return (
     <>
-      <div className="text-2xl p-4 pb-2">Vegan Map Of Amsterdam</div>
+      <div className="text-2xl p-4 pb-2 font-comfortaa">
+        Vegan Map Of Amsterdam
+      </div>
       <div className="p-4 pb-2">
         Feel free to print this map and give it to people who you&apos; ve met
         on the streets of Amsterdam!

@@ -139,7 +139,7 @@ export function Navbar({ className }: NavBarProps) {
             <span className="sr-only">Vegan Future</span>
             <Image
               alt="Vegan Future Logo"
-              src="vf_logo_web.png"
+              src="/vf_logo_web.png"
               width={112}
               height={90}
             />
@@ -224,11 +224,11 @@ export function Navbar({ className }: NavBarProps) {
             <a href="#" className="-m-2 p-2">
               <span className="sr-only">Vegan Future</span>
               <Image
-              alt="Vegan Future Logo"
-              src="vf_logo_web.png"
-              width={112}
-              height={90}
-            />
+                alt="Vegan Future Logo"
+                src="/vf_logo_web.png"
+                width={112}
+                height={90}
+              />
             </a>
             <button
               type="button"

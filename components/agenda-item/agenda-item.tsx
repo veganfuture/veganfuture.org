@@ -30,7 +30,7 @@ export function AgendaItem({
         if (url.startsWith("http")) {
           window.open(url, "_blank");
         } else {
-          document.location = `${url}?event_id=${eventId}`;
+          document.location = `${url}/${eventId}`;
         }
       }}
       className="

@@ -42,9 +42,25 @@ export default function ContactUs() {
   return (
     <div className="flex justify-center items-center">
       <div className="w-full max-w-md p-8 bg-white shadow-lg rounded-lg">
-        <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">
-          Contact Us
-        </h2>
+        <h2 className="text-2xl text-center mb-6 text-gray-800">Contact Us</h2>
+
+        <div className="flex justify-center">
+          <a
+            href="https://chat.whatsapp.com/GpeRxPjmNs68pIfgKDg1Pz"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded flex items-center space-x-2"
+          >
+            <Image
+              src="WhatsApp.svg"
+              width={24}
+              height={24}
+              alt="WhatsApp logo"
+            />
+            <span>Join us on WhatsApp</span>
+          </a>
+        </div>
+
+        <p className="pt-6 pb-4 text-xl">Or send us a message:</p>
+
         {errorMsg && (
           <div className="text-red-500 text-center mb-4">{errorMsg}</div>
         )}

@@ -32,7 +32,7 @@ export default function Agenda() {
 
   return (
     <>
-      <div className="text-2xl p-4">Agenda</div>
+      <div className="text-2xl p-4 font-comfortaa">Agenda</div>
 
       <div className="pb-4 pl-4">
         <Tabs
