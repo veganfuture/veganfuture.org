@@ -6,8 +6,8 @@ import {
   getEventTitle,
   getLocationText,
   getLocationUrl,
-} from "../../app/agenda/events";
-import { AgendaItem } from "../../app/agenda/agenda-item";
+} from "../../lib/events";
+import { AgendaItem } from "../agenda-item/agenda-item";
 import { compareAsc, isAfter } from "date-fns";
 
 export function NextEvent() {

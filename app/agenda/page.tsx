@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import { AgendaItem } from "./agenda-item";
+import { AgendaItem } from "../../components/agenda-item/agenda-item";
 import { isAfter } from "date-fns";
+    locationUrl={getLocationUrl(event.location)}
 import {
   events,
   getEventIcon,
@@ -10,7 +11,7 @@ import {
   getLocationText,
   getLocationUrl,
   Event,
-} from "./events";
+} from "../../lib/events";
 import { TabProps, Tabs } from "@/components/tabs/tabs";
 
 export default function Agenda() {

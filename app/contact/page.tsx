@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, FormEvent } from "react";
+import Image from "next/image";
 
 enum FormState {
   UNSENT,
@@ -56,7 +57,7 @@ export default function ContactUs() {
         ) : formState == FormState.SENDING ? (
           <div className="h-[200px] text-center items-center justify-center flex">
             <div>
-              <img src="spinner.svg" className="inline" />{" "}
+              <Image src="spinner.svg" className="inline" />{" "}
               <span className="pl-3 font-italic text-gray-800 text-xl">
                 Sending email...
               </span>

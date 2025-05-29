@@ -58,8 +58,8 @@ export default function StreetOureach() {
       </div>
       <div className="p-4">
         Do you want to join one of our events? Please{" "}
-        <Link href="/contact">contact us</Link> and we'll get you fully up to
-        speed.
+        <Link href="/contact">contact us</Link> and we&apos;ll get you fully up
+        to speed.
       </div>
     </>
   );

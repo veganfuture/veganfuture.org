@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function MapOfAmsterdam() {
   return (
     <>
@@ -7,10 +9,11 @@ export default function MapOfAmsterdam() {
         on the streets of Amsterdam!
       </div>
       <div className="p-4">
-        <img
+        <Image
           src="VeganMapOfAmsterdam.png"
           alt="Vegan Map of Amsterdam"
-          width={600}
+          width={799}
+          height={588}
         />
         <p className="text-sm">(This is an out-of-date preview of the map)</p>
       </div>

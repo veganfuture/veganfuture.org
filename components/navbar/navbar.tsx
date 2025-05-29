@@ -26,6 +26,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { ComponentType, SVGProps } from "react";
+import Image from "next/image";
 
 type NavItem = {
   name: string;
@@ -141,10 +142,12 @@ export function Navbar({ className }: NavBarProps) {
         <div className="flex lg:flex-1">
           <a href="#" className="-m-1.5 p-1.5">
             <span className="sr-only">Vegan Future</span>
-            <img
+            <Image
               alt="Vegan Future of Amsterdam"
               src="logo.png"
               className="h-16 w-auto"
+              width={16}
+              height={16}
             />
           </a>
         </div>
@@ -226,7 +229,7 @@ export function Navbar({ className }: NavBarProps) {
           <div className="flex items-center justify-between">
             <a href="#" className="-m-1.5 p-1.5">
               <span className="sr-only">Vegan Future</span>
-              <img
+              <Image
                 alt="Vegan Future of Amsterdam"
                 src="logo.png"
                 className="h-16 w-auto"

@@ -14,7 +14,7 @@ export default function Home() {
         </Link>
       </div>
       <div className="p-4 w-full text-2xl">
-        What's <strong>Vegan Future</strong>?
+        What&apos;s <strong>Vegan Future</strong>?
       </div>
       <div className="p-4">
         We organize events to accelerate the shift toward a vegan world — one
@@ -68,8 +68,8 @@ export default function Home() {
       </div>
       <div className="p-4">
         Do you want to join one of our events? Please{" "}
-        <Link href="/contact">contact us</Link> and we'll get you fully up to
-        speed.
+        <Link href="/contact">contact us</Link> and we&apos;ll get you fully up
+        to speed.
       </div>
     </>
   );
