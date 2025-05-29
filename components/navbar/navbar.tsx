@@ -27,6 +27,7 @@ import {
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { ComponentType, SVGProps } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 type NavItem = {
   name: string;
@@ -134,7 +135,7 @@ export function Navbar({ className }: NavBarProps) {
         className="mx-auto flex max-w-7xl items-center justify-between lg:px-8"
       >
         <div className="flex lg:flex-1">
-          <a href="#" className="m-2 p-2">
+          <Link href="/" className="m-2 p-2">
             <span className="sr-only">Vegan Future</span>
             <Image
               alt="Vegan Future of Amsterdam"
@@ -142,13 +143,13 @@ export function Navbar({ className }: NavBarProps) {
               width={96}
               height={96}
             />
-          </a>
+          </Link>
         </div>
         <div className="flex lg:hidden">
           <button
             type="button"
             onClick={() => setMobileMenuOpen(true)}
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700 px-4"
           >
             <span className="sr-only">Open main menu</span>
             <Bars3Icon aria-hidden="true" className="h-6 w-6" />

@@ -34,7 +34,7 @@ export default function RootLayout({
           {/* Footer always at the bottom */}
           <footer className="w-full bg-black text-white py-6 mt-8">
             <div className="max-w-[80%] mx-auto flex flex-col md:flex-row justify-between items-center gap-2 text-sm">
-              <p>Free to use. No rights reserved. With love from Vegan Future.</p>
+              <p>Free to use. No rights reserved. With love from Vegan Future 💚</p>
 
               <div className="flex items-center gap-4">
                 <Link
