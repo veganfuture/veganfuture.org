@@ -144,10 +144,9 @@ export function Navbar({ className }: NavBarProps) {
             <span className="sr-only">Vegan Future</span>
             <Image
               alt="Vegan Future of Amsterdam"
-              src="logo.png"
-              className="h-16 w-auto"
-              width={16}
-              height={16}
+              src="vf_logo_96.png"
+              width={96}
+              height={96}
             />
           </a>
         </div>
