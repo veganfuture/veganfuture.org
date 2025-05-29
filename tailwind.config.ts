@@ -8,8 +8,14 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        'leaf-pattern': "url('/vf_texture.png')",
+      },      
       colors: {
-        customGrayGreen: '#DDDED9',
+        green: {
+          100: '#e7f1ed', // your custom green-100
+          200: '#b3dfc7', // your custom green-200
+        },
       },
     },
   },

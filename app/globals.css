@@ -4,8 +4,8 @@
 
 :root {
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 197, 223, 199;
-  --background-end-rgb: 255, 255, 255;
+  --background-end-rgb: 231, 241, 237;
+  --background-start-rgb: 255, 255, 255;
 }
 
 html, body {
@@ -18,7 +18,8 @@ body {
   background: linear-gradient(
       to bottom,
       rgb(var(--background-start-rgb)) 0px,
-      rgb(var(--background-end-rgb)) 200px
+      rgb(var(--background-start-rgb)) 600px,
+      rgb(var(--background-end-rgb)) 1000px
     );
   padding-left: 2px;
   padding-right: 2px;

@@ -137,7 +137,7 @@ export function Navbar({ className }: NavBarProps) {
     <header className={className}>
       <nav
         aria-label="Global"
-        className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
+        className="mx-auto flex max-w-7xl items-center justify-between lg:px-8"
       >
         <div className="flex lg:flex-1">
           <a href="#" className="-m-1.5 p-1.5">
@@ -166,13 +166,13 @@ export function Navbar({ className }: NavBarProps) {
               <a
                 key={item.name}
                 href={item.href}
-                className="text-sm font-semibold leading-6 text-gray-900 no-underline hover:text-indigo-600"
+                className="text-l font-semibold leading-6 text-gray-900 no-underline hover:text-indigo-600"
               >
                 {item.name}
               </a>
             ) : (
               <Popover key={item.name} className="relative">
-                <PopoverButton className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
+                <PopoverButton className="flex items-center gap-x-1 text-l font-semibold leading-6 text-gray-900">
                   {item.name}
                   <ChevronDownIcon
                     aria-hidden="true"
@@ -229,8 +229,10 @@ export function Navbar({ className }: NavBarProps) {
             <a href="#" className="-m-1.5 p-1.5">
               <span className="sr-only">Vegan Future</span>
               <Image
-                alt="Vegan Future of Amsterdam"
-                src="logo.png"
+                alt="Vegan Future"
+                src="vf_logo_96.png"
+                width={96}
+                height={96}
                 className="h-16 w-auto"
               />
             </a>
