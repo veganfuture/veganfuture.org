@@ -69,12 +69,6 @@ const topLevelItems: Array<TopLevelItem> = [
         icon: MapIcon,
       },
       {
-        name: "Fact sheets",
-        description: "Fact sheets for reference during outreach",
-        href: "/factsheets",
-        icon: ClipboardDocumentListIcon,
-      },
-      {
         name: "Outreach content",
         description: "All you need for doing outreach",
         href: "/content",
