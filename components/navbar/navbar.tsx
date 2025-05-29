@@ -138,10 +138,10 @@ export function Navbar({ className }: NavBarProps) {
           <Link href="/" className="m-2 p-2">
             <span className="sr-only">Vegan Future</span>
             <Image
-              alt="Vegan Future of Amsterdam"
-              src="vf_logo_96.png"
-              width={96}
-              height={96}
+              alt="Vegan Future Logo"
+              src="vf_logo_web.png"
+              width={112}
+              height={90}
             />
           </Link>
         </div>
@@ -224,12 +224,11 @@ export function Navbar({ className }: NavBarProps) {
             <a href="#" className="-m-2 p-2">
               <span className="sr-only">Vegan Future</span>
               <Image
-                alt="Vegan Future"
-                src="vf_logo_96.png"
-                width={96}
-                height={96}
-                className="h-16 w-auto"
-              />
+              alt="Vegan Future Logo"
+              src="vf_logo_web.png"
+              width={112}
+              height={90}
+            />
             </a>
             <button
               type="button"
