@@ -1,66 +1,35 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { useSearchParams } from 'next/navigation';
+
+import { OutreachDescription } from "./outreach_description";
+import { events } from "@/lib/events";
+import { format } from "date-fns/format";
 
 export default function StreetOureach() {
+  const searchParams = useSearchParams();
+  const eventId = searchParams.get('event_id') || -1;
+  const event = events.find(event => event.id == eventId)
+
   return (
     <>
-      <div className="text-2xl font-bold p-4">Street outreach</div>
+
+      {event ?
+        <>
+      <div className="text-2xl font-bold p-4">Street outreach, {format(event.startTime, "do MMMM yyyy")}</div>
       <div className="p-4">
-        <Image
-          src="group_photo.jpg"
-          width={300}
-          height={225}
-          alt="Group photo"
-        />
-        (group photo after a street outreach event)
-      </div>
-      <div className="p-4">
-        Every two weeks, we take to the streets of Amsterdam to engage
-        non-vegans in conversations about the benefits of going vegan. Our
-        approach is constantly evolving, with methods like the{" "}
-        <Link href="/socialexperiment">Social Experiment</Link>, flyering,
-        quizzes, and even selling “dog meat” as a thought-provoking tactic.
-      </div>
-      <div className="p-4">
-        Our core principle is to ensure <b>positive interactions</b>. If someone
-        becomes defensive or hostile, we end the conversation politely and
-        immediately.
-      </div>
-      <div className="p-4">
-        During conversations, we aim to:
-        <ol className="list-decimal pl-6">
-          <li>
-            <b>Inform:</b> Explain the ethical reasons to go vegan
-          </li>
-          <li>
-            <b>Show:</b> Footage of animal agriculture (not shown to anyone
-            under 16)
-          </li>
-          <li>
-            <b>Provide:</b> Practical resources on going vegan and where to
-            learn more
-          </li>
-          <li>
-            <b>Leave:</b> A positive impression of veganism and vegans
-          </li>
-        </ol>{" "}
-      </div>{" "}
-      <div className="p-4">
-        {" "}
-        Some conversations are filmed—with consent—and shared on our{" "}
-        <Link href="https://www.youtube.com/@kind-future">
-          YouTube channel
-        </Link>{" "}
-        to reach a broader audience.{" "}
-      </div>
-      <div className="px-4 pt-4 text-2xl">
-        <strong>Join us</strong> — and help build the future we believe in.
-      </div>
-      <div className="p-4">
-        Do you want to join one of our events? Please{" "}
-        <Link href="/contact">contact us</Link> and we&apos;ll get you fully up
-        to speed.
-      </div>
+            Join us on <strong>{format(event.startTime, "do MMMM yyyy")}</strong> for outreach
+            at 📍{event.locationUrl ? <Link href={event.locationUrl}>{event.locationText}</Link> : event.locationText}. We <strong>start at {format(event.startTime, "H:m")}</strong> and will continue until {format(event.endTime, "H:m")}. Please <Link href="/contact">join our WhatsApp group</Link> if you intend to join, so you can stay up to date and get any last minute updates.
+          </div>
+          <div className="p-4">
+            Bonus: If you can bring a tablet with <Link href="/content">outreach content</Link> downloaded on it then that would be great. Don't worry if you don't have a tablet though, we've got you covered!
+          </div>
+          <div className="text-2xl font-bold p-4">What is it that we do during outreach?</div>
+        </>
+        :       <div className="text-2xl font-bold p-4">Street outreach</div>}
+      <OutreachDescription />
     </>
   );
 }

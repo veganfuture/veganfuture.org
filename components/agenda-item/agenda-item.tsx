@@ -6,11 +6,11 @@ type AgendaItemProps = {
   title: string;
   location: string;
   locationUrl?: string;
-  date: Date;
-  startTime: string;
-  endTime: string;
+  startTime: Date;
+  endTime: Date;
   description?: string;
   icon: React.ReactNode;
+  eventId: number;
 };
 
 export function AgendaItem({
@@ -18,11 +18,11 @@ export function AgendaItem({
   title,
   location,
   locationUrl,
-  date,
   startTime,
   endTime,
   icon,
   description,
+  eventId,
 }: AgendaItemProps) {
   return (
     <div
@@ -30,7 +30,7 @@ export function AgendaItem({
         if (url.startsWith("http")) {
           window.open(url, "_blank");
         } else {
-          document.location = url;
+          document.location = `${url}?event_id=${eventId}`;
         }
       }}
       className="
@@ -58,9 +58,9 @@ export function AgendaItem({
         {title}
       </p>
       <p>
-        <strong>{format(date, "do MMMM yyyy")}</strong> from{" "}
+        <strong>{format(startTime, "do MMMM yyyy")}</strong> from{" "}
         <strong>
-          {startTime} to {endTime}
+          {format(startTime, "H:m")} to {format(endTime, "H:m")}
         </strong>
       </p>
       {description ? <p>{description}</p> : <></>}

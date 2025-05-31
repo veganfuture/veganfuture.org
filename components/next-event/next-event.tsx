@@ -12,22 +12,26 @@ import { compareAsc, isAfter } from "date-fns";
 
 export function NextEvent() {
   const upcomingEvents = events
-    .sort((a, b) => compareAsc(a.date, b.date))
-    .filter((event) => isAfter(event.date, Date.now()));
+    .sort((a, b) => compareAsc(a.startTime, b.startTime))
+    .filter((event) => isAfter(event.endTime, Date.now()));
   const event = upcomingEvents[0];
 
-  return (
-    <AgendaItem
-      icon={getEventIcon(event.type)}
-      url={event.url}
-      title={getEventTitle(event.type)}
-      location={getLocationText(event.location)}
-      locationUrl={getLocationUrl(event.location)}
-      date={event.date}
-      startTime={event.startTime}
-      endTime={event.endTime}
-      description={event.description}
-    />
-  );
+  if (upcomingEvents.length == 0) {
+    return <div>No upcoming event!</div>
+  } else {
+    return (
+      <AgendaItem
+        eventId={event.id}  
+        icon={event.icon}
+        url={event.url}
+        title={getEventTitle(event.type)}
+        location={getLocationText(event.location)}
+        locationUrl={getLocationUrl(event.location)}
+        startTime={event.startTime}
+        endTime={event.endTime}
+        description={event.description}
+      />
+    );
+  }
 }
 

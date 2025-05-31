@@ -24,9 +24,9 @@ export default function Agenda() {
   const dateFilter = (event: Event) => {
     const currentDate = new Date();
     if (isUpcomingSelected) {
-      return isAfter(event.date, currentDate);
+      return isAfter(event.startTime, currentDate);
     } else {
-      return !isAfter(event.date, currentDate);
+      return !isAfter(event.startTime, currentDate);
     }
   };
 
@@ -46,12 +46,12 @@ export default function Agenda() {
         {events.filter(dateFilter).map((event, idx) => (
           <AgendaItem
             key={idx}
+            eventId={event.id}
             icon={getEventIcon(event.type)}
             url={event.url}
             title={getEventTitle(event.type)}
             location={getLocationText(event.location)}
             locationUrl={getLocationUrl(event.location)}
-            date={event.date}
             startTime={event.startTime}
             endTime={event.endTime}
             description={event.description}
