@@ -44,7 +44,7 @@ export default function Home() {
             <div className="w-full" style={{ aspectRatio: "16 / 9" }}>
               <iframe
                 className="w-full h-full rounded"
-                src="https://www.youtube.com/embed/n_bOlp8sKQ0?si=dUsvAzS1irElxhGH"
+                src="https://www.youtube.com/embed/2sQ295CqH0E?si=4rE_ms0mA_asCrsz"
                 title="YouTube video player"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -57,7 +57,7 @@ export default function Home() {
 
         <div className="flex-1">
           <div className="p-4 border rounded-lg shadow-sm bg-white h-full flex flex-col">
-            <div className="text-xl font-semibold mb-2">Our next event:</div>
+            <div className="text-xl font-semibold mb-2">Our next events:</div>
             <NextEvent />
           </div>
         </div>

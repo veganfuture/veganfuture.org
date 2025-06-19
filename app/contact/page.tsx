@@ -50,7 +50,7 @@ export default function ContactUs() {
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded flex items-center space-x-2"
           >
             <Image
-              src="WhatsApp.svg"
+              src="/WhatsApp.svg"
               width={24}
               height={24}
               alt="WhatsApp logo"

@@ -2,6 +2,10 @@ import UserGroupIcon from "@heroicons/react/24/outline/UserGroupIcon";
 import MegaphoneIcon from "@heroicons/react/24/outline/MegaphoneIcon";
 import { parse } from "date-fns";
 
+// from https://stackoverflow.com/a/54178819/1860591
+type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
+type PartialBy<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
+
 export type Location = "moco" | "EAO" | "rijks" | "buurtsalon";
 
 export type EventType = "outreach" | "vaam" | "raaf";
@@ -22,7 +26,7 @@ export type Event = {
 
 const asTime = (str: string): Date => parse(str, "d-M-yyyy H:m", new Date());
 
-export const events: Event[] = provideExtraField([
+export const events: Event[] = populate([
   {
     type: "vaam",
     url: "https://www.meetup.com/vegan-future-amsterdam/events/305133967/",
@@ -98,7 +102,8 @@ export const events: Event[] = provideExtraField([
   },
   {
     type: "raaf",
-    url: "/raaf",
+    title: "RAAF #1",
+    url: "/raaf/1",
     location: "buurtsalon",
     startTime: asTime("23-5-2025 18:30"),
     endTime: asTime("23-5-2025 21:30"),
@@ -106,62 +111,73 @@ export const events: Event[] = provideExtraField([
   {
     type: "outreach",
     location: "moco",
-    url: "/street_outreach",
     startTime: asTime("1-6-2025 15:30"),
     endTime: asTime("1-6-2025 17:30"),
   },
   {
     type: "outreach",
     location: "rijks",
-    url: "/street_outreach",
     startTime: asTime("15-6-2025 14:00"),
     endTime: asTime("15-6-2025 17:00"),
   },
   {
     type: "outreach",
     location: "rijks",
-    url: "/street_outreach",
     startTime: asTime("29-6-2025 14:00"),
     endTime: asTime("29-6-2025 17:00"),
   },
   {
     type: "outreach",
     location: "rijks",
-    url: "/street_outreach",
     startTime: asTime("13-7-2025 14:00"),
     endTime: asTime("13-7-2025 17:00"),
   },
   {
     type: "outreach",
     location: "rijks",
-    url: "/street_outreach",
     startTime: asTime("27-7-2025 14:00"),
     endTime: asTime("27-7-2025 17:00"),
   },
   {
     type: "outreach",
     location: "rijks",
-    url: "/street_outreach",
     startTime: asTime("10-8-2025 14:00"),
     endTime: asTime("10-8-2025 17:00"),
   },
+  {
+    type: "raaf",
+    title: "RAAF #2",
+    url: "/raaf/2",
+    location: "buurtsalon",
+    startTime: asTime("22-8-2025 18:30"),
+    endTime: asTime("22-8-2025 21:30"),
+  },
 ]);
 
-/* automatically set id field based on index */
-function provideExtraField(
-  events: Omit<
-    Event,
-    "id" | "locationUrl" | "icon" | "locationText" | "title"
+/**
+ * Automatically populates the events with a bunch of properties that
+ * I don't want to repeat and am afraid to mess up :)
+ */
+function populate(
+  events: PartialBy<
+    Omit<Event, "id">,
+    "url" | "locationUrl" | "icon" | "locationText" | "title"
   >[],
 ): Event[] {
   return events.map((event, idx) => {
+    const url = (event.url || getUrl(event.type))?.replace(
+      "[event_id]",
+      idx.toString(),
+    );
+    if (!url) throw new Error(`Missing url for event ${event}`);
     return {
       ...event,
       id: idx,
-      locationUrl: getLocationUrl(event.location),
-      locationText: getLocationText(event.location),
-      icon: getEventIcon(event.type),
-      title: getEventTitle(event.type),
+      locationUrl: event.locationUrl || getLocationUrl(event.location),
+      locationText: event.locationText || getLocationText(event.location),
+      icon: event.icon || getEventIcon(event.type),
+      title: event.title || getEventTitle(event.type),
+      url: url,
     };
   });
 }
@@ -212,4 +228,12 @@ export function getLocationUrl(location: Location): string {
     case "buurtsalon":
       return "https://maps.app.goo.gl/Uq8NWo2djUAw7x7H9";
   }
+}
+
+export function getUrl(eventType: EventType): string | undefined {
+  switch (eventType) {
+    case "outreach":
+      return "/street_outreach/[event_id]";
+  }
+  return undefined;
 }

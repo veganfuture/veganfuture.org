@@ -22,7 +22,6 @@ export function AgendaItem({
   endTime,
   icon,
   description,
-  eventId,
 }: AgendaItemProps) {
   return (
     <div
@@ -30,7 +29,7 @@ export function AgendaItem({
         if (url.startsWith("http")) {
           window.open(url, "_blank");
         } else {
-          document.location = `${url}/${eventId}`;
+          document.location = url;
         }
       }}
       className="
@@ -60,7 +59,7 @@ export function AgendaItem({
       <p>
         <strong>{format(startTime, "do MMMM yyyy")}</strong> from{" "}
         <strong>
-          {format(startTime, "H:m")} to {format(endTime, "H:m")}
+          {format(startTime, "HH:mm")} to {format(endTime, "HH:mm")}
         </strong>
       </p>
       {description ? <p>{description}</p> : <></>}

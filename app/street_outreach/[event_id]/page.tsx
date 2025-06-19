@@ -3,6 +3,27 @@ import { notFound } from "next/navigation";
 import { format } from "date-fns/format";
 import { events } from "@/lib/events";
 import { OutreachDescription } from "../outreach_description";
+import { BASE_METADATA } from "@/lib/metadata";
+import { Metadata } from "next/types";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { event_id: string };
+}): Promise<Metadata> {
+  const event = events.find((e) => e.id.toString() === params.event_id);
+  if (!event) return notFound();
+
+  const formattedDate = format(event.startTime, "do MMMM");
+  const title = `${event.title}, ${formattedDate} in Amsterdam`;
+  const description = `Join Vegan Future on ${formattedDate} starting at ${format(event.startTime, "HH:mm")} at ${event.locationText} for street outreach.`;
+
+  return {
+    ...BASE_METADATA,
+    title,
+    description,
+  };
+}
 
 export async function generateStaticParams() {
   return events.map((event) => ({ event_id: event.id.toString() }));
@@ -29,8 +50,8 @@ export default function EventPage({
         ) : (
           event.locationText
         )}
-        . We <strong>start at {format(event.startTime, "H:m")}</strong> and will
-        continue until {format(event.endTime, "H:m")}. Please{" "}
+        . We <strong>start at {format(event.startTime, "HH:mm")}</strong> and
+        will continue until {format(event.endTime, "HH:mm")}. Please{" "}
         <Link href="/contact">join our WhatsApp group</Link> if you intend to
         join.
       </div>
