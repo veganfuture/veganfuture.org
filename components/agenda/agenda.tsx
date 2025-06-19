@@ -61,7 +61,7 @@ export function Agenda({ filterOnTypes }: AgendaProps) {
             icon={event.icon}
             url={event.url}
             title={event.title}
-            location={event.location}
+            location={event.locationText}
             locationUrl={event.locationUrl}
             startTime={event.startTime}
             endTime={event.endTime}
