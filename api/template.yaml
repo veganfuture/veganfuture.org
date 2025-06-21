@@ -80,7 +80,13 @@ Resources:
         - DynamoDBCrudPolicy:
             TableName: !Ref RAAFSignupsTable
         - SESCrudPolicy:
-            IdentityName: ${Domain}
+            IdentityName: !Ref Domain 
+        - Statement:
+            - Effect: Allow
+              Action:
+                - ses:SendEmail
+                - ses:SendRawEmail
+              Resource: !Sub "arn:aws:ses:us-east-1:${AWS::AccountId}:identity/${Domain}"
       Events:
         SignupApi:
           Type: HttpApi

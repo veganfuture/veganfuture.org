@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Image from "next/image";
 import { BASE_METADATA } from "@/lib/metadata";
 import Link from "next/link";
+import { SignupForm } from "../signup_form";
 
 const title = "RAAF#2, 22nd of August in Amsterdam";
 const description =
@@ -68,9 +69,7 @@ export default function RAAF2() {
 
       <div className="p-4 flex flex-col md:flex-row md:justify-between gap-8">
         <div className="flex-1">
-          <p className="pb-4">
-            Signup will be necessary, but signup has not yet started.
-          </p>
+          <SignupForm eventId="raaf2" />
         </div>
 
         <div className="w-full md:w-[350px] md:ml-8">

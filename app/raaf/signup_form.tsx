@@ -6,7 +6,11 @@ import { DonateRaaf } from "./donate_raaf";
 const API_URL =
   "https://9iqx4v1ywg.execute-api.eu-central-1.amazonaws.com/signup_raaf";
 
-export function SignupForm() {
+export type SignupFormProps = {
+  eventId: "raaf2";
+};
+
+export function SignupForm({ eventId }: SignupFormProps) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [canEmailUpdates, setCanEmailUpdates] = useState(true);
@@ -30,7 +34,7 @@ export function SignupForm() {
       const res = await fetch(API_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, canEmailUpdates }),
+        body: JSON.stringify({ name, email, canEmailUpdates, eventId }),
       });
 
       if (!res.ok) {
