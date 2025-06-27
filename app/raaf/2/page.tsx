@@ -3,6 +3,7 @@ import Image from "next/image";
 import { BASE_METADATA } from "@/lib/metadata";
 import Link from "next/link";
 import { SignupForm } from "../signup_form";
+import { DonateRaaf } from "../donate_raaf";
 
 const title = "RAAF#2, 22nd of August in Amsterdam";
 const description =
@@ -143,6 +144,11 @@ export default function RAAF2() {
             </tbody>
           </table>
         </div>
+      </div>
+
+      <div className="p-4 text-3xl">Donation based</div>
+      <div className="p-4">
+        <DonateRaaf />
       </div>
 
       <div className="p-4 text-3xl">Learn more</div>
