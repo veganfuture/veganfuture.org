@@ -2,12 +2,33 @@
 
 const AWS = require("aws-sdk");
 const db = new AWS.DynamoDB.DocumentClient();
-const ses = new AWS.SES({ region: "us-east-1" }); // we've got production access on us-east-1
+const ses = new AWS.SES({ region: "us-east-1" });
 
 // Public event → column map
 const SIGNUP_COLUMNS = {
   raaf1: "signedup_raaf1",
   raaf2: "signedup_raaf2",
+};
+
+const EMAIL_MESSAGES = {
+  raaf2: {
+    subject: "RAAF#2 Registration",
+    body: (name) => `Hi ${name},
+
+Thanks for signing up for RAAF#2!
+
+Doors open on 22nd of August at 18:30 at:
+
+Buurtsalon Jeltje,
+Eerste Helmersstraat 106-N 
+1054 EG Amsterdam
+
+Please be there before 19:00.  
+
+Happy to have you there,
+
+— The RAAF Team`,
+  },
 };
 
 exports.handler = async (event) => {
@@ -72,20 +93,23 @@ exports.handler = async (event) => {
   //--------------------------------------------------------------------------
   // 3) (Optional) send email -------------------------------------------------
   //--------------------------------------------------------------------------
-  await ses
-    .sendEmail({
-      Source: process.env.SES_SOURCE_EMAIL,
-      Destination: { ToAddresses: [email] },
-      Message: {
-        Subject: { Data: `Your ${eventId.toUpperCase()} Registration` },
-        Body: {
-          Text: {
-            Data: `Hi ${name},\n\nThanks for signing up for ${eventId === "raaf1" ? "RAAF" : "RAAF2"}! We'll see you there.\n\n— The VeganFuture Team`,
+  const email_message = EMAIL_MESSAGES[eventId];
+  if (email_message) {
+    await ses
+      .sendEmail({
+        Source: process.env.SES_SOURCE_EMAIL,
+        Destination: { ToAddresses: [email] },
+        Message: {
+          Subject: { Data: email_message.subject },
+          Body: {
+            Text: {
+              Data: email_message.body(name),
+            },
           },
         },
-      },
-    })
-    .promise();
+      })
+      .promise();
+  }
 
   //--------------------------------------------------------------------------
   // 4) Success ---------------------------------------------------------------
