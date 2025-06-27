@@ -146,6 +146,72 @@ export default function RAAF2() {
         </div>
       </div>
 
+      <div className="px-4 pt-4 text-3xl">Confirmed speakers:</div>
+
+      <div className="p-4 flex flex-col md:flex-row items-start gap-4">
+        <div className="flex-1">
+          <span className="text-2xl">Nicoll Peracha</span>
+          <p className="py-4">
+            Nicoll is the founder and executive director of{" "}
+            <em>The Mission Motor</em>. With The Mission Motor Nicoll supports
+            organizations in developing and implementing monitoring and
+            evaluation systems within the animal and vegan advocacy community.
+            Previously Nicoll worked for 8 years at Proveg. She holds a law
+            degree and has 25 years of experience in the international
+            non-profit sector.
+          </p>
+          <p>
+            Note: Nicoll was set to speak for RAAF1, but had to cancel due to
+            illness.
+          </p>
+          <div className="p-4">
+            <ul className="list-disc pl-8">
+              <li>
+                <a href="https://www.themissionmotor.org/" target="_blank">
+                  The Mission Motor
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.linkedin.com/in/nicoll-peracha/"
+                  target="_blank"
+                >
+                  Nicoll&apos;s LinkedIn
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <Image
+          src={"/raaf/nicoll-peracha.jpg"}
+          width={275}
+          height={330}
+          alt="Picture of Nicoll Peracha"
+          className="flex-shrink-0"
+        />
+      </div>
+
+      <div className="p-4 flex flex-col md:flex-row items-start gap-4">
+        <div className="flex-1">
+          <span className="text-2xl">Wouter</span>
+          <p className="py-4">
+            Wouter has been active within the movement the past 5 years. Their
+            work has been primarily been focused on speaking with the public
+            using a plurality of methods. In the last few years they started to
+            explore new ways to frame the victims perspective and incorporate
+            findings from scientific research into their advocacy.
+          </p>
+        </div>
+        <Image
+          src={"/raaf2/remco.jpg"}
+          width={275}
+          height={330}
+          alt="Picture of Remco"
+          className="flex-shrink-0"
+        />
+      </div>
+      <div className="px-4 pt-4 text-2xl">More speakers to be announced 📣</div>
+
       <div className="p-4 text-3xl">Donation based</div>
       <div className="p-4">
         <DonateRaaf />
