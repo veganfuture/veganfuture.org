@@ -81,7 +81,7 @@ export default function RAAF2() {
                   <strong>Date:</strong>
                 </td>
                 <td>
-                  23<sup>rd</sup> May, 2025
+                  22<sup>nd</sup> August, 2025
                 </td>
               </tr>
               <tr>
@@ -196,14 +196,15 @@ export default function RAAF2() {
           <span className="text-2xl">Wouter</span>
           <p className="py-4">
             Wouter has been active within the movement the past 5 years. Their
-            work has been primarily been focused on speaking with the public
-            using a plurality of methods. In the last few years they started to
-            explore new ways to frame the victims perspective and incorporate
-            findings from scientific research into their advocacy.
+            work has been primarily focused on speaking with the public using a
+            plurality of methods. In the last few years they started to explore
+            new ways to frame the victims perspective and incorporate findings
+            from scientific research into their advocacy. Wouter has a lot of
+            experience with virtue ethics.
           </p>
         </div>
         <Image
-          src={"/raaf2/remco.jpg"}
+          src={"/raaf2/wouter.jpg"}
           width={275}
           height={330}
           alt="Picture of Remco"
