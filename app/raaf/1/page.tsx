@@ -253,45 +253,6 @@ export default function RAAF1() {
 
       <div className="p-4 flex flex-col md:flex-row items-start gap-4">
         <div className="flex-1">
-          <span className="text-2xl">Nicoll Peracha</span>
-          <p className="py-4">
-            Nicoll is the founder and executive director of{" "}
-            <em>The Mission Motor</em>. With The Mission Motor Nicoll supports
-            organizations in developing and implementing monitoring and
-            evaluation systems within the animal and vegan advocacy community.
-            Previously Nicoll worked for 8 years at Proveg. She holds a law
-            degree and has 25 years of experience in the international
-            non-profit sector.
-          </p>
-          <div>
-            <ul className="list-disc pl-8">
-              <li>
-                <a href="https://www.themissionmotor.org/" target="_blank">
-                  The Mission Motor
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.linkedin.com/in/nicoll-peracha/"
-                  target="_blank"
-                >
-                  Nicoll&apos;s LinkedIn
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <Image
-          src={"/raaf/nicoll-peracha.jpg"}
-          width={275}
-          height={330}
-          alt="Picture of Nicoll Peracha"
-          className="flex-shrink-0"
-        />
-      </div>
-      <div className="p-4 flex flex-col md:flex-row items-start gap-4">
-        <div className="flex-1">
           <span className="text-2xl">Tim Reysoo</span>
           <p className="py-4">
             Tim is a powerhouse in the fight for animal rights. He earned his

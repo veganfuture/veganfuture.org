@@ -146,7 +146,59 @@ export default function RAAF2() {
         </div>
       </div>
 
-      <div className="px-4 pt-4 text-3xl">Confirmed speakers:</div>
+      <div className="px-4 pt-4 text-3xl">Speakers:</div>
+
+      <div className="p-4 flex flex-col md:flex-row items-start gap-4">
+        <div className="flex-1">
+          <span className="text-2xl">Wouter</span>
+          <p className="py-4">
+            Wouter has been active within the movement the past 5 years. Their
+            work has been primarily focused on speaking with the public using a
+            plurality of methods. In the last few years they started to explore
+            new ways to frame the victims perspective and incorporate findings
+            from scientific research into their advocacy. Wouter has a lot of
+            experience with virtue ethics.
+          </p>
+        </div>
+        <Image
+          src={"/raaf2/wouter.jpg"}
+          width={275}
+          height={330}
+          alt="Picture of Wouter"
+          className="flex-shrink-0"
+        />
+      </div>
+
+      <div className="p-4 flex flex-col md:flex-row items-start gap-4">
+        <div className="flex-1">
+          <span className="text-2xl">Jasmin Gerrittsma</span>
+          <p className="py-4">
+            Jasmin Gerritsma helps students in the BeNeLux set up campaigns
+            where they call on their university to transition to 100%
+            plant-based catering. This is part of the europe wide Plant-Based
+            Universities network. Before that she studied cognitive psychology
+            at Utrecht University, learning a lot about why we do the things we
+            do. And even before that, she grew up vegetarian feeling really
+            confused as to why other people were eating animals.
+          </p>
+          <div className="p-4">
+            <ul className="list-disc pl-8">
+              <li>
+                <a href="https://plantbaseduniversities.org/" target="_blank">
+                  Plant Based Universities
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <Image
+          src={"/raaf2/jasmin.jpg"}
+          width={275}
+          height={330}
+          alt="Picture of Jasmin Gerrittsma"
+          className="flex-shrink-0"
+        />
+      </div>
 
       <div className="p-4 flex flex-col md:flex-row items-start gap-4">
         <div className="flex-1">
@@ -193,25 +245,70 @@ export default function RAAF2() {
 
       <div className="p-4 flex flex-col md:flex-row items-start gap-4">
         <div className="flex-1">
-          <span className="text-2xl">Wouter</span>
+          <span className="text-2xl">Lodewijk Bogaards</span>
           <p className="py-4">
-            Wouter has been active within the movement the past 5 years. Their
-            work has been primarily focused on speaking with the public using a
-            plurality of methods. In the last few years they started to explore
-            new ways to frame the victims perspective and incorporate findings
-            from scientific research into their advocacy. Wouter has a lot of
-            experience with virtue ethics.
+            Lodewijk Bogaards founded Vegan Future and is an organiser of RAAF.
+            Besides advocating veganism, he has been meditating for 27 years,
+            completed over a dozen meditation retreats and spent over a year
+            meditating in India. His talk will be focused on the nature of
+            suffering. How can meditation help make you more effective and
+            happy?
           </p>
         </div>
         <Image
-          src={"/raaf2/wouter.jpg"}
+          src={"/raaf2/lodewijk.jpg"}
           width={275}
           height={330}
-          alt="Picture of Remco"
+          alt="Picture of Lodewijk Bogaards"
           className="flex-shrink-0"
         />
       </div>
-      <div className="px-4 pt-4 text-2xl">More speakers to be announced 📣</div>
+
+      <div className="px-4 pt-4 text-3xl">Moderators:</div>
+
+      <div className="p-4 flex flex-col md:flex-row items-start gap-4">
+        <div className="flex-1">
+          <span className="text-2xl">That Cip Guy</span>
+          <p className="py-4">
+            Cip is perhaps the Netherlands most prolific vegan youtuber. His
+            live streams are well visited by both vegans and non-vegans, making
+            for non-stop vegan discussion in the chat. Cip is also a body
+            builder, certified nutritionist and the lead developer for We The
+            Free.
+          </p>
+        </div>
+
+        <Image
+          src={"/raaf2/cip.png"}
+          width={275}
+          height={330}
+          alt="Picture of Cip"
+          className="flex-shrink-0"
+        />
+      </div>
+
+      <div className="p-4 flex flex-col md:flex-row items-start gap-4">
+        <div className="flex-1">
+          <span className="text-2xl">Torben (co-founder RAAF)</span>
+          <p className="py-4">
+            Torben has been an active animal advocate since December 2020.
+            Starting with street outreach, he has since explored a wide variety
+            of advocacy forms, ranging from public manifestations, civil
+            disobedience and pressure campaigning to political lobbying. His
+            reflections on social movement strategy - based on his own
+            experiences and lessons from history - led him to become a
+            co-founder of RAAF.
+          </p>
+        </div>
+
+        <Image
+          src={"/raaf/torben.jpg"}
+          width={275}
+          height={330}
+          alt="Picture of Torben"
+          className="flex-shrink-0"
+        />
+      </div>
 
       <div className="p-4 text-3xl">Donation based</div>
       <div className="p-4">
