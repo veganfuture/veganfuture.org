@@ -65,11 +65,34 @@ export default function RAAF() {
       </div>
       <Agenda filterOnTypes={["raaf"]} />
       <div className="p-4">
+        <p className="text-xl py-4">RAAF on Youtube:</p>
+        <p>
+          You can find some of the talks of RAAF on our{" "}
+          <a href="https://www.youtube.com/@raaf-veganfuture" target="_blank">
+            Youtube channel
+          </a>
+          .
+          <div
+            className="py-4 w-full w-[800px]"
+            style={{ aspectRatio: "16 / 9" }}
+          >
+            <iframe
+              className="w-full h-full rounded"
+              src="https://www.youtube.com/embed/6K5hNvd7SaU?si=LR4W2CiniRxaH9FV"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            />
+          </div>
+        </p>
+
         <p className="text-xl">RAAF values:</p>
         <br />
         <ul className="list-disc pl-8">
           <li>
-            <strong>Radical acceptance:</strong> As animal rights advocates
+            <strong>Forum, not echo chamber:</strong> As animal rights advocates
             we&apos;re all on the same general page when it comes to animal
             rights, however we expect and welcome disagreement on other points
             and nuances. RAAF is a forum, not an echo chamber. All speakers are
@@ -84,6 +107,13 @@ export default function RAAF() {
             other.
           </li>
           <li>
+            <strong>About Animal Advocacy:</strong> Even though most of us feel
+            passionate about other types of advocacy, that often shares a
+            intersectional ideal, RAAF is focused exclusively on animal
+            advocacy. That means that we will actively discourage debates about
+            issues that are not directly related to animal advocacy.
+          </li>
+          <li>
             <strong>No one best way:</strong> We don&apos;t know what the
             best/fastest way is to achieve animal liberation, therefore
             we&apos;ll intentionally invite a wide range of speakers to show
@@ -96,6 +126,15 @@ export default function RAAF() {
             the good vibes that we are trying to generate with RAAF.
           </li>
         </ul>
+
+        <p className="text-xl py-4">Want to speak at RAAF?</p>
+        <p>
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            <a href="https://forms.gle/h6kebmbPFcGZuwEW6">
+              RAAF Speaker Signup Form
+            </a>
+          </button>
+        </p>
       </div>
     </>
   );
