@@ -317,7 +317,7 @@ export default function RAAF2() {
 
       <div className="p-4 text-3xl">Learn more</div>
       <div className="p-4">
-        For more information about RAAF <Link href="/contact">contact us</Link>.
+        You can find more information about RAAF <Link href="/raaf">here</Link>.
       </div>
     </>
   );

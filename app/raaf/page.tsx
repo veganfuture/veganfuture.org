@@ -2,6 +2,7 @@ import { BASE_METADATA } from "@/lib/metadata";
 import { Metadata } from "next/types";
 import Image from "next/image";
 import { Agenda } from "@/components/agenda/agenda";
+import Link from "next/link";
 
 const title = "Revolutionary Animal Advocacy Forum";
 const description =
@@ -67,13 +68,13 @@ export default function RAAF() {
       <div className="p-4">
         <p className="text-xl py-4">RAAF on Youtube:</p>
         <p>
-          You can find some of the talks of RAAF on our{" "}
+          You can find some (but not all) of the talks of RAAF on our{" "}
           <a href="https://www.youtube.com/@raaf-veganfuture" target="_blank">
             Youtube channel
           </a>
           .
           <div
-            className="py-4 w-full w-[800px]"
+            className="py-4 w-full md:w-[600px]"
             style={{ aspectRatio: "16 / 9" }}
           >
             <iframe
@@ -134,6 +135,11 @@ export default function RAAF() {
               RAAF Speaker Signup Form
             </a>
           </button>
+        </p>
+
+        <p className="py-4 text-xl">Questions?</p>
+        <p>
+          <Link href="/contact">Contact us</Link> if you have any questions.
         </p>
       </div>
     </>
