@@ -1,0 +1,8 @@
+{
+  "name": "unsubscribe-raaf",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.637.0"
+  }
+}

@@ -41,19 +41,26 @@ Resources:
           ResourceRecords:
             - !GetAtt SESEmailIdentity.DkimDNSTokenValue3
 
-  # DynamoDB table for sign‑ups
   RAAFSignupsTable:
-    Type: AWS::Serverless::SimpleTable
+    Type: AWS::DynamoDB::Table
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       TableName: RAAFSignups
-      PrimaryKey:
-        Name: email
-        Type: String
-      Indexes:
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: email
+          AttributeType: S
+        - AttributeName: token
+          AttributeType: S
+      KeySchema:
+        - AttributeName: email
+          KeyType: HASH
+      GlobalSecondaryIndexes:
         - IndexName: token-index
-          PrimaryKey:
-            Name: token
-            Type: String
+          KeySchema:
+            - AttributeName: token
+              KeyType: HASH
           Projection:
             ProjectionType: ALL
 
@@ -67,6 +74,7 @@ Resources:
           - http://localhost:3000
         AllowMethods:
           - OPTIONS
+          - GET
           - POST
         AllowHeaders:
           - Content-Type
@@ -102,7 +110,39 @@ Resources:
             Path: /signup_raaf
             Method: post
 
+
+  RAAFUnsubscribeFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: UnsubscribeRAAFHandler
+      Runtime: nodejs18.x
+      Handler: app.handler
+      CodeUri: unsubscribe_raaf/
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref RAAFSignupsTable
+          TOKEN_GSI:  token-index
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref RAAFSignupsTable
+      Events:
+        UnsubGet:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref RAAFHttpApi
+            Path: /unsubscribe_raaf
+            Method: get
+        UnsubPost:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref RAAFHttpApi
+            Path: /unsubscribe_raaf
+            Method: post
+
 Outputs:
   SignupApiUrl:
     Description: "Signup POST endpoint"
+    Value: !GetAtt RAAFHttpApi.ApiEndpoint
+  UnsubscribeBaseUrl:
+    Description: "Base URL; use /unsubscribe_raaf?token=... in emails"
     Value: !GetAtt RAAFHttpApi.ApiEndpoint
