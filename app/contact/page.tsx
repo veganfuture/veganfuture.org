@@ -46,16 +46,11 @@ export default function ContactUs() {
 
         <div className="flex justify-center">
           <a
-            href="https://chat.whatsapp.com/GpeRxPjmNs68pIfgKDg1Pz"
+            href="https://signal.group/#CjQKIIejwwWrcfw4uWRdv3M7oZx34HM9H-uvcTnxZeY-K6EBEhC4bsMUN5MbkflmSieu8LxD"
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded flex items-center space-x-2"
           >
-            <Image
-              src="/WhatsApp.svg"
-              width={24}
-              height={24}
-              alt="WhatsApp logo"
-            />
-            <span>Join us on WhatsApp</span>
+            <Image src="/Signal.svg" width={24} height={24} alt="Signal Logo" />
+            <span>Join us on Signal</span>
           </a>
         </div>
 
