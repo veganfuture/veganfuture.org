@@ -33,6 +33,7 @@ type NavItem = {
   name: string;
   description: string;
   href: string;
+  style?: "button";
 };
 
 type NavDropdown = {
@@ -119,6 +120,12 @@ const topLevelItems: Array<TopLevelItem> = [
       },
     ],
   },
+  {
+    name: "Join Us",
+    description: "Help build the future we believe in",
+    href: "/join_us",
+    style: "button",
+  },
 ];
 
 type NavBarProps = {
@@ -161,13 +168,17 @@ export function Navbar({ className }: NavBarProps) {
               <a
                 key={item.name}
                 href={item.href}
-                className="text-l font-semibold leading-6 text-gray-900 no-underline hover:text-indigo-600"
+                className={
+                  item.style == "button"
+                    ? "bg-blue-500 hover:bg-blue-700 text-white font-bold rounded leading-6 px-3 py-2 no-underline"
+                    : "text-l font-semibold leading-6 text-gray-900 no-underline hover:text-indigo-600 px-3 py-2"
+                }
               >
                 {item.name}
               </a>
             ) : (
               <Popover key={item.name} className="relative">
-                <PopoverButton className="flex items-center gap-x-1 text-l font-semibold leading-6 text-gray-900">
+                <PopoverButton className="flex items-center gap-x-1 text-l font-semibold leading-6 text-gray-900 px-3 py-2">
                   {item.name}
                   <ChevronDownIcon
                     aria-hidden="true"
@@ -183,7 +194,7 @@ export function Navbar({ className }: NavBarProps) {
                     {item.children.map((childItem) => (
                       <div
                         key={childItem.name}
-                        className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-green-100"
+                        className="group relative flex items-center gap-x-6 rounded-lg px-3 py-2 text-sm leading-6 hover:bg-green-100"
                       >
                         <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
                           <childItem.icon
@@ -247,13 +258,17 @@ export function Navbar({ className }: NavBarProps) {
                     <a
                       key={item.name}
                       href={item.href}
-                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-green-100 no-underline hover:text-indigo-600"
+                      className={
+                        item.style == "button"
+                          ? "block bg-blue-500 hover:bg-blue-700 text-white font-bold rounded leading-7 px-3 py-2 no-underline"
+                          : "block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-green-100 no-underline hover:text-indigo-600"
+                      }
                     >
                       {item.name}
                     </a>
                   ) : (
-                    <Disclosure key={item.name} as="div" className="-mx-3">
-                      <DisclosureButton className="group flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-4 text-base font-semibold leading-7 text-gray-900 hover:bg-green-100">
+                    <Disclosure key={item.name} as="div" className="">
+                      <DisclosureButton className="group flex w-full items-center justify-between rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-green-100">
                         {item.name}
                         <ChevronDownIcon
                           aria-hidden="true"
