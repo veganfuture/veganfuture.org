@@ -49,6 +49,13 @@ Resources:
       PrimaryKey:
         Name: email
         Type: String
+      Indexes:
+        - IndexName: token-index
+          PrimaryKey:
+            Name: token
+            Type: String
+          Projection:
+            ProjectionType: ALL
 
   # HTTP API with CORS for two origins
   RAAFHttpApi:

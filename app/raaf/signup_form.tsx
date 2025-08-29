@@ -7,7 +7,7 @@ const API_URL =
   "https://9iqx4v1ywg.execute-api.eu-central-1.amazonaws.com/signup_raaf";
 
 export type SignupFormProps = {
-  eventId: "raaf2";
+  eventId: "raaf2" | "raaf3";
 };
 
 export function SignupForm({ eventId }: SignupFormProps) {

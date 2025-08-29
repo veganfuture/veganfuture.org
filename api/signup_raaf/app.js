@@ -3,11 +3,13 @@
 const AWS = require("aws-sdk");
 const db = new AWS.DynamoDB.DocumentClient();
 const ses = new AWS.SES({ region: "us-east-1" });
+const crypto = require("crypto");
 
 // Public event → column map
 const SIGNUP_COLUMNS = {
   raaf1: "signedup_raaf1",
   raaf2: "signedup_raaf2",
+  raaf3: "signedup_raaf3",
 };
 
 const EMAIL_MESSAGES = {
@@ -29,7 +31,30 @@ Happy to have you there,
 
 — The RAAF Team`,
   },
+  raaf3: {
+    subject: "RAAF#3 Registration",
+    body: (name) => `Hi ${name},
+
+Thanks for signing up for RAAF#3!
+
+Doors open on 28nd of November at 18:30 at:
+
+Buurtsalon Jeltje,
+Eerste Helmersstraat 106-N 
+1054 EG Amsterdam
+
+Please be there before 19:00.  
+
+Happy to have you there,
+
+— The RAAF Team`,
+  },
 };
+
+// 128-bit random token, URL-safe
+function newToken() {
+  return crypto.randomBytes(16).toString("base64url");
+}
 
 exports.handler = async (event) => {
   //--------------------------------------------------------------------------
@@ -75,17 +100,19 @@ exports.handler = async (event) => {
       TableName: process.env.TABLE_NAME,
       Key: { email },
       UpdateExpression:
-        "SET #signup = :true, canEmailUpdates = :can, #ts = :ts, #name = if_not_exists(#name, :name)",
+        "SET #signup = :true, canEmailUpdates = :can, #ts = if_not_exists(#ts, :ts), #name = if_not_exists(#name, :name), #t = if_not_exists(#t, :newToken)",
       ExpressionAttributeNames: {
         "#signup": signupColumn, // dynamic column name
         "#ts": "timestamp", // "timestamp" is reserved so alias it
         "#name": "name", // "name" is reserved so alias it
+        "#t": "token",
       },
       ExpressionAttributeValues: {
         ":true": true,
         ":can": !!canEmailUpdates,
         ":ts": Date.now(),
         ":name": name,
+        ":newToken": newToken(),
       },
     })
     .promise();
