@@ -6,7 +6,7 @@ import { parse } from "date-fns";
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 type PartialBy<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
 
-export type Location = "moco" | "EAO" | "rijks" | "buurtsalon";
+export type Location = "moco" | "EAO" | "rijks" | "buurtsalon" | "ijhallen";
 
 export type EventType = "outreach" | "vaam" | "raaf";
 
@@ -140,7 +140,7 @@ export const events: Event[] = populate([
   },
   {
     type: "outreach",
-    location: "moco",
+    location: "ijhallen",
     startTime: asTime("10-8-2025 14:00"),
     endTime: asTime("10-8-2025 17:00"),
   },
@@ -151,6 +151,48 @@ export const events: Event[] = populate([
     location: "buurtsalon",
     startTime: asTime("22-8-2025 18:30"),
     endTime: asTime("22-8-2025 21:30"),
+  },
+  {
+    type: "outreach",
+    location: "moco",
+    startTime: asTime("24-8-2025 14:00"),
+    endTime: asTime("24-8-2025 17:00"),
+  },
+  {
+    type: "outreach",
+    location: "moco",
+    startTime: asTime("7-9-2025 14:00"),
+    endTime: asTime("7-9-2025 17:00"),
+  },
+  {
+    type: "outreach",
+    location: "ijhallen",
+    startTime: asTime("21-9-2025 14:00"),
+    endTime: asTime("21-9-2025 17:00"),
+  },
+  {
+    type: "outreach",
+    location: "moco",
+    startTime: asTime("5-10-2025 14:00"),
+    endTime: asTime("5-10-2025 17:00"),
+  },
+  {
+    type: "outreach",
+    location: "moco",
+    startTime: asTime("19-10-2025 14:00"),
+    endTime: asTime("19-10-2025 17:00"),
+  },
+  {
+    type: "outreach",
+    location: "moco",
+    startTime: asTime("2-11-2025 13:00"),
+    endTime: asTime("2-11-2025 16:00"),
+  },
+  {
+    type: "outreach",
+    location: "moco",
+    startTime: asTime("16-11-2025 13:00"),
+    endTime: asTime("16-11-2025 16:00"),
   },
 ]);
 
@@ -214,6 +256,8 @@ export function getLocationText(location: Location): string {
       return "Effective Altruism Office Amsterdam";
     case "buurtsalon":
       return "Buurtsalon Jeltje";
+    case "ijhallen":
+      return "Ijhallen (NDSM)";
   }
 }
 
@@ -227,6 +271,8 @@ export function getLocationUrl(location: Location): string {
       return "https://maps.app.goo.gl/YLVoWa3kSzMViz5C9";
     case "buurtsalon":
       return "https://maps.app.goo.gl/Uq8NWo2djUAw7x7H9";
+    case "ijhallen":
+      return "https://maps.app.goo.gl/PkjLaBFM4zrPC8eX6";
   }
 }
 
