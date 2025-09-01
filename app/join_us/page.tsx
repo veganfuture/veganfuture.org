@@ -6,13 +6,13 @@ export default function JoinUs() {
       <div className="text-2xl font-bold p-4 font-comfortaa">Join Us</div>
       <p className="p-4">
         The quickest way to join us is to join our Signal group. Just join the
-        group by following the link below. Once you're in the group please
-        introduce yourself. A few things we'd love to know about you:
+        group by following the link below. Once you&apos;re in the group please
+        introduce yourself. A few things we&apos;d love to know about you:
       </p>
       <ul className="px-4 pt-2 pb-4 list-disc ml-4">
-        <li>Name, age and how long you've been vegan</li>
+        <li>Name, age and how long you&apos;ve been vegan</li>
         <li>Previous experience with vegan activism</li>
-        <li>Which events you'd like to attend</li>
+        <li>Which events you&apos;d like to attend</li>
       </ul>
 
       <a
@@ -23,8 +23,8 @@ export default function JoinUs() {
         <span>Join our Signal group</span>
       </a>
       <p className="p-4">
-        There is no need to be shy. We're all very kind people and are happy to
-        have you join us! 🤗
+        There is no need to be shy. We&apos;re all very kind people and are
+        happy to have you join us! 🤗
       </p>
     </>
   );

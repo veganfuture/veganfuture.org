@@ -7,6 +7,7 @@ const crypto = require("crypto");
 
 // Public event → column map
 const SIGNUP_COLUMNS = {
+  undefined: "signedup_newsletter",
   raaf1: "signedup_raaf1",
   raaf2: "signedup_raaf2",
   raaf3: "signedup_raaf3",
@@ -72,11 +73,11 @@ exports.handler = async (event) => {
 
   const { name, email, canEmailUpdates = false, eventId } = body;
 
-  if (!name || !email || !eventId) {
+  if (!name || !email) {
     return {
       statusCode: 400,
       body: JSON.stringify({
-        error: "'name', 'email' and 'eventId' are required",
+        error: `'name' and 'email' are required`,
       }),
     };
   }

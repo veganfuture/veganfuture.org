@@ -22,9 +22,14 @@ export type Event = {
   icon: React.ReactNode;
   id: number;
   title: string;
+  eventId: string;
 };
 
 const asTime = (str: string): Date => parse(str, "d-M-yyyy H:m", new Date());
+
+export function getEventByEventId(eventId: string): Event | undefined {
+  return events.find((event) => event.eventId == eventId);
+}
 
 export const events: Event[] = populate([
   {
@@ -107,6 +112,7 @@ export const events: Event[] = populate([
     location: "buurtsalon",
     startTime: asTime("23-5-2025 18:30"),
     endTime: asTime("23-5-2025 21:30"),
+    eventId: "raaf1",
   },
   {
     type: "outreach",
@@ -151,6 +157,7 @@ export const events: Event[] = populate([
     location: "buurtsalon",
     startTime: asTime("22-8-2025 18:30"),
     endTime: asTime("22-8-2025 21:30"),
+    eventId: "raaf2",
   },
   {
     type: "outreach",
@@ -194,6 +201,14 @@ export const events: Event[] = populate([
     startTime: asTime("16-11-2025 13:00"),
     endTime: asTime("16-11-2025 16:00"),
   },
+  {
+    type: "raaf",
+    location: "buurtsalon",
+    startTime: asTime("28-11-2025 18:30"),
+    endTime: asTime("28-11-2025 21:30"),
+    url: "/raaf/3",
+    eventId: "raaf3",
+  },
 ]);
 
 /**
@@ -203,7 +218,7 @@ export const events: Event[] = populate([
 function populate(
   events: PartialBy<
     Omit<Event, "id">,
-    "url" | "locationUrl" | "icon" | "locationText" | "title"
+    "url" | "locationUrl" | "icon" | "locationText" | "title" | "eventId"
   >[],
 ): Event[] {
   return events.map((event, idx) => {
@@ -220,11 +235,16 @@ function populate(
       icon: event.icon || getEventIcon(event.type),
       title: event.title || getEventTitle(event.type),
       url: url,
+      eventId: event.eventId || getEventId(event.type, idx),
     };
   });
 }
 
-export function getEventTitle(eventType: EventType): string {
+function getEventId(eventType: EventType, id: number): string {
+  return `${eventType}${id}`;
+}
+
+function getEventTitle(eventType: EventType): string {
   switch (eventType) {
     case "outreach":
       return "Street Outreach";
@@ -235,7 +255,7 @@ export function getEventTitle(eventType: EventType): string {
   }
 }
 
-export function getEventIcon(eventType: EventType): React.ReactNode {
+function getEventIcon(eventType: EventType): React.ReactNode {
   switch (eventType) {
     case "outreach":
       return <MegaphoneIcon aria-hidden="true" className="h-6 w-6 mr-2" />;
@@ -246,7 +266,7 @@ export function getEventIcon(eventType: EventType): React.ReactNode {
   }
 }
 
-export function getLocationText(location: Location): string {
+function getLocationText(location: Location): string {
   switch (location) {
     case "moco":
       return "Museumplein accross the Moco musuem";
@@ -261,7 +281,7 @@ export function getLocationText(location: Location): string {
   }
 }
 
-export function getLocationUrl(location: Location): string {
+function getLocationUrl(location: Location): string {
   switch (location) {
     case "moco":
       return "https://maps.app.goo.gl/wciocBEZLbGSwyq4A";
@@ -276,7 +296,7 @@ export function getLocationUrl(location: Location): string {
   }
 }
 
-export function getUrl(eventType: EventType): string | undefined {
+function getUrl(eventType: EventType): string | undefined {
   switch (eventType) {
     case "outreach":
       return "/street_outreach/[event_id]";

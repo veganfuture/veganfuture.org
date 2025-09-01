@@ -67,9 +67,9 @@ export default function Home() {
         <strong>Join us</strong> — and help build the future we believe in.
       </div>
       <div className="p-4">
-        Do you want to join one of our events? Please{" "}
-        <Link href="/contact">contact us</Link> and we&apos;ll get you fully up
-        to speed.
+        The animals need our help and we&apos;re always happy to meet new
+        people. Jump into our <Link href="/join_us">Signal group</Link> and
+        we&apos;ll get you up to speed!
       </div>
     </>
   );

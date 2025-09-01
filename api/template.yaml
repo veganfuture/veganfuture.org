@@ -90,7 +90,7 @@ Resources:
       Environment:
         Variables:
           TABLE_NAME:       !Ref RAAFSignupsTable
-          SES_SOURCE_EMAIL: !Sub "noreply@${Domain}"
+          SES_SOURCE_EMAIL: !Sub "raaf@${Domain}"
       Policies:
         - DynamoDBCrudPolicy:
             TableName: !Ref RAAFSignupsTable

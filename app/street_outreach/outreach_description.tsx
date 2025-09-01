@@ -52,15 +52,6 @@ export function OutreachDescription() {
         </Link>{" "}
         to reach a broader audience.{" "}
       </div>
-      <div className="px-4 pt-4 text-xl">
-        <strong>Join us</strong> — and help build the future we believe in.
-      </div>
-      <div className="p-4">
-        Do you want to join one of our events? Please{" "}
-        <Link href="/contact">contact us</Link> and we&apos;ll get you fully up
-        to speed.
-      </div>
     </>
   );
 }
-

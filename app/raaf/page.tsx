@@ -3,6 +3,7 @@ import { Metadata } from "next/types";
 import Image from "next/image";
 import { Agenda } from "@/components/agenda/agenda";
 import Link from "next/link";
+import { SignupForm } from "./signup_form";
 
 const title = "Revolutionary Animal Advocacy Forum";
 const description =
@@ -35,7 +36,7 @@ export const metadata: Metadata = {
 export default function RAAF() {
   return (
     <>
-      <div className="relative w-full h-[200px]">
+      <section className="relative w-full h-[200px]">
         <Image
           src="/raaf/raaf_banner.jpg"
           alt="RAAF banner"
@@ -47,9 +48,9 @@ export default function RAAF() {
             Revolutionary Animal Advocacy Forum
           </h1>
         </div>
-      </div>
+      </section>
 
-      <div className="p-4">
+      <section className="p-4">
         <p>
           The Revolutionary Animal Advocacy Forum (RAAF) is a recurring event
           that inspires you to{" "}
@@ -63,9 +64,14 @@ export default function RAAF() {
           for connection, and a warm, welcoming atmosphere where you can
           recharge and enjoy yourself.
         </p>
-      </div>
-      <Agenda filterOnTypes={["raaf"]} />
-      <div className="p-4">
+      </section>
+
+      <section className="p-4">
+        <p className="text-xl py-4">Agenda:</p>
+        <Agenda filterOnTypes={["raaf"]} />
+      </section>
+
+      <section className="p-4">
         <p className="text-xl py-4">RAAF on Youtube:</p>
         <p>
           You can find some (but not all) of the talks of RAAF on our{" "}
@@ -73,22 +79,24 @@ export default function RAAF() {
             Youtube channel
           </a>
           .
-          <div
-            className="py-4 w-full md:w-[600px]"
-            style={{ aspectRatio: "16 / 9" }}
-          >
-            <iframe
-              className="w-full h-full rounded"
-              src="https://www.youtube.com/embed/6K5hNvd7SaU?si=LR4W2CiniRxaH9FV"
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerPolicy="strict-origin-when-cross-origin"
-              allowFullScreen
-            />
-          </div>
         </p>
+        <div
+          className="py-4 w-full md:w-[600px]"
+          style={{ aspectRatio: "16 / 9" }}
+        >
+          <iframe
+            className="w-full h-full rounded"
+            src="https://www.youtube.com/embed/6K5hNvd7SaU?si=LR4W2CiniRxaH9FV"
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+          />
+        </div>
+      </section>
 
+      <section className="p-4">
         <p className="text-xl">RAAF values:</p>
         <br />
         <ul className="list-disc pl-8">
@@ -127,8 +135,21 @@ export default function RAAF() {
             the good vibes that we are trying to generate with RAAF.
           </li>
         </ul>
+      </section>
 
+      <section id="newsletter" className="p-4">
+        <p className="text-xl py-4">Newsletter</p>
+        <p>Sign up to the RAAF newsletter to stay updated about RAAF events.</p>
+        <SignupForm />
+      </section>
+
+      <section className="p-4">
         <p className="text-xl py-4">Want to speak at RAAF?</p>
+        <p>
+          We&apos;re always happy to learn about new speakers. Please fill in
+          the form below or if you&apos;re in doubt about something{" "}
+          <Link href="/contact">contact us</Link>.
+        </p>
         <p>
           <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
             <a href="https://forms.gle/h6kebmbPFcGZuwEW6">
@@ -139,9 +160,10 @@ export default function RAAF() {
 
         <p className="py-4 text-xl">Questions?</p>
         <p>
-          <Link href="/contact">Contact us</Link> if you have any questions.
+          If you&apos;ve got any further questions,{" "}
+          <Link href="/contact">contact us</Link>.
         </p>
-      </div>
+      </section>
     </>
   );
 }

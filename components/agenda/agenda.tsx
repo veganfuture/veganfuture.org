@@ -3,15 +3,7 @@
 import React, { useState } from "react";
 import { AgendaItem } from "../../components/agenda-item/agenda-item";
 import { isAfter } from "date-fns";
-import {
-  events,
-  getEventIcon,
-  getEventTitle,
-  getLocationText,
-  getLocationUrl,
-  Event,
-  EventType,
-} from "../../lib/events";
+import { events, Event, EventType } from "../../lib/events";
 import { TabProps, Tabs } from "@/components/tabs/tabs";
 
 export type AgendaProps = {
@@ -45,7 +37,7 @@ export function Agenda({ filterOnTypes }: AgendaProps) {
 
   return (
     <>
-      <div className="pb-4 pl-4">
+      <div className="pb-4">
         <Tabs
           tabs={tabs}
           initialActiveTab={0}
@@ -53,7 +45,7 @@ export function Agenda({ filterOnTypes }: AgendaProps) {
         />
       </div>
 
-      <div className="pl-4">
+      <div>
         {events.filter(eventFilter).map((event, idx) => (
           <AgendaItem
             key={idx}

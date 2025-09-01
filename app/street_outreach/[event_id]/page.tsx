@@ -52,7 +52,7 @@ export default function EventPage({
         )}
         . We <strong>start at {format(event.startTime, "HH:mm")}</strong> and
         will continue until {format(event.endTime, "HH:mm")}. Please{" "}
-        <Link href="/contact">join our WhatsApp group</Link> if you intend to
+        <Link href="/join_us">join our Signal group</Link> if you intend to
         join.
       </div>
       <div className="p-4">

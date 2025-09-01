@@ -4,6 +4,7 @@ import { BASE_METADATA } from "@/lib/metadata";
 import Link from "next/link";
 import { SignupForm } from "../signup_form";
 import { DonateRaaf } from "../donate_raaf";
+import { getEventByEventId } from "@/lib/events";
 
 const title = "RAAF#2, 22nd of August in Amsterdam";
 const description =
@@ -34,6 +35,8 @@ export const metadata: Metadata = {
 };
 
 export default function RAAF2() {
+  const raaf2 = getEventByEventId("raaf2");
+
   return (
     <>
       <div className="relative w-full h-[200px]">
@@ -55,10 +58,7 @@ export default function RAAF2() {
 
       <div className="p-4">
         <p>
-          RAAF (Revolutionary Animal Advocacy Forum) is back! We&apos;re
-          currently in the process of speaker selection. We&apos;ve got a lot of
-          speakers lined up, so the next RAAF should be as awesome as the last.
-          Track this page or{" "}
+          RAAF (Revolutionary Animal Advocacy Forum) is back! Track this page or{" "}
           <Link href="https://www.instagram.com/vf.raaf/" target="_blank">
             follow us on Instagram
           </Link>{" "}
@@ -70,7 +70,7 @@ export default function RAAF2() {
 
       <div className="p-4 flex flex-col md:flex-row md:justify-between gap-8">
         <div className="flex-1">
-          <SignupForm eventId="raaf2" />
+          <SignupForm eventId="raaf2" expires={raaf2?.startTime} />
         </div>
 
         <div className="w-full md:w-[350px] md:ml-8">
