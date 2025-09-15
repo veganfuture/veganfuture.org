@@ -55,11 +55,6 @@ export default function EventPage({
         <Link href="/join_us">join our Signal group</Link> if you intend to
         join.
       </div>
-      <div className="p-4">
-        Bonus: If you can bring a tablet with{" "}
-        <Link href="/content">outreach content</Link> downloaded on it, that
-        would be great.
-      </div>
       <div className="text-xl font-bold p-4">
         What is it that we do during outreach?
       </div>
