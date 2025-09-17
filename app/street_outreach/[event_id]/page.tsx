@@ -15,14 +15,25 @@ export async function generateMetadata({
   if (!event) return notFound();
 
   const formattedDate = format(event.startTime, "do MMMM");
+  const formattedTime = format(event.startTime, "HH:mm");
   const title = `${event.title}, ${formattedDate} in Amsterdam`;
-  const description = `Join Vegan Future on ${formattedDate} starting at ${format(event.startTime, "HH:mm")} at ${event.locationText} for street outreach.`;
+  const description = `Join Vegan Future on ${formattedDate} at ${formattedTime} in Amsterdam at ${event.locationText} for street outreach.`;
 
   return {
-    ...BASE_METADATA,
-    title,
-    description,
-  };
+     ...BASE_METADATA,
+    title: title,
+    description: description,
+    openGraph: {
+      ...BASE_METADATA.openGraph,
+      title: title,
+      description: description,
+    },
+    twitter: {
+      ...BASE_METADATA.twitter,
+      title: title,
+      description: description,
+    }
+  };  
 }
 
 export async function generateStaticParams() {

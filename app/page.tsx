@@ -44,7 +44,7 @@ export default function Home() {
             <div className="w-full" style={{ aspectRatio: "16 / 9" }}>
               <iframe
                 className="w-full h-full rounded"
-                src="https://www.youtube.com/embed/7HQdpSQ2UTY?si=3yUBznqX0DHLJoTb"
+                src="https://www.youtube.com/embed/vt70b_uXu6o?si=JJQz7CJFBhpJRw-b"
                 title="YouTube video player"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
