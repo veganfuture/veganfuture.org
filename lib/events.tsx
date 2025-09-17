@@ -173,7 +173,7 @@ export const events: Event[] = populate([
   },
   {
     type: "outreach",
-    location: "ijhallen",
+    location: "moco",
     startTime: asTime("21-9-2025 14:00"),
     endTime: asTime("21-9-2025 17:00"),
   },
