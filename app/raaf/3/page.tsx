@@ -62,6 +62,7 @@ export default function RAAF3() {
           <strong>
             We&apos;re currently in the process of speaker selection.
           </strong>{" "}
+          If you want to speak at RAAF, please fill out the <a href="https://forms.gle/h6kebmbPFcGZuwEW6" target="_blank">speaker signup form</a> or <Link href="/contact">contact us</Link>.
           Sign up for our <Link href="/raaf#newsletter">newsletter</Link> or{" "}
           <Link href="https://www.instagram.com/vf.raaf/" target="_blank">
             follow us on Instagram
@@ -70,7 +71,7 @@ export default function RAAF3() {
         </p>
       </div>
 
-      <div className="p-4 text-3xl">Early Signup</div>
+      <div className="p-4 text-3xl">Free Signup (required)</div>
 
       <div className="p-4 flex flex-col md:flex-row md:justify-between gap-8">
         <div className="flex-1">
@@ -149,6 +150,67 @@ export default function RAAF3() {
           </table>
         </div>
       </div>
+
+      <div className="px-4 pt-4 text-3xl">Confirmed Speakers:</div>
+
+      <div className="p-4 flex flex-col md:flex-row items-start gap-4">
+        <div className="flex-1">
+          <span className="text-2xl">Marloes Boere</span>
+          <p className="py-4">
+            Marloes Boere develops training programs for politicians on ethics, environmental education, and debating skills. She studied Future Planet Studies and Philosophy in Amsterdam, and co-authored an ethics textbook for high school philosophy students. Before that, she grew up in the small village of Hekendorp, always curious about how people justify their choices and how we might do better together.
+          </p>
+          <div className="p-4">
+            <ul className="list-disc pl-8">
+              <li>
+                <a href="https://www.boom.nl/auteur/110-23442_Boere/100-18778_Dier-natuur-en-mens" target="_blank">
+                  Dier, natuur en mens (boek)
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <Image
+          src={"/raaf3/marloes_boere.jpg"}
+          width={275}
+          height={330}
+          alt="Picture of Marloes Boere"
+          className="flex-shrink-0"
+        />
+      </div>
+
+      <div className="p-4 flex flex-col md:flex-row items-start gap-4">
+        <div className="flex-1">
+          <span className="text-2xl">Arjan Smits</span>
+          <p className="py-4">
+            Arjan Smits coordinates projects and fundraising for Plenty Food Nederland, supporting plant-based food aid around the world. He studied tropical forestry at Wageningen University, spending time in Cameroon to research how rainforests respond to human disturbance. For over a decade he has also been active with the Partij voor de Dieren, organizing campaigns and protests against animal testing, industrial farming, and ecological destruction.
+          </p>
+          <div className="p-4">
+            <ul className="list-disc pl-8">
+              <li>
+                <a href="https://plentyfood.nl/" target="_blank">
+                  Plenty Food
+                </a>
+              </li>
+              <li>
+                <a href="https://www.linkedin.com/in/arjan-smits-bb078013" target="_blank">
+                  Arjan Smits on LinkedIn
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <Image
+          src={"/raaf3/arjan_smits.jpg"}
+          width={275}
+          height={330}
+          alt="Picture of Arjan Smits"
+          className="flex-shrink-0"
+        />
+      </div>
+
+      <div className="px-4 pt-4 text-2xl">More speakers to be announced 📣</div>
+
 
       <div className="p-4 text-3xl">Donation based</div>
       <div className="p-4">
