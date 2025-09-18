@@ -1,3 +1,4 @@
+import { BASE_URL, withoutBaseUrl } from "@/lib/metadata";
 import { format } from "date-fns";
 import Link from "next/link";
 
@@ -26,10 +27,11 @@ export function AgendaItem({
   return (
     <div
       onClick={() => {
-        if (url.startsWith("http")) {
-          window.open(url, "_blank");
+        if (url.startsWith(BASE_URL)) {
+          document.location = withoutBaseUrl(url);
         } else {
-          document.location = url;
+          // external URL, load in new tab
+          window.open(url, "_blank");
         }
       }}
       className="

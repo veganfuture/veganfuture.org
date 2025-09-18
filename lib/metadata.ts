@@ -3,7 +3,18 @@ import { Metadata } from "next";
 export const BASE_URL = "https://veganfuture.org";
 
 export function withBaseUrl(path: string): string {
-  return `${BASE_URL}${path}`;
+  if (path.startsWith("https://") || path.startsWith("http://")) {
+    return path;
+  }
+  const separator = path.startsWith("/") ? "" : "/"
+  return `${BASE_URL}${separator}${path}`;
+}
+
+export function withoutBaseUrl(url: string): string {
+  if (url.startsWith(BASE_URL)) {
+    return url.slice(BASE_URL.length) || "/";
+  }
+  return url;
 }
 
 export const BASE_METADATA: Metadata = {
