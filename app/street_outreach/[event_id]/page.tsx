@@ -17,10 +17,12 @@ export async function generateMetadata({
   const formattedDate = format(event.startTime, "do MMMM");
   const formattedTime = format(event.startTime, "HH:mm");
   const title = `${event.title}, ${formattedDate} in Amsterdam`;
-  const description = `Join Vegan Future on ${formattedDate} at ${formattedTime} in Amsterdam at ${event.locationText} for street outreach.`;
+  const description = event.description
+    ? event.description
+    : `Join Vegan Future on ${formattedDate} at ${formattedTime} in Amsterdam at ${event.locationText} for street outreach.`;
 
   return {
-     ...BASE_METADATA,
+    ...BASE_METADATA,
     title: title,
     description: description,
     openGraph: {
@@ -32,8 +34,8 @@ export async function generateMetadata({
       ...BASE_METADATA.twitter,
       title: title,
       description: description,
-    }
-  };  
+    },
+  };
 }
 
 export async function generateStaticParams() {
@@ -51,7 +53,7 @@ export default function EventPage({
   return (
     <>
       <div className="text-2xl font-bold p-4 font-comfortaa">
-        Street outreach, {format(event.startTime, "do MMMM yyyy")}
+        {event.title}, {format(event.startTime, "do MMMM yyyy")}
       </div>
       <div className="p-4">
         Join us on <strong>{format(event.startTime, "do MMMM yyyy")}</strong>{" "}
@@ -66,6 +68,11 @@ export default function EventPage({
         <Link href="/join_us">join our Signal group</Link> if you intend to
         join.
       </div>
+      {event.description ? (
+        <div className="p-4">{event.description}</div>
+      ) : (
+        <></>
+      )}
       <div className="text-xl font-bold p-4">
         What is it that we do during outreach?
       </div>

@@ -8,7 +8,13 @@ import { withBaseUrl } from "./metadata";
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 type PartialBy<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
 
-export type Location = "moco" | "EAO" | "rijks" | "buurtsalon" | "ijhallen";
+export type Location =
+  | "moco"
+  | "EAO"
+  | "rijks"
+  | "buurtsalon"
+  | "ijhallen"
+  | "vondelpark_entrance";
 
 export type EventType = "outreach" | "vaam" | "raaf";
 
@@ -42,7 +48,7 @@ const fromAmsTime = (str: string): TZDate => {
     parsed.getDate(),
     parsed.getHours(),
     parsed.getMinutes(),
-    "Europe/Amsterdam"
+    "Europe/Amsterdam",
   );
 };
 export function getEventByEventId(eventId: string): Event | undefined {
@@ -197,9 +203,12 @@ export const events: Event[] = populate([
   },
   {
     type: "outreach",
-    location: "moco",
+    location: "vondelpark_entrance",
+    title: "Street Outreach (human milk)",
     startTime: fromAmsTime("5-10-2025 14:00"),
     endTime: fromAmsTime("5-10-2025 17:00"),
+    description:
+      'We are going to "sell" human milk. If you want to participate please wear something official looking and preferably light blue (color of the supposed human milk brand). Besides selling human milk you are also welcome to do outreach in any other style you like. We wil bring signs for people who want to do the social experiment.',
   },
   {
     type: "outreach",
@@ -236,7 +245,13 @@ export const events: Event[] = populate([
 function populate(
   events: PartialBy<
     Omit<Event, "id">,
-    "url" | "locationUrl" | "icon" | "locationText"| "locationTextWithCity" | "title" | "eventId"
+    | "url"
+    | "locationUrl"
+    | "icon"
+    | "locationText"
+    | "locationTextWithCity"
+    | "title"
+    | "eventId"
   >[],
 ): Event[] {
   return events.map((event, idx) => {
@@ -251,7 +266,8 @@ function populate(
       id: idx,
       locationUrl: event.locationUrl || getLocationUrl(event.location),
       locationText: event.locationText || getLocationText(event.location),
-      locationTextWithCity: event.locationText || getLocationText(event.location) + ", Amsterdam",
+      locationTextWithCity:
+        event.locationText || getLocationText(event.location) + ", Amsterdam",
       icon: event.icon || getEventIcon(event.type),
       title: event.title || getEventTitle(event.type),
       url: url,
@@ -298,6 +314,8 @@ function getLocationText(location: Location): string {
       return "Buurtsalon Jeltje";
     case "ijhallen":
       return "Ijhallen (NDSM)";
+    case "vondelpark_entrance":
+      return "Vondelpark Entrance";
   }
 }
 
@@ -313,6 +331,8 @@ function getLocationUrl(location: Location): string {
       return "https://maps.app.goo.gl/Uq8NWo2djUAw7x7H9";
     case "ijhallen":
       return "https://maps.app.goo.gl/PkjLaBFM4zrPC8eX6";
+    case "vondelpark_entrance":
+      return "https://maps.app.goo.gl/qSTAemUM9LHrx47FA";
   }
 }
 
