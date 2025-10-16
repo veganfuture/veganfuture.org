@@ -345,6 +345,53 @@ export default function RAAF3() {
         />
       </div>
 
+      <div className="px-4 pt-4 text-3xl">Moderator:</div>
+
+      <div className="p-4 flex flex-col md:flex-row items-start gap-4">
+        <div className="flex-1">
+          <span className="text-2xl">
+            That Chip Guy - Youtuber, WTF organizer
+          </span>
+          <p className="py-4">
+            Chip is one of the Netherlands’ most prolific YouTubers on the topic
+            of veganism. Several times a week, he can be found on the streets of
+            Amsterdam engaging people in thoughtful conversations about their
+            values. His livestreams attract extremely large audiences.
+          </p>
+          <p className="py-4">
+            Beyond his online activism, Chip is also a weightlifter, certified
+            nutritionist, and critical thinker. He brings a skeptical and
+            analytical mindset to everything he does. In addition to his
+            personal work, Chip is an organizer for WeTheFree Amsterdam and
+            serves as the lead frontend developer at WeTheFree.
+          </p>
+          <div className="p-4">
+            <ul className="list-disc pl-8">
+              <li>
+                <a href="https://www.youtube.com/@ThatChipGuy" target="_blank">
+                  That Chip Guy, Youtube
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.instagram.com/realchipguy/"
+                  target="_blank"
+                >
+                  Real Chip Guy, Instagram
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <Image
+          src={"/raaf3/cip.jpg"}
+          width={275}
+          height={330}
+          alt="Picture of That Chip Guy"
+          className="flex-shrink-0"
+        />
+      </div>
+
       <div className="p-4 text-3xl">Donation based</div>
       <div className="p-4">
         <DonateRaaf />
