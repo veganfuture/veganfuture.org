@@ -62,8 +62,12 @@ export default function RAAF3() {
           <strong>
             We&apos;re currently in the process of speaker selection.
           </strong>{" "}
-          If you want to speak at RAAF, please fill out the <a href="https://forms.gle/h6kebmbPFcGZuwEW6" target="_blank">speaker signup form</a> or <Link href="/contact">contact us</Link>.
-          Sign up for our <Link href="/raaf#newsletter">newsletter</Link> or{" "}
+          If you want to speak at RAAF, please fill out the{" "}
+          <a href="https://forms.gle/h6kebmbPFcGZuwEW6" target="_blank">
+            speaker signup form
+          </a>{" "}
+          or <Link href="/contact">contact us</Link>. Sign up for our{" "}
+          <Link href="/raaf#newsletter">newsletter</Link> or{" "}
           <Link href="https://www.instagram.com/vf.raaf/" target="_blank">
             follow us on Instagram
           </Link>{" "}
@@ -155,15 +159,34 @@ export default function RAAF3() {
 
       <div className="p-4 flex flex-col md:flex-row items-start gap-4">
         <div className="flex-1">
-          <span className="text-2xl">Marloes Boere</span>
+          <span className="text-2xl">
+            Marloes Boere - Author philosophy study book
+          </span>
           <p className="py-4">
-            Marloes Boere develops training programs for politicians on ethics, environmental education, and debating skills. She studied Future Planet Studies and Philosophy in Amsterdam, and co-authored an ethics textbook for high school philosophy students. Before that, she grew up in the small village of Hekendorp, always curious about how people justify their choices and how we might do better together.
+            Marloes Boere develops training programs for politicians on ethics,
+            environmental education, and debating skills. She studied Future
+            Planet Studies and Philosophy in Amsterdam, and co-authored an
+            ethics textbook for high school philosophy students. Before that,
+            she grew up in the small village of Hekendorp, always curious about
+            how people justify their choices and how we might do better
+            together.
           </p>
           <div className="p-4">
             <ul className="list-disc pl-8">
               <li>
-                <a href="https://www.boom.nl/auteur/110-23442_Boere/100-18778_Dier-natuur-en-mens" target="_blank">
+                <a
+                  href="https://www.boom.nl/auteur/110-23442_Boere/100-18778_Dier-natuur-en-mens"
+                  target="_blank"
+                >
                   Dier, natuur en mens (boek)
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://noordholland.partijvoordedieren.nl/personen/marloes-boere"
+                  target="_blank"
+                >
+                  Candidacy Partij voor de Dieren
                 </a>
               </li>
             </ul>
@@ -181,9 +204,17 @@ export default function RAAF3() {
 
       <div className="p-4 flex flex-col md:flex-row items-start gap-4">
         <div className="flex-1">
-          <span className="text-2xl">Arjan Smits</span>
+          <span className="text-2xl">
+            Arjan Smits - Vegan first aid founder
+          </span>
           <p className="py-4">
-            Arjan Smits coordinates projects and fundraising for Plenty Food Nederland, supporting plant-based food aid around the world. He studied tropical forestry at Wageningen University, spending time in Cameroon to research how rainforests respond to human disturbance. For over a decade he has also been active with the Partij voor de Dieren, organizing campaigns and protests against animal testing, industrial farming, and ecological destruction.
+            Arjan Smits coordinates projects and fundraising for Plenty Food
+            Nederland, supporting plant-based food aid around the world. He
+            studied tropical forestry at Wageningen University, spending time in
+            Cameroon to research how rainforests respond to human disturbance.
+            For over a decade he has also been active with the Partij voor de
+            Dieren, organizing campaigns and protests against animal testing,
+            industrial farming, and ecological destruction.
           </p>
           <div className="p-4">
             <ul className="list-disc pl-8">
@@ -193,7 +224,10 @@ export default function RAAF3() {
                 </a>
               </li>
               <li>
-                <a href="https://www.linkedin.com/in/arjan-smits-bb078013" target="_blank">
+                <a
+                  href="https://www.linkedin.com/in/arjan-smits-bb078013"
+                  target="_blank"
+                >
                   Arjan Smits on LinkedIn
                 </a>
               </li>
@@ -209,8 +243,107 @@ export default function RAAF3() {
         />
       </div>
 
-      <div className="px-4 pt-4 text-2xl">More speakers to be announced 📣</div>
+      <div className="p-4 flex flex-col md:flex-row items-start gap-4">
+        <div className="flex-1">
+          <span className="text-2xl">
+            Johan Boonstra - Undercover researcher
+          </span>
+          <p className="py-4">
+            Johan Boonstra (born 1982) is the spokesperson for the research and
+            undercover action group Ongehoord. He studied philosophy at Utrecht
+            University and decided to become a carpenter. Since 2011, he has
+            been researching the workings and practices of Dutch livestock
+            farming. Ongehoord has brought to light numerous cases of extreme
+            animal abuse.
+          </p>
+          <div className="p-4">
+            <ul className="list-disc pl-8">
+              <li>
+                <a href="https://ongehoord.info" target="_blank">
+                  Ongehoord
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <Image
+          src={"/raaf3/johan_boonstra.jpg"}
+          width={275}
+          height={330}
+          alt="Picture of Johan Boonstra"
+          className="flex-shrink-0"
+        />
+      </div>
 
+      <div className="p-4 flex flex-col md:flex-row items-start gap-4">
+        <div className="flex-1">
+          <span className="text-2xl">
+            Gabriela Cadore Pimentel - Vegan Baker
+          </span>
+          <p className="py-4">
+            Gabriela (she/her) is the owner of Inclusive Bites, a vegan and
+            gluten-free bakery making delicious treats for everyone. A food
+            engineer and passionate vegan since 2011, she combines her expertise
+            with her love for animals to create inclusive, plant-based recipes
+            and inspire others to see food as a powerful form of advocacy.
+          </p>
+          <div className="p-4">
+            <ul className="list-disc pl-8">
+              <li>
+                <a
+                  href="https://www.instagram.com/inclusivebites/?hl=en"
+                  target="_blank"
+                >
+                  Inclusive Bites Instagram
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <Image
+          src={"/raaf3/gabriela.jpg"}
+          width={275}
+          height={330}
+          alt="Picture of Gabriela Cadore Pimentel"
+          className="flex-shrink-0"
+        />
+      </div>
+
+      <div className="p-4 flex flex-col md:flex-row items-start gap-4">
+        <div className="flex-1">
+          <span className="text-2xl">Niki Wagner - Pigeon Rescuer</span>
+          <p className="py-4">
+            Did you know you have the power to help pigeons right in your own
+            neighborhood? Niki Wagner from SOS Duif shares her personal
+            experience on how each of us can step up to care for the homeless
+            and wild birds living alongside us in the city. From recognizing
+            signs of illness to safely freeing pigeons trapped by strings or
+            debris, there are simple, legal actions you can take that align with
+            animal protection laws. These winged city dwellers often go
+            unnoticed, but they depend on our kindness and awareness. By
+            understanding how to identify their needs and knowing your legal
+            obligations, you can directly improve their wellbeing — and make our
+            urban environment a kinder place for all creatures. Ready to learn
+            how to make a difference? Let’s take action, one pigeon at a time.
+          </p>
+          <div className="p-4">
+            <ul className="list-disc pl-8">
+              <li>
+                <a href="https://www.sosduif.nl" target="_blank">
+                  SOS duif website
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <Image
+          src={"/raaf3/niki_wagner.jpg"}
+          width={275}
+          height={330}
+          alt="Picture of Niki Wagner"
+          className="flex-shrink-0"
+        />
+      </div>
 
       <div className="p-4 text-3xl">Donation based</div>
       <div className="p-4">
