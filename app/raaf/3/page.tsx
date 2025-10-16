@@ -159,9 +159,7 @@ export default function RAAF3() {
 
       <div className="p-4 flex flex-col md:flex-row items-start gap-4">
         <div className="flex-1">
-          <span className="text-2xl">
-            Marloes Boere - Author philosophy study book
-          </span>
+          <span className="text-2xl">Marloes Boere - Philosophy Educator</span>
           <p className="py-4">
             Marloes Boere develops training programs for politicians on ethics,
             environmental education, and debating skills. She studied Future
@@ -204,9 +202,7 @@ export default function RAAF3() {
 
       <div className="p-4 flex flex-col md:flex-row items-start gap-4">
         <div className="flex-1">
-          <span className="text-2xl">
-            Arjan Smits - Vegan first aid founder
-          </span>
+          <span className="text-2xl">Arjan Smits - Plant-based Food Aid</span>
           <p className="py-4">
             Arjan Smits coordinates projects and fundraising for Plenty Food
             Nederland, supporting plant-based food aid around the world. He
@@ -246,7 +242,7 @@ export default function RAAF3() {
       <div className="p-4 flex flex-col md:flex-row items-start gap-4">
         <div className="flex-1">
           <span className="text-2xl">
-            Johan Boonstra - Undercover researcher
+            Johan Boonstra - Undercover Researcher
           </span>
           <p className="py-4">
             Johan Boonstra (born 1982) is the spokesperson for the research and
