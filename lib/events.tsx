@@ -231,6 +231,7 @@ export const events: Event[] = populate([
   {
     type: "raaf",
     location: "buurtsalon",
+    title: "RAAF 3rd edition",
     startTime: fromAmsTime("28-11-2025 18:30"),
     endTime: fromAmsTime("28-11-2025 21:30"),
     url: "/raaf/3",

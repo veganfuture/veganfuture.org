@@ -134,6 +134,10 @@ export default function RAAF() {
             We want you to be relaxed and feel at home. We hope you&apos;ll feel
             the good vibes that we are trying to generate with RAAF.
           </li>
+          <li>
+            <strong>Non-commercial:</strong> We're not in this to for our own
+            gain, we're in it because we care about the cause.{" "}
+          </li>
         </ul>
       </section>
 
