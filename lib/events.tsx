@@ -214,7 +214,7 @@ export const events: Event[] = populate([
     type: "outreach",
     location: "moco",
     startTime: fromAmsTime("19-10-2025 14:00"),
-    endTime: fromAmsTime("19-10-2025 17:00"),
+    endTime: fromAmsTime("19-10-2025 16:00"),
   },
   {
     type: "outreach",
@@ -235,6 +235,12 @@ export const events: Event[] = populate([
     endTime: fromAmsTime("28-11-2025 21:30"),
     url: "/raaf/3",
     eventId: "raaf3",
+  },
+  {
+    type: "outreach",
+    location: "moco",
+    startTime: fromAmsTime("30-11-2025 13:00"),
+    endTime: fromAmsTime("30-11-2025 16:00"),
   },
 ]);
 
