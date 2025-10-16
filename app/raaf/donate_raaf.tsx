@@ -5,8 +5,8 @@ export function DonateRaaf() {
         RAAF is a donation-based event. We do have some costs though (e.g.
         renting the space, snacks, printing flyers, etc.). To break even, we
         need about <strong>5 euros per person</strong>, but keep in mind that
-        some people don't donate. If you can support us, it would mean the world
-        💚
+        some people don&apos;t donate. If you can support us, it would mean the
+        world 💚
       </p>
       <p className="mb-6 text-md text-gray-700">
         You can easily donate through iDEAL:
