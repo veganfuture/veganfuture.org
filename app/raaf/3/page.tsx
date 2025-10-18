@@ -57,21 +57,22 @@ export default function RAAF3() {
       </div>
 
       <div className="p-4">
+        <p>RAAF (Revolutionary Animal Advocacy Forum) is back with a third edition!
+          We're very excited to announce our speakers, who come from an incredibly broad
+          range of animal advocacy styles. From baking cakes to planting mental seeds to planting cameras,
+          this is an evening to get inspired by all forms of activism.
+        </p><p>
+          If you are not yet an activist yourself or find yourself wondering how to energize
+          or level up your activism, then RAAF is the #1 event for you. Five speakers will explain
+          how they got into activism, what drives them, what challenges they faced, and what
+          keeps them busy. They'll inspire you to get going to build the future we all desire —
+          one in which humanity will recognize that animals are here with us, not for us.
+        </p><p>
+          After the talks, there will be plenty of time to socialize. We'll enjoy some music, vegan
+          snacks, and new connections with like-minded people. We hope to see you there!
+        </p>
         <p>
-          RAAF (Revolutionary Animal Advocacy Forum) is back!{" "}
-          <strong>
-            We&apos;re currently in the process of speaker selection.
-          </strong>{" "}
-          If you want to speak at RAAF, please fill out the{" "}
-          <a href="https://forms.gle/h6kebmbPFcGZuwEW6" target="_blank">
-            speaker signup form
-          </a>{" "}
-          or <Link href="/contact">contact us</Link>. Sign up for our{" "}
-          <Link href="/raaf#newsletter">newsletter</Link> or{" "}
-          <Link href="https://www.instagram.com/vf.raaf/" target="_blank">
-            follow us on Instagram
-          </Link>{" "}
-          for updates!
+          P.S. If you have any questions about the event, please don't hestitate to <Link href="/contact">contact us</Link>.
         </p>
       </div>
 
@@ -109,11 +110,11 @@ export default function RAAF3() {
                         <td>Presentations start</td>
                       </tr>
                       <tr>
-                        <td>21:30</td>
+                        <td>22:00</td>
                         <td>Social time</td>
                       </tr>
                       <tr>
-                        <td>23:00</td>
+                        <td>00:00</td>
                         <td>Doors close</td>
                       </tr>
                     </tbody>
