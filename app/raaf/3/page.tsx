@@ -6,9 +6,9 @@ import { SignupForm } from "../signup_form";
 import { DonateRaaf } from "../donate_raaf";
 import { getEventByEventId } from "@/lib/events";
 
-const title = "RAAF#3, 28th of November in Amsterdam";
+const title = "RAAF #3, 28th of November in Amsterdam";
 const description =
-  "Join us, once again, for RAAF#3 on the 28th of November in Amsterdam. Doors open at 18:30!";
+  "Join RAAF’s third edition for an inspiring evening of diverse animal activism, ranging from planting mental seeds to planting cameras.";
 
 export const metadata: Metadata = {
   ...BASE_METADATA,
@@ -34,6 +34,133 @@ export const metadata: Metadata = {
   },
 };
 
+type Link = {
+  text: string;
+  url: string;
+}
+
+type PersonInfo = {
+  fullName: string;
+  title: string;
+  organization?: string;
+  description: string;
+  pictureName: string;
+  links: Array<Link>;
+}
+
+const SPEAKERS: Array<PersonInfo> = [
+  {
+    fullName: "Marloes Boere",
+    title: "Philosophy Educator",
+    description: `Marloes Boere develops training programs for politicians on ethics,
+      environmental education, and debating skills. She studied Future Planet
+      Studies and Philosophy in Amsterdam, and co-authored an ethics textbook
+      for high school philosophy students. Before that, she grew up in the small
+      village of Hekendorp, always curious about how people justify their
+      choices and how we might do better together.`,
+    pictureName: "marloes_boere.jpg",
+    links: [{
+      text: "Dier, natuur en mens (boek)",
+      url: "https://www.boom.nl/auteur/110-23442_Boere/100-18778_Dier-natuur-en-mens",
+    }, {
+      text: "Candidacy Partij voor de Dieren",
+      url: "https://noordholland.partijvoordedieren.nl/personen/marloes-boere"
+    }]
+  },
+  {
+    fullName: "Arjan Smits",
+    title: "Plant-based Food Aid",
+    organization: "Plenty food",
+    description: `Arjan Smits coordinates projects and fundraising for Plenty Food
+            Nederland, supporting plant-based food aid around the world. He
+            studied tropical forestry at Wageningen University, spending time in
+            Cameroon to research how rainforests respond to human disturbance.
+            For over a decade he has also been active with the Partij voor de
+            Dieren, organizing campaigns and protests against animal testing,
+            industrial farming, and ecological destruction.`,
+    pictureName: "arjan_smits.jpg",
+    links: [{
+      text: "Plenty Food",
+      url: "https://www.boom.nl/auteur/110-23442_Boere/100-18778_Dier-natuur-en-mens",
+    }]
+  },
+  {
+    fullName: "Johan Boonstra",
+    title: "Undercover Researcher",
+    organization: "Ongehoord",
+    description: `Johan Boonstra (born 1982) is the spokesperson for the undercover investigation group Ongehoord. He studied philosophy at Utrecht University and decided to become a carpenter. Since 2011, he has been researching the workings and practices of Dutch livestock farming with undercover filming in stables and slaughterhouses as well as literature studies. Ongehoord has brought to light numerous cases of extreme animal abuse in Dutch and Belgium media.`,
+    pictureName: "johan_boonstra.jpg",
+    links: [{
+      text: "Ongehoord website",
+      url: "https://ongehoord.info",
+    }]
+  },
+  {
+    fullName: "Gabriela Cadore Pimentel",
+    title: "Vegan Baker",
+    organization: "Inclusive Bites",
+    description: `Gabriela (she/her) is the owner of Inclusive Bites, a vegan and
+            gluten-free bakery making delicious treats for everyone. A food
+            engineer and passionate vegan since 2011, she combines her expertise
+            with her love for animals to create inclusive, plant-based recipes
+            and inspire others to see food as a powerful form of advocacy.`,
+    pictureName: "gabriela.jpg",
+    links: [{
+      text: "Inclusive Bites Instagram",
+      url: "https://www.instagram.com/inclusivebites/",
+    }]
+  },
+  {
+    fullName: "Niki Wagner",
+    title: "Pigeon Rescuer",
+    organization: "SOS duif",
+    description: `Did you know you have the power to help pigeons right in your own
+            neighborhood? Niki Wagner from SOS Duif shares her personal
+            experience on how each of us can step up to care for the homeless
+            and wild birds living alongside us in the city. From recognizing
+            signs of illness to safely freeing pigeons trapped by strings or
+            debris, there are simple, legal actions you can take that align with
+            animal protection laws. These winged city dwellers often go
+            unnoticed, but they depend on our kindness and awareness. By
+            understanding how to identify their needs and knowing your legal
+            obligations, you can directly improve their wellbeing — and make our
+            urban environment a kinder place for all creatures. Ready to learn
+            how to make a difference? Let’s take action, one pigeon at a time.`,
+    pictureName: "niki_wagner.jpg",
+    links: [{
+      text: "SOS duif website",
+      url: "https://www.sosduif.nl",
+    }]
+  },
+];
+
+const MODERATORS: Array<PersonInfo> = [
+  {
+    fullName: "That Chip Guy",
+    title: "Youtuber, WeTheFree organizer",
+    description: `Chip is one of the Netherlands’ most prolific YouTubers on the topic
+      of veganism. Several times a week, he can be found on the streets of
+      Amsterdam engaging people in thoughtful conversations about their
+      values. His livestreams attract extremely large audiences.
+      Beyond his online activism, Chip is also a weightlifter, certified
+      nutritionist, and critical thinker. He brings a skeptical and
+      analytical mindset to everything he does. In addition to his
+      personal work, Chip is an organizer for WeTheFree Amsterdam and
+      serves as the lead frontend developer at WeTheFree.`,
+    links: [
+      {
+        text: "That Chip Guy, Youtube",
+        url: "https://www.youtube.com/@ThatChipGuy"
+      },
+      {
+        text: "Real Chip Guy, Instagram",
+        url: "https://www.instagram.com/realchipguy/"
+      }
+    ],
+    pictureName: "cip.jpg",
+  }
+];
+
 export default function RAAF3() {
   const raaf3 = getEventByEventId("raaf3");
 
@@ -57,7 +184,7 @@ export default function RAAF3() {
       </div>
 
       <div className="p-4">
-        <p>RAAF (Revolutionary Animal Advocacy Forum) is back with a third edition!
+        <p>RAAF is back with a third edition!
           We're very excited to announce our speakers, who come from an incredibly broad
           range of animal advocacy styles. From baking cakes to planting mental seeds to planting cameras,
           this is an evening to get inspired by all forms of activism.
@@ -156,232 +283,17 @@ export default function RAAF3() {
         </div>
       </div>
 
-      <div className="px-4 pt-4 text-3xl">Confirmed Speakers:</div>
+      <div className="px-4 pt-4 text-3xl">Speakers:</div>
 
-      <div className="p-4 flex flex-col md:flex-row items-start gap-4">
-        <div className="flex-1">
-          <span className="text-2xl">Marloes Boere - Philosophy Educator</span>
-          <p className="py-4">
-            Marloes Boere develops training programs for politicians on ethics,
-            environmental education, and debating skills. She studied Future
-            Planet Studies and Philosophy in Amsterdam, and co-authored an
-            ethics textbook for high school philosophy students. Before that,
-            she grew up in the small village of Hekendorp, always curious about
-            how people justify their choices and how we might do better
-            together.
-          </p>
-          <div className="p-4">
-            <ul className="list-disc pl-8">
-              <li>
-                <a
-                  href="https://www.boom.nl/auteur/110-23442_Boere/100-18778_Dier-natuur-en-mens"
-                  target="_blank"
-                >
-                  Dier, natuur en mens (boek)
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://noordholland.partijvoordedieren.nl/personen/marloes-boere"
-                  target="_blank"
-                >
-                  Candidacy Partij voor de Dieren
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <Image
-          src={"/raaf3/marloes_boere.jpg"}
-          width={275}
-          height={330}
-          alt="Picture of Marloes Boere"
-          className="flex-shrink-0"
-        />
-      </div>
-
-      <div className="p-4 flex flex-col md:flex-row items-start gap-4">
-        <div className="flex-1">
-          <span className="text-2xl">Arjan Smits - Plant-based Food Aid</span>
-          <p className="py-4">
-            Arjan Smits coordinates projects and fundraising for Plenty Food
-            Nederland, supporting plant-based food aid around the world. He
-            studied tropical forestry at Wageningen University, spending time in
-            Cameroon to research how rainforests respond to human disturbance.
-            For over a decade he has also been active with the Partij voor de
-            Dieren, organizing campaigns and protests against animal testing,
-            industrial farming, and ecological destruction.
-          </p>
-          <div className="p-4">
-            <ul className="list-disc pl-8">
-              <li>
-                <a href="https://plentyfood.nl/" target="_blank">
-                  Plenty Food
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.linkedin.com/in/arjan-smits-bb078013"
-                  target="_blank"
-                >
-                  Arjan Smits on LinkedIn
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <Image
-          src={"/raaf3/arjan_smits.jpg"}
-          width={275}
-          height={330}
-          alt="Picture of Arjan Smits"
-          className="flex-shrink-0"
-        />
-      </div>
-
-      <div className="p-4 flex flex-col md:flex-row items-start gap-4">
-        <div className="flex-1">
-          <span className="text-2xl">
-            Johan Boonstra - Undercover Researcher
-          </span>
-          <p className="py-4">
-            Johan Boonstra (born 1982) is the spokesperson for the undercover investigation group Ongehoord. He studied philosophy at Utrecht University and decided to become a carpenter. Since 2011, he has been researching the workings and practices of Dutch livestock farming with undercover filming in stables and slaughterhouses as well as literature studies. Ongehoord has brought to light numerous cases of extreme animal abuse in Dutch and Belgium media.           </p>
-          <div className="p-4">
-            <ul className="list-disc pl-8">
-              <li>
-                <a href="https://ongehoord.info" target="_blank">
-                  Ongehoord
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <Image
-          src={"/raaf3/johan_boonstra.jpg"}
-          width={275}
-          height={330}
-          alt="Picture of Johan Boonstra"
-          className="flex-shrink-0"
-        />
-      </div>
-
-      <div className="p-4 flex flex-col md:flex-row items-start gap-4">
-        <div className="flex-1">
-          <span className="text-2xl">
-            Gabriela Cadore Pimentel - Vegan Baker
-          </span>
-          <p className="py-4">
-            Gabriela (she/her) is the owner of Inclusive Bites, a vegan and
-            gluten-free bakery making delicious treats for everyone. A food
-            engineer and passionate vegan since 2011, she combines her expertise
-            with her love for animals to create inclusive, plant-based recipes
-            and inspire others to see food as a powerful form of advocacy.
-          </p>
-          <div className="p-4">
-            <ul className="list-disc pl-8">
-              <li>
-                <a
-                  href="https://www.instagram.com/inclusivebites/?hl=en"
-                  target="_blank"
-                >
-                  Inclusive Bites Instagram
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <Image
-          src={"/raaf3/gabriela.jpg"}
-          width={275}
-          height={330}
-          alt="Picture of Gabriela Cadore Pimentel"
-          className="flex-shrink-0"
-        />
-      </div>
-
-      <div className="p-4 flex flex-col md:flex-row items-start gap-4">
-        <div className="flex-1">
-          <span className="text-2xl">Niki Wagner - Pigeon Rescuer</span>
-          <p className="py-4">
-            Did you know you have the power to help pigeons right in your own
-            neighborhood? Niki Wagner from SOS Duif shares her personal
-            experience on how each of us can step up to care for the homeless
-            and wild birds living alongside us in the city. From recognizing
-            signs of illness to safely freeing pigeons trapped by strings or
-            debris, there are simple, legal actions you can take that align with
-            animal protection laws. These winged city dwellers often go
-            unnoticed, but they depend on our kindness and awareness. By
-            understanding how to identify their needs and knowing your legal
-            obligations, you can directly improve their wellbeing — and make our
-            urban environment a kinder place for all creatures. Ready to learn
-            how to make a difference? Let’s take action, one pigeon at a time.
-          </p>
-          <div className="p-4">
-            <ul className="list-disc pl-8">
-              <li>
-                <a href="https://www.sosduif.nl" target="_blank">
-                  SOS duif website
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <Image
-          src={"/raaf3/niki_wagner.jpg"}
-          width={275}
-          height={330}
-          alt="Picture of Niki Wagner"
-          className="flex-shrink-0"
-        />
-      </div>
+      {SPEAKERS.map((speaker, idx) =>
+        <Person key={idx} person={speaker} />
+      )}
 
       <div className="px-4 pt-4 text-3xl">Moderator:</div>
 
-      <div className="p-4 flex flex-col md:flex-row items-start gap-4">
-        <div className="flex-1">
-          <span className="text-2xl">
-            That Chip Guy - Youtuber, WTF organizer
-          </span>
-          <p className="py-4">
-            Chip is one of the Netherlands’ most prolific YouTubers on the topic
-            of veganism. Several times a week, he can be found on the streets of
-            Amsterdam engaging people in thoughtful conversations about their
-            values. His livestreams attract extremely large audiences.
-          </p>
-          <p className="py-4">
-            Beyond his online activism, Chip is also a weightlifter, certified
-            nutritionist, and critical thinker. He brings a skeptical and
-            analytical mindset to everything he does. In addition to his
-            personal work, Chip is an organizer for WeTheFree Amsterdam and
-            serves as the lead frontend developer at WeTheFree.
-          </p>
-          <div className="p-4">
-            <ul className="list-disc pl-8">
-              <li>
-                <a href="https://www.youtube.com/@ThatChipGuy" target="_blank">
-                  That Chip Guy, Youtube
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.instagram.com/realchipguy/"
-                  target="_blank"
-                >
-                  Real Chip Guy, Instagram
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <Image
-          src={"/raaf3/cip.jpg"}
-          width={275}
-          height={330}
-          alt="Picture of That Chip Guy"
-          className="flex-shrink-0"
-        />
-      </div>
+      {MODERATORS.map((moderator, idx) =>
+        <Person key={idx} person={moderator} />
+      )}
 
       <div className="p-4 text-3xl">Donation based</div>
       <div className="p-4">
@@ -394,4 +306,55 @@ export default function RAAF3() {
       </div>
     </>
   );
+}
+
+
+function Person({ person }: { person: PersonInfo }) {
+  return <div className="p-4 flex flex-col md:flex-row items-start gap-4">
+
+    <div className="flex flex-col flex-1 order-2 md:order-1">
+      <span className="text-2xl mb-2">{person.fullName}</span>
+      <span className="text-xl mb-4 text-gray-600">{ person.organization ?
+        `${person.title} @ ${person.organization}` : person.title}</span>
+
+      <div className="mb-4 md:hidden self-center">
+        <Image
+          src={`/raaf3/${person.pictureName}`}
+          width={275}
+          height={330}
+          alt={`Picture of ${person.fullName}`}
+          className="rounded-lg"
+        />
+      </div>
+
+      <p className="py-2">
+        {person.description}
+      </p>
+
+      <div className="p-4">
+        <ul className="list-disc pl-8">
+          {person.links.map((link, lidx) =>
+            <li key={lidx}>
+              <a
+                href={link.url}
+                target="_blank"
+              >
+                {link.text}
+              </a>
+            </li>)}
+        </ul>
+      </div>
+    </div>
+
+    <div className="order-1 md:order-2 hidden md:block">
+      <Image
+        src={`/raaf3/${person.pictureName}`}
+        width={275}
+        height={330}
+        alt={`Picture of ${person.fullName}`}
+        className="flex-shrink-0 rounded-lg"
+      />
+    </div>
+
+  </div>
 }
