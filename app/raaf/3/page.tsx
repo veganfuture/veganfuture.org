@@ -245,13 +245,7 @@ export default function RAAF3() {
             Johan Boonstra - Undercover Researcher
           </span>
           <p className="py-4">
-            Johan Boonstra (born 1982) is the spokesperson for the research and
-            undercover action group Ongehoord. He studied philosophy at Utrecht
-            University and decided to become a carpenter. Since 2011, he has
-            been researching the workings and practices of Dutch livestock
-            farming. Ongehoord has brought to light numerous cases of extreme
-            animal abuse.
-          </p>
+            Johan Boonstra (born 1982) is the spokesperson for the undercover investigation group Ongehoord. He studied philosophy at Utrecht University and decided to become a carpenter. Since 2011, he has been researching the workings and practices of Dutch livestock farming with undercover filming in stables and slaughterhouses as well as literature studies. Ongehoord has brought to light numerous cases of extreme animal abuse in Dutch and Belgium media.           </p>
           <div className="p-4">
             <ul className="list-disc pl-8">
               <li>

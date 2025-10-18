@@ -82,10 +82,6 @@ function render(tpl, vars) {
   return tpl.replace(/\{\{\s*(\w+)\s*\}\}/g, (_, k) => vars[k] ?? "");
 }
 
-function makeUnsubUrl(token) {
-  return UNSUB_TEMPLATE.replace("{{token}}", encodeURIComponent(token));
-}
-
 // use us-east0 for sending (as you verified the domain there)
 const ses = new SESv2Client({ region: "us-east-1" });
 
@@ -100,6 +96,7 @@ const ddb = DynamoDBDocumentClient.from(
 async function* scanRecipients() {
   let ExclusiveStartKey;
   let seen = 1;
+  
   for (;;) {
     const out = await ddb.send(
       new ScanCommand({
@@ -119,7 +116,7 @@ async function* scanRecipients() {
       if (it.canEmailUpdates === false) continue;
       const token = it.token;
       if (!token) continue;
-      if (!it.signedup_raaf2) continue;
+
       yield { email, name: it.name || "", token };
       seen++;
       if (LIMIT && seen >= LIMIT) return;

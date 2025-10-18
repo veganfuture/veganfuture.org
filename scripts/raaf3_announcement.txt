@@ -1,0 +1,27 @@
+Dear {{name}},
+
+We’re happy to announce that the third edition of the Revolutionary Animal Advocacy Forum (RAAF) will take place on Friday, 28 November 2025 in Amsterdam.
+
+This year, we’re welcoming two inspiring speakers:
+
+Marloes Boere – developer of training programs for politicians on ethics, environmental education, and debating skills. She studied Future Planet Studies and Philosophy in Amsterdam, and co-authored an ethics textbook for high school philosophy students.
+
+Arjan Smits – coordinator at Plenty Food Nederland, supporting plant-based food aid worldwide. With a background in tropical forestry and over a decade of activism with the Partij voor de Dieren, he has long been committed to tackling animal testing, industrial farming, and ecological destruction.
+
+More speakers will be announced soon.
+
+Location: Buurtsalon Jeltje, Eerste Helmersstraat 106-N, Amsterdam (wheelchair accessible)
+Language: English
+Cost: Free (signup required)
+
+If you’d like to attend, please sign up here to secure your spot:
+https://veganfuture.org/raaf/3
+
+We look forward to seeing you at RAAF3!
+
+Warm regards,
+The RAAF Team
+
+---
+Don’t want to receive these messages anymore? 
+Unsubscribe here: {{unsub_url}}
