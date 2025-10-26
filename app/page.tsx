@@ -1,3 +1,4 @@
+import LatestYouTubeEmbed from "@/components/latest-youtube-embed/latest-youtube-embed";
 import { NextEvent } from "@/components/next-event/next-event";
 import Link from "next/link";
 
@@ -42,15 +43,7 @@ export default function Home() {
           <div className="p-4 border rounded-lg shadow-sm bg-white h-full flex flex-col">
             <div className="text-xl font-semibold mb-2">Our latest video:</div>
             <div className="w-full" style={{ aspectRatio: "16 / 9" }}>
-              <iframe
-                className="w-full h-full rounded"
-                src="https://www.youtube.com/embed/vt70b_uXu6o?si=JJQz7CJFBhpJRw-b"
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
-              />
+              <LatestYouTubeEmbed />
             </div>
           </div>
         </div>

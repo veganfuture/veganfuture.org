@@ -139,6 +139,24 @@ Resources:
             Path: /unsubscribe_raaf
             Method: post
 
+  LatestYouTubeFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: LatestYouTubeHandler
+      Runtime: nodejs18.x
+      Handler: app.handler
+      CodeUri: latest_youtube/
+      Environment:
+        Variables:
+          YT_CHANNEL_ID: "UC6vw5bOt0kZ47N4TcS25PIg" # @kind-future
+      Events:
+        GetLatestYouTube:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref RAAFHttpApi
+            Path: /latest_youtube
+            Method: get
+
 Outputs:
   SignupApiUrl:
     Description: "Signup POST endpoint"

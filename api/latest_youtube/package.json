@@ -1,0 +1,10 @@
+{
+  "name": "latest-youtube",
+  "version": "1.0.0",
+  "description": "Lambda function to fetch latest YouTube video from RSS feed",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "license": "MIT"
+}
