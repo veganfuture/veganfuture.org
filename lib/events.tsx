@@ -14,7 +14,8 @@ export type Location =
   | "rijks"
   | "buurtsalon"
   | "ijhallen"
-  | "vondelpark_entrance";
+  | "vondelpark_entrance"
+  | "lijnbaan";
 
 export type EventType = "outreach" | "vaam" | "raaf";
 
@@ -224,6 +225,12 @@ export const events: Event[] = populate([
   },
   {
     type: "outreach",
+    location: "lijnbaan",
+    startTime: fromAmsTime("8-11-2025 13:45"),
+    endTime: fromAmsTime("8-11-2025 17:00"),
+  },
+  {
+    type: "outreach",
     location: "moco",
     startTime: fromAmsTime("16-11-2025 13:00"),
     endTime: fromAmsTime("16-11-2025 16:00"),
@@ -323,6 +330,8 @@ function getLocationText(location: Location): string {
       return "Ijhallen (NDSM)";
     case "vondelpark_entrance":
       return "Vondelpark Entrance";
+    case "lijnbaan":
+      return "Lijnbaan 86, Rotterdam";
   }
 }
 
@@ -340,6 +349,8 @@ function getLocationUrl(location: Location): string {
       return "https://maps.app.goo.gl/PkjLaBFM4zrPC8eX6";
     case "vondelpark_entrance":
       return "https://maps.app.goo.gl/qSTAemUM9LHrx47FA";
+    case "lijnbaan":
+      return "https://maps.app.goo.gl/Cht9xNrtYXMDuxqt8";
   }
 }
 

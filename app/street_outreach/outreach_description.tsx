@@ -14,9 +14,8 @@ export function OutreachDescription() {
         (group photo after a street outreach event)
       </div>
       <div className="p-4">
-        Every two weeks, we take to the streets of Amsterdam to engage
-        non-vegans in conversations about the benefits of going vegan. Our
-        approach is constantly evolving, with methods like the{" "}
+        We engage non-vegans in conversations about the benefits of going vegan.
+        Our approach is constantly evolving, with methods like the{" "}
         <Link href="/socialexperiment">Social Experiment</Link>, flyering,
         quizzes, and even selling “dog meat” as a thought-provoking tactic.
       </div>
@@ -46,7 +45,7 @@ export function OutreachDescription() {
       </div>{" "}
       <div className="p-4">
         {" "}
-        Some conversations are filmed—with consent—and shared on our{" "}
+        Some conversations are filmed, with consent, and shared on our{" "}
         <Link href="https://www.youtube.com/@kind-future">
           YouTube channel
         </Link>{" "}
