@@ -82,7 +82,7 @@ export default function ContactUs() {
             <input
               type="hidden"
               name="_subject"
-              value="New submission from Vegan Future of Amsterdam"
+              value="Vegan Future Contact Form"
             />
             <input type="hidden" name="_captcha" value="false" />
 

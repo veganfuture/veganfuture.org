@@ -26,7 +26,7 @@ export type Event = {
   location: Location;
   locationUrl: string;
   locationText: string;
-  locationTextWithCity: string;
+  locationCity: string;
   url: string;
   description?: string;
   icon: React.ReactNode;
@@ -263,7 +263,7 @@ function populate(
     | "locationUrl"
     | "icon"
     | "locationText"
-    | "locationTextWithCity"
+    | "locationCity"
     | "title"
     | "eventId"
   >[],
@@ -280,8 +280,7 @@ function populate(
       id: idx,
       locationUrl: event.locationUrl || getLocationUrl(event.location),
       locationText: event.locationText || getLocationText(event.location),
-      locationTextWithCity:
-        event.locationText || getLocationText(event.location) + ", Amsterdam",
+      locationCity: event.locationCity || getLocationCity(event.location),
       icon: event.icon || getEventIcon(event.type),
       title: event.title || getEventTitle(event.type),
       url: url,
@@ -331,7 +330,21 @@ function getLocationText(location: Location): string {
     case "vondelpark_entrance":
       return "Vondelpark Entrance";
     case "lijnbaan":
-      return "Lijnbaan 86, Rotterdam";
+      return "Lijnbaan 86";
+  }
+}
+
+function getLocationCity(location: Location): string {
+  switch (location) {
+    case "moco":
+    case "rijks":
+    case "EAO":
+    case "buurtsalon":
+    case "ijhallen":
+    case "vondelpark_entrance":
+      return "Amsterdam";
+    case "lijnbaan":
+      return "Rotterdam";
   }
 }
 

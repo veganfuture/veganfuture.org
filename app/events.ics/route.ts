@@ -3,27 +3,31 @@ import { NextResponse } from "next/server";
 import { events } from "@/lib/events";
 import { withBaseUrl } from "@/lib/metadata";
 
-export const runtime = "nodejs";        // ical-generator needs Node APIs
-export const dynamic = "force-static";  // prerender at build time
+export const runtime = "nodejs"; // ical-generator needs Node APIs
+export const dynamic = "force-static"; // prerender at build time
 
 export async function GET() {
   const cal = ical({
     name: "Vegan Future Events",
-    description: "Events hosted by Vegan Future in Amsterdam",
-    prodId: { company: "Vegan Future", product: "veganfuture.org", language: "EN" },
+    description: "Events hosted by Vegan Future",
+    prodId: {
+      company: "Vegan Future",
+      product: "veganfuture.org",
+      language: "EN",
+    },
     method: ICalCalendarMethod.PUBLISH,
-    scale: "GREGORIAN", 
-    source:  withBaseUrl("events.ics"),
+    scale: "GREGORIAN",
+    source: withBaseUrl("events.ics"),
   });
 
   for (const event of events) {
     const data: ICalEventData = {
-      id: `${event.eventId}@veganfuture.org`,     // stable UID
+      id: `${event.eventId}@veganfuture.org`, // stable UID
       start: event.startTime,
       end: event.endTime,
       summary: event.title,
       description: event.description,
-      location: event.locationTextWithCity,
+      location: `${event.locationText}, ${event.locationCity}`,
       url: event.url,
       timezone: event.startTime.timeZone,
     };
@@ -36,7 +40,8 @@ export async function GET() {
     headers: {
       "content-type": "text/calendar; charset=utf-8",
       "content-disposition": 'attachment; filename="events.ics"',
-      "cache-control": "public, max-age=0, s-maxage=31536000, stale-while-revalidate=86400",
+      "cache-control":
+        "public, max-age=0, s-maxage=31536000, stale-while-revalidate=86400",
     },
   });
 }

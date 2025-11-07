@@ -31,7 +31,7 @@ export function NextEvent() {
             icon={event.icon}
             url={event.url}
             title={event.title}
-            location={event.locationText}
+            location={`${event.locationText}, ${event.locationCity}`}
             locationUrl={event.locationUrl}
             startTime={event.startTime}
             endTime={event.endTime}

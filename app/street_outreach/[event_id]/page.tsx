@@ -16,10 +16,10 @@ export async function generateMetadata({
 
   const formattedDate = format(event.startTime, "do MMMM");
   const formattedTime = format(event.startTime, "HH:mm");
-  const title = `${event.title}, ${formattedDate} in Amsterdam`;
+  const title = `${event.title}, ${formattedDate} in ${event.locationCity}`;
   const description = event.description
     ? event.description
-    : `Join Vegan Future on ${formattedDate} at ${formattedTime} in Amsterdam at ${event.locationText} for street outreach.`;
+    : `Join Vegan Future on ${formattedDate} at ${formattedTime} in ${event.locationCity} at ${event.locationText} for street outreach.`;
 
   return {
     ...BASE_METADATA,
@@ -59,9 +59,13 @@ export default function EventPage({
         Join us on <strong>{format(event.startTime, "do MMMM yyyy")}</strong>{" "}
         for outreach at 📍
         {event.locationUrl ? (
-          <Link href={event.locationUrl}>{event.locationText}</Link>
+          <Link href={event.locationUrl}>
+            {event.locationText}, {event.locationCity}
+          </Link>
         ) : (
-          event.locationText
+          <span>
+            {event.locationText}, {event.locationCity}
+          </span>
         )}
         . We <strong>start at {format(event.startTime, "HH:mm")}</strong> and
         will continue until {format(event.endTime, "HH:mm")}. Please{" "}
