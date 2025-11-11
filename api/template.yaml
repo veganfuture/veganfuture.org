@@ -71,6 +71,7 @@ Resources:
       CorsConfiguration:
         AllowOrigins:
           - https://veganfuture.org
+          - https://www.veganfuture.org
           - http://localhost:3000
         AllowMethods:
           - OPTIONS
@@ -78,6 +79,8 @@ Resources:
           - POST
         AllowHeaders:
           - Content-Type
+          - Authorization
+        AllowCredentials: true   # only if you send cookies/Authorization
 
   # Lambda + POST /signup_raaf on the HTTP API
   RAAFSignupFunction:
