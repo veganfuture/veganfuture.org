@@ -250,6 +250,42 @@ export const events: Event[] = populate([
     startTime: fromAmsTime("30-11-2025 13:00"),
     endTime: fromAmsTime("30-11-2025 16:00"),
   },
+  {
+    type: "outreach",
+    location: "moco",
+    startTime: fromAmsTime("14-12-2025 13:00"),
+    endTime: fromAmsTime("14-12-2025 16:00"),
+  },
+  {
+    type: "outreach",
+    location: "moco",
+    startTime: fromAmsTime("28-12-2025 13:00"),
+    endTime: fromAmsTime("28-12-2025 16:00"),
+  },
+  {
+    type: "outreach",
+    location: "moco",
+    startTime: fromAmsTime("11-01-2025 13:00"),
+    endTime: fromAmsTime("11-01-2025 16:00"),
+  },
+  {
+    type: "outreach",
+    location: "moco",
+    startTime: fromAmsTime("25-01-2025 13:00"),
+    endTime: fromAmsTime("25-01-2025 16:00"),
+  },
+  {
+    type: "outreach",
+    location: "moco",
+    startTime: fromAmsTime("08-02-2025 13:00"),
+    endTime: fromAmsTime("08-02-2025 16:00"),
+  },
+  {
+    type: "outreach",
+    location: "moco",
+    startTime: fromAmsTime("22-02-2025 13:00"),
+    endTime: fromAmsTime("22-02-2025 16:00"),
+  },
 ]);
 
 /**

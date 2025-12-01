@@ -71,6 +71,12 @@ const topLevelItems: Array<TopLevelItem> = [
         icon: MapIcon,
       },
       {
+        name: "Flyers",
+        description: "Vegan Future Flyers",
+        href: "/flyers",
+        icon: MapIcon,
+      },
+      {
         name: "Outreach content",
         description: "All you need for doing outreach",
         href: "/content",
