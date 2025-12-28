@@ -45,7 +45,7 @@ export default function ActivismJoinedForces() {
             <strong>Timetable</strong>
             <ul className="list-disc pl-5">
               <li>13:00 - 14:00 Anti foie-gras protest by Active for Justice. <strong>Meeting point</strong>: in front of McDonald’s Albert Cuypstraat, corner Ferdinand Bolstraat.</li>
-              <li>14:15 - 15:45 Vegan outreach at Museumplein by Vegan Future x We The Free x Neon Protest. <strong>Meeting point</strong>: In front of the Moco museum.</li>
+              <li>14:15 - 15:45 Vegan outreach at Museumplein by Vegan Future x We The Free x Anonymous for the Voiceless x Neon Protest. <strong>Meeting point</strong>: In front of the Moco museum.</li>
               <li>16:00 - 17:00 Anti-fur protest by Dutch Anti-fur Movement. <strong>Meeting point</strong>: P.C. Hooftstraat at Loro Piana.</li>
               <li>17:15 - 20:30 Vegan hangout at Café Gilde. <strong>Meeting point:</strong> OT301, Overtoom 301.</li>
             </ul>
@@ -53,7 +53,7 @@ export default function ActivismJoinedForces() {
 
           <div className="p-4 pb-0">Hope to see you all on Sunday January 18th!</div>
 
-          <div className="p-4 text-xs text-gray-600">Organised by Vegan Amsterdam x Vegan Future of Amsterdam x Revolutionary Animal Rights Forum x Active for Justice x We The Free x Neon Protest x Dutch Anti-fur Movement x Fellow Vegans x Duurzame
+          <div className="p-4 text-xs text-gray-600">Organised by Vegan Amsterdam x Vegan Future of Amsterdam x Revolutionary Animal Rights Forum x Active for Justice x Anonymous for the Voiceless x We The Free x Neon Protest x Dutch Anti-fur Movement x Fellow Vegans x Duurzame
           Dates  x Vegan Taalcafé x Café Gilde</div>
         </div>
       </div>
