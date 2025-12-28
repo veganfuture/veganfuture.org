@@ -17,13 +17,13 @@ export type Location =
   | "vondelpark_entrance"
   | "lijnbaan";
 
-export type EventType = "outreach" | "vaam" | "raaf";
+export type EventType = "outreach" | "vaam" | "raaf" | "community"; 
 
 export type Event = {
   startTime: TZDate;
   endTime: TZDate;
   type: EventType;
-  location: Location;
+  location?: Location;
   locationUrl: string;
   locationText: string;
   locationCity: string;
@@ -265,26 +265,36 @@ export const events: Event[] = populate([
   {
     type: "outreach",
     location: "moco",
-    startTime: fromAmsTime("11-01-2025 13:00"),
-    endTime: fromAmsTime("11-01-2025 16:00"),
+    startTime: fromAmsTime("11-01-2026 13:00"),
+    endTime: fromAmsTime("11-01-2026 16:00"),
+  },
+  {
+    type: "community",
+    title: "Activism Joined Forces",
+    locationText: "In front of the McDonald’s Albert Cuypstraat",
+    locationCity: "Amsterdam",
+    locationUrl: "https://maps.app.goo.gl/yds8tbYXDYdrX6f17",
+    url: "/events/activism_joined_forces",
+    startTime: fromAmsTime("18-01-2026 13:00"),
+    endTime: fromAmsTime("18-01-2026 20:30"),
   },
   {
     type: "outreach",
     location: "moco",
-    startTime: fromAmsTime("25-01-2025 13:00"),
-    endTime: fromAmsTime("25-01-2025 16:00"),
+    startTime: fromAmsTime("25-01-2026 13:00"),
+    endTime: fromAmsTime("25-01-2026 16:00"),
   },
   {
     type: "outreach",
     location: "moco",
-    startTime: fromAmsTime("08-02-2025 13:00"),
-    endTime: fromAmsTime("08-02-2025 16:00"),
+    startTime: fromAmsTime("08-02-2026 13:00"),
+    endTime: fromAmsTime("08-02-2026 16:00"),
   },
   {
     type: "outreach",
     location: "moco",
-    startTime: fromAmsTime("22-02-2025 13:00"),
-    endTime: fromAmsTime("22-02-2025 16:00"),
+    startTime: fromAmsTime("22-02-2026 13:00"),
+    endTime: fromAmsTime("22-02-2026 16:00"),
   },
 ]);
 
@@ -310,15 +320,26 @@ function populate(
       idx.toString(),
     );
     if (!relUrl) throw new Error(`Missing url for event ${event}`);
+    const title = event.title || getEventTitle(event.type);
+    if (title === undefined) throw new Error(`Event ${event} does not have a title!`);
+
+    const locationUrl = event.locationUrl || event.location && getLocationUrl(event.location);
+    const locationText = event.locationText || event.location && getLocationText(event.location);
+    const locationCity = event.locationCity || event.location && getLocationCity(event.location);
+    if (!locationUrl) throw new Error(`Event ${event} is missing a location url`);
+    if (!locationCity) throw new Error(`Event ${event} is missing a location city`);
+    if (!locationText) throw new Error(`Event ${event} is missing a location text`);
+    
     const url = withBaseUrl(relUrl);
+
     return {
       ...event,
       id: idx,
-      locationUrl: event.locationUrl || getLocationUrl(event.location),
-      locationText: event.locationText || getLocationText(event.location),
-      locationCity: event.locationCity || getLocationCity(event.location),
+      locationUrl: locationUrl,
+      locationText: locationText,
+      locationCity: locationText,
       icon: event.icon || getEventIcon(event.type),
-      title: event.title || getEventTitle(event.type),
+      title: title,
       url: url,
       eventId: event.eventId || getEventId(event.type, idx),
     };
@@ -329,7 +350,7 @@ function getEventId(eventType: EventType, id: number): string {
   return `${eventType}${id}`;
 }
 
-function getEventTitle(eventType: EventType): string {
+function getEventTitle(eventType: EventType): string | undefined  {
   switch (eventType) {
     case "outreach":
       return "Street Outreach";
@@ -348,7 +369,9 @@ function getEventIcon(eventType: EventType): React.ReactNode {
       return <UserGroupIcon aria-hidden="true" className="h-6 w-6 mr-2" />;
     case "raaf":
       return <UserGroupIcon aria-hidden="true" className="h-6 w-6 mr-2" />;
-  }
+    case "community":
+        return <UserGroupIcon aria-hidden="true" className="h-6 w-6 mr-2" />;
+    }
 }
 
 function getLocationText(location: Location): string {
