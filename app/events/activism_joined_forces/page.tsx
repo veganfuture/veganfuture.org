@@ -1,5 +1,36 @@
 import React from "react";
 import Image from "next/image";
+import { Metadata } from "next/types";
+import { BASE_METADATA } from "@/lib/metadata";
+
+const title = "Activism Joined Forces";
+const description =
+  "ACTIVISM JOINED FORCES & VEGAN HANGOUT - COMMUNITY EVENT - SUNDAY 18 JANUARY 2026";
+
+export const metadata: Metadata = {
+  ...BASE_METADATA,
+  title: title,
+  description: description,
+  openGraph: {
+    title: title,
+    description: description,
+    images: [
+      {
+        url: "/event_images/activism_joined_forces.jpg",
+        width: 480,
+        height: 600,
+        alt: "RAAF Logo",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: title,
+    description: description,
+    images: ["event_images/activism_joined_forces.jpg"],
+  },
+};
+
 
 export default function ActivismJoinedForces() {
   return (
