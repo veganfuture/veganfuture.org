@@ -10,10 +10,9 @@
 
 html, body {
   min-height: 100%;
-  margin: 0; /* Ensure no default margin that could cause overflow */
-}
+  margin: 0;
+  padding: 0;
 
-body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
@@ -21,8 +20,6 @@ body {
       rgb(var(--background-start-rgb)) 600px,
       rgb(var(--background-end-rgb)) 1000px
     );
-  padding-left: 2px;
-  padding-right: 2px;
 }
 
 @layer utilities {
