@@ -27,7 +27,7 @@ export async function GET() {
       end: event.endTime,
       summary: event.title,
       description: event.description,
-      location: `${event.locationText}, ${event.locationCity}`,
+      location: `${event.locationAddress}, ${event.locationCity}`,
       url: event.url,
       timezone: event.startTime.timeZone,
     };

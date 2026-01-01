@@ -12,10 +12,10 @@ export function NextEvent() {
   const upcomingOutreachEvent = allUpcomingEvents
     .filter((event) => event.type == "outreach")
     .slice(0, 1);
-  const upcomingRAAF = allUpcomingEvents
-    .filter((event) => event.type == "raaf")
+  const upcomingOther = allUpcomingEvents
+    .filter((event) => event.type != "outreach")
     .slice(0, 1);
-  const upcomingEvents = [...upcomingOutreachEvent, ...upcomingRAAF].sort(
+  const upcomingEvents = [...upcomingOutreachEvent, ...upcomingOther].sort(
     (a, b) => compareAsc(a.startTime, b.startTime),
   );
 
@@ -31,7 +31,7 @@ export function NextEvent() {
             icon={event.icon}
             url={event.url}
             title={event.title}
-            location={`${event.locationText}, ${event.locationCity}`}
+            location={`${event.locationAddress}, ${event.locationCity}`}
             locationUrl={event.locationUrl}
             startTime={event.startTime}
             endTime={event.endTime}

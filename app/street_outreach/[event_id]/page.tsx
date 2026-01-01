@@ -19,7 +19,7 @@ export async function generateMetadata({
   const title = `${event.title}, ${formattedDate} in ${event.locationCity}`;
   const description = event.description
     ? event.description
-    : `Join Vegan Future on ${formattedDate} at ${formattedTime} in ${event.locationCity} at ${event.locationText} for street outreach.`;
+    : `Join Vegan Future on ${formattedDate} at ${formattedTime} in ${event.locationCity} at ${event.locationAddress} for street outreach.`;
 
   return {
     ...BASE_METADATA,
@@ -60,11 +60,11 @@ export default function EventPage({
         for outreach at 📍
         {event.locationUrl ? (
           <Link href={event.locationUrl}>
-            {event.locationText}, {event.locationCity}
+            {event.locationAddress}, {event.locationCity}
           </Link>
         ) : (
           <span>
-            {event.locationText}, {event.locationCity}
+            {event.locationAddress}, {event.locationCity}
           </span>
         )}
         . We <strong>start at {format(event.startTime, "HH:mm")}</strong> and

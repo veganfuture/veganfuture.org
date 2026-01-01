@@ -25,7 +25,7 @@ export type Event = {
   type: EventType;
   location?: Location;
   locationUrl: string;
-  locationText: string;
+  locationAddress: string;
   locationCity: string;
   url: string;
   description?: string;
@@ -271,7 +271,7 @@ export const events: Event[] = populate([
   {
     type: "community",
     title: "Activism Joined Forces",
-    locationText: "In front of the McDonalds Albert Cuypstraat",
+    locationAddress: "In front of the McDonalds Albert Cuypstraat",
     locationCity: "Amsterdam",
     locationUrl: "https://maps.app.goo.gl/yds8tbYXDYdrX6f17",
     url: "/events/activism_joined_forces",
@@ -308,7 +308,7 @@ function populate(
     | "url"
     | "locationUrl"
     | "icon"
-    | "locationText"
+    | "locationAddress"
     | "locationCity"
     | "title"
     | "eventId"
@@ -324,11 +324,11 @@ function populate(
     if (title === undefined) throw new Error(`Event ${event} does not have a title!`);
 
     const locationUrl = event.locationUrl || event.location && getLocationUrl(event.location);
-    const locationText = event.locationText || event.location && getLocationText(event.location);
+    const locationAddress = event.locationAddress || event.location && getLocationAddress(event.location);
     const locationCity = event.locationCity || event.location && getLocationCity(event.location);
     if (!locationUrl) throw new Error(`Event ${event} is missing a location url`);
     if (!locationCity) throw new Error(`Event ${event} is missing a location city`);
-    if (!locationText) throw new Error(`Event ${event} is missing a location text`);
+    if (!locationAddress) throw new Error(`Event ${event} is missing a location text`);
     
     const url = withBaseUrl(relUrl);
 
@@ -336,7 +336,7 @@ function populate(
       ...event,
       id: idx,
       locationUrl: locationUrl,
-      locationText: locationText,
+      locationAddress: locationAddress,
       locationCity: locationCity,
       icon: event.icon || getEventIcon(event.type),
       title: title,
@@ -374,7 +374,7 @@ function getEventIcon(eventType: EventType): React.ReactNode {
     }
 }
 
-function getLocationText(location: Location): string {
+function getLocationAddress(location: Location): string {
   switch (location) {
     case "moco":
       return "Museumplein across the Moco museum";
