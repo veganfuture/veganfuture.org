@@ -41,7 +41,7 @@ export default function RootLayout({
 
               <div className="flex items-center gap-4">
                 <Link
-                  href="https://www.youtube.com/@kind-future"
+                  href="https://www.youtube.com/@kindfuturenow"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:underline text-white/80 hover:text-white"

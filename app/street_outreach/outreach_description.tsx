@@ -46,7 +46,7 @@ export function OutreachDescription() {
       <div className="p-4">
         {" "}
         Some conversations are filmed, with consent, and shared on our{" "}
-        <Link href="https://www.youtube.com/@kind-future">
+        <Link href="https://www.youtube.com/@kindfuturenow">
           YouTube channel
         </Link>{" "}
         to reach a broader audience.{" "}

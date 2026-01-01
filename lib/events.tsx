@@ -271,7 +271,7 @@ export const events: Event[] = populate([
   {
     type: "community",
     title: "Activism Joined Forces",
-    locationText: "In front of the McDonald’s Albert Cuypstraat",
+    locationText: "In front of the McDonalds Albert Cuypstraat",
     locationCity: "Amsterdam",
     locationUrl: "https://maps.app.goo.gl/yds8tbYXDYdrX6f17",
     url: "/events/activism_joined_forces",
@@ -337,7 +337,7 @@ function populate(
       id: idx,
       locationUrl: locationUrl,
       locationText: locationText,
-      locationCity: locationText,
+      locationCity: locationCity,
       icon: event.icon || getEventIcon(event.type),
       title: title,
       url: url,

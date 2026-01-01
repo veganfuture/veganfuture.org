@@ -151,7 +151,7 @@ Resources:
       CodeUri: latest_youtube/
       Environment:
         Variables:
-          YT_CHANNEL_ID: "UC6vw5bOt0kZ47N4TcS25PIg" # @kind-future
+          YT_CHANNEL_ID: "UC6vw5bOt0kZ47N4TcS25PIg" # @kindfuturenow
       Events:
         GetLatestYouTube:
           Type: HttpApi
