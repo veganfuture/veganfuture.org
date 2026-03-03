@@ -307,12 +307,43 @@ export const events: Event[] = populate([
     location: "moco",
     startTime: fromAmsTime("08-03-2026 13:00"),
     endTime: fromAmsTime("08-03-2026 16:00"),
+    description: 'Special action: we will join forces with Konink and help sell "dogmeat". Check our Signal group for more info.',
   },
   {
     type: "outreach",
     location: "moco",
     startTime: fromAmsTime("22-03-2026 13:00"),
     endTime: fromAmsTime("22-03-2026 16:00"),
+  },
+  {
+    type: "outreach",
+    location: "moco",
+    startTime: fromAmsTime("5-04-2026 13:00"),
+    endTime: fromAmsTime("5-04-2026 16:00"),
+  },
+  {
+    type: "outreach",
+    location: "moco",
+    startTime: fromAmsTime("19-04-2026 13:00"),
+    endTime: fromAmsTime("19-04-2026 16:00"),
+  },
+  {
+    type: "outreach",
+    location: "moco",
+    startTime: fromAmsTime("3-05-2026 13:00"),
+    endTime: fromAmsTime("3-05-2026 16:00"),
+  },
+  {
+    type: "outreach",
+    location: "moco",
+    startTime: fromAmsTime("17-05-2026 13:00"),
+    endTime: fromAmsTime("17-05-2026 16:00"),
+  },
+  {
+    type: "outreach",
+    location: "moco",
+    startTime: fromAmsTime("31-05-2026 13:00"),
+    endTime: fromAmsTime("31-05-2026 16:00"),
   },
 ]);
 
