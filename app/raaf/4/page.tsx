@@ -5,8 +5,17 @@ import Link from "next/link";
 import { SignupForm } from "../signup_form";
 import { DonateRaaf } from "../donate_raaf";
 import { getEventByEventId } from "@/lib/events";
+import { format } from "date-fns";
+import MegaphoneIcon from "@heroicons/react/24/outline/MegaphoneIcon";
 
-const title = "RAAF #4, 22nd of May @ Pakhuis de Zwijger, Amsterdam";
+const raaf4 = getEventByEventId("raaf4");
+const eventDateShort = raaf4 ? format(raaf4.startTime, "do 'of' MMMM") : "TBA";
+const eventDateLong = raaf4 ? format(raaf4.startTime, "do MMMM, yyyy") : "TBA";
+const eventCity = raaf4?.locationCity ?? "TBA";
+const eventLocation = raaf4?.locationAddress ?? "TBA";
+const eventImagePath = raaf4?.eventId ?? "raaf4";
+
+const title = `RAAF #4, ${eventDateShort} in ${eventCity}`;
 const description =
   "Join RAAF’s fourth edition to get inspired by some of the best in animal rights activism!";
 
@@ -48,6 +57,8 @@ type PersonInfo = {
   links: Array<Link>;
 };
 
+const MORE_SPEAKER_TO_BE_ANNOUNCED = true;
+
 const SPEAKERS: Array<PersonInfo> = [
   {
     fullName: "Kasia Mask",
@@ -85,8 +96,6 @@ const SPEAKERS: Array<PersonInfo> = [
 const MODERATORS: Array<PersonInfo> = [];
 
 export default function RAAF4() {
-  const raaf4 = getEventByEventId("raaf4");
-
   return (
     <>
       <div className="relative w-full h-[200px]">
@@ -98,10 +107,10 @@ export default function RAAF4() {
         />
         <div className="absolute inset-0 flex items-center justify-center">
           <h1 className="text-white text-3xl md:text-4xl font-bold text-center drop-shadow-lg">
-            Revolutionary Animal Advocacy Forum #3
+            {raaf4?.title ?? "Revolutionary Animal Advocacy Forum"}
           </h1>
           <p className="absolute bottom-2 w-full text-center text-white text-s drop-shadow-md text-green-200">
-            Back again on the 22<sup>nd</sup> of May in Amsterdam!
+            Back again on {eventDateShort} in {eventCity}!
           </p>
         </div>
       </div>
@@ -146,9 +155,7 @@ export default function RAAF4() {
                 <td className="pr-2">
                   <strong>Date:</strong>
                 </td>
-                <td>
-                  22<sup>nd</sup> May, 2025
-                </td>
+                <td>{eventDateLong}</td>
               </tr>
               <tr>
                 <td className="align-top  pr-2">
@@ -169,28 +176,26 @@ export default function RAAF4() {
                         <td>22:00</td>
                         <td>Social time</td>
                       </tr>
-                      <tr>
-                        <td>00:00</td>
-                        <td>Doors close</td>
-                      </tr>
                     </tbody>
                   </table>
                 </td>
               </tr>
               <tr>
-                <td rowSpan={4} className="align-top pr-2">
+                <td rowSpan={2} className="align-top pr-2">
                   <strong>Location:</strong>
                 </td>
-                <td>Pakhuis de Zwijger</td>
+                <td>
+                  {raaf4?.locationUrl ? (
+                    <a href={raaf4.locationUrl} target="_blank">
+                      {eventLocation}
+                    </a>
+                  ) : (
+                    eventLocation
+                  )}
+                </td>
               </tr>
               <tr>
-                <td>Piet Heinkade 179</td>
-              </tr>
-              <tr>
-                <td>1019 HC Amsterdam</td>
-              </tr>
-              <tr>
-                <td>(wheel chair accessible)</td>
+                <td>{eventCity}</td>
               </tr>
               <tr>
                 <td className="pr-2">
@@ -215,15 +220,26 @@ export default function RAAF4() {
       <div className="px-4 pt-4 text-3xl">Speakers:</div>
 
       {SPEAKERS.map((speaker, idx) => (
-        <Person key={idx} person={speaker} />
+        <Person key={idx} person={speaker} eventImagePath={eventImagePath} />
       ))}
+
+      {MORE_SPEAKER_TO_BE_ANNOUNCED ? (
+        <div className="p-4 flex items-center gap-2 text-3xl text-gray-700">
+          <span>More speakers will be announced soon</span>
+          <MegaphoneIcon aria-hidden="true" className="h-10 w-10" />
+        </div>
+      ) : null}
 
       {MODERATORS.length > 0 ? (
         <>
           <div className="px-4 pt-4 text-3xl">Moderator:</div>
 
           {MODERATORS.map((moderator, idx) => (
-            <Person key={idx} person={moderator} />
+            <Person
+              key={idx}
+              person={moderator}
+              eventImagePath={eventImagePath}
+            />
           ))}
         </>
       ) : (
@@ -243,7 +259,13 @@ export default function RAAF4() {
   );
 }
 
-function Person({ person }: { person: PersonInfo }) {
+function Person({
+  person,
+  eventImagePath,
+}: {
+  person: PersonInfo;
+  eventImagePath: string;
+}) {
   return (
     <div className="p-4 flex flex-col md:flex-row items-start gap-4">
       <div className="flex flex-col flex-1 order-2 md:order-1">
@@ -256,7 +278,7 @@ function Person({ person }: { person: PersonInfo }) {
 
         <div className="mb-4 md:hidden self-center">
           <Image
-            src={`/raaf4/${person.pictureName}`}
+            src={`/${eventImagePath}/${person.pictureName}`}
             width={275}
             height={330}
             alt={`Picture of ${person.fullName}`}
@@ -281,7 +303,7 @@ function Person({ person }: { person: PersonInfo }) {
 
       <div className="order-1 md:order-2 hidden md:block">
         <Image
-          src={`/raaf4/${person.pictureName}`}
+          src={`/${eventImagePath}/${person.pictureName}`}
           width={275}
           height={330}
           alt={`Picture of ${person.fullName}`}
@@ -291,4 +313,3 @@ function Person({ person }: { person: PersonInfo }) {
     </div>
   );
 }
-
