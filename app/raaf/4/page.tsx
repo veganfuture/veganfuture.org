@@ -220,6 +220,7 @@ export default function RAAF4() {
           person={speaker}
           eventImagePath={eventImagePath}
           reverseOnDesktop={idx % 2 === 1}
+          panelClassName={idx % 2 === 1 ? "bg-green-100" : "bg-emerald-50"}
         />
       ))}
 
@@ -264,14 +265,16 @@ function Person({
   person,
   eventImagePath,
   reverseOnDesktop = false,
+  panelClassName = "",
 }: {
   person: PersonInfo;
   eventImagePath: string;
   reverseOnDesktop?: boolean;
+  panelClassName?: string;
 }) {
   return (
     <div
-      className={`p-4 flex flex-col md:items-start gap-4 ${
+      className={`p-4 flex flex-col md:items-start gap-4 rounded-xl border border-green-100 shadow-sm ${panelClassName} ${
         reverseOnDesktop ? "md:flex-row-reverse" : "md:flex-row"
       }`}
     >
