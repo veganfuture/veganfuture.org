@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={comfortaa.variable}>
       <body className={inter.className}>
-        <div className="h-screen flex flex-col">
+        <div className="min-h-screen flex flex-col">
           <div className="w-full bg-green-100 bg-leaf-pattern bg-repeat rounded-b-xl">
             <Navbar className="mx-auto lg:max-w-[80%] max-w-full" />
           </div>
