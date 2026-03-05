@@ -1,0 +1,27 @@
+Dear {{name}},
+
+In two weeks time the third edition of RAAF is coming up - Friday the 28th. We're enthusiastic to announce our lineup of inspiring speakers:
+
+- **Johan Boonsta** — On going undercover to expose animal abuse.
+- **Gabriela Cadore Pimentel** — A food scientist turned vegan baker, sharing her secrets for inclusive, irresistible treats.
+- **Marloes Boere** - Author of an animal rights philosophy book for high school students will talk about her journey and the educational system.
+- **Niki Wagner** — Showing how anyone can make a difference by rescuing pigeons.
+- **Arjan Smits** — Exploring how plant-based food aid can empower developing communities.
+
+👉 Reserve your free spot here: https://veganfuture.org/raaf/3
+
+We’d also love your help spreading the word — especially beyond activist circles. Invite friends, family, or fellow vegans who care about animals but aren’t yet involved. The more voices we bring together, the stronger our movement becomes.
+
+Event details:
+📍 Buurtsalon Jeltje, Eerste Helmersstraat 106-N, Amsterdam (wheelchair accessible)
+🗣️ Language: English
+💸 Free (signup required)
+
+We can’t wait to see you at RAAF#3!
+
+Warm regards,
+
+The RAAF Team
+---
+Don’t want to receive these messages anymore? 
+Unsubscribe here: {{unsub_url}}

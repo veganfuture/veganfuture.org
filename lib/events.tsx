@@ -15,9 +15,10 @@ export type Location =
   | "buurtsalon"
   | "ijhallen"
   | "vondelpark_entrance"
-  | "lijnbaan";
+  | "lijnbaan"
+  | "pdz";
 
-export type EventType = "outreach" | "vaam" | "raaf" | "community"; 
+export type EventType = "outreach" | "vaam" | "raaf" | "community";
 
 export type Event = {
   startTime: TZDate;
@@ -307,7 +308,8 @@ export const events: Event[] = populate([
     location: "moco",
     startTime: fromAmsTime("08-03-2026 13:00"),
     endTime: fromAmsTime("08-03-2026 16:00"),
-    description: 'Special action: we will join forces with Konink and help sell "dogmeat". Check our Signal group for more info.',
+    description:
+      'Special action: we will join forces with Konink and help sell "dogmeat". Check our Signal group for more info.',
   },
   {
     type: "outreach",
@@ -340,6 +342,15 @@ export const events: Event[] = populate([
     endTime: fromAmsTime("17-05-2026 16:00"),
   },
   {
+    type: "raaf",
+    location: "buurtsalon",
+    title: "RAAF 4th edition",
+    startTime: fromAmsTime("22-05-2026 18:30"),
+    endTime: fromAmsTime("22-05-2026 21:30"),
+    url: "/raaf/4",
+    eventId: "raaf4",
+  },
+  {
     type: "outreach",
     location: "moco",
     startTime: fromAmsTime("31-05-2026 13:00"),
@@ -370,15 +381,23 @@ function populate(
     );
     if (!relUrl) throw new Error(`Missing url for event ${event}`);
     const title = event.title || getEventTitle(event.type);
-    if (title === undefined) throw new Error(`Event ${event} does not have a title!`);
+    if (title === undefined)
+      throw new Error(`Event ${event} does not have a title!`);
 
-    const locationUrl = event.locationUrl || event.location && getLocationUrl(event.location);
-    const locationAddress = event.locationAddress || event.location && getLocationAddress(event.location);
-    const locationCity = event.locationCity || event.location && getLocationCity(event.location);
-    if (!locationUrl) throw new Error(`Event ${event} is missing a location url`);
-    if (!locationCity) throw new Error(`Event ${event} is missing a location city`);
-    if (!locationAddress) throw new Error(`Event ${event} is missing a location text`);
-    
+    const locationUrl =
+      event.locationUrl || (event.location && getLocationUrl(event.location));
+    const locationAddress =
+      event.locationAddress ||
+      (event.location && getLocationAddress(event.location));
+    const locationCity =
+      event.locationCity || (event.location && getLocationCity(event.location));
+    if (!locationUrl)
+      throw new Error(`Event ${event} is missing a location url`);
+    if (!locationCity)
+      throw new Error(`Event ${event} is missing a location city`);
+    if (!locationAddress)
+      throw new Error(`Event ${event} is missing a location text`);
+
     const url = withBaseUrl(relUrl);
 
     return {
@@ -399,7 +418,7 @@ function getEventId(eventType: EventType, id: number): string {
   return `${eventType}${id}`;
 }
 
-function getEventTitle(eventType: EventType): string | undefined  {
+function getEventTitle(eventType: EventType): string | undefined {
   switch (eventType) {
     case "outreach":
       return "Street Outreach";
@@ -419,8 +438,8 @@ function getEventIcon(eventType: EventType): React.ReactNode {
     case "raaf":
       return <UserGroupIcon aria-hidden="true" className="h-6 w-6 mr-2" />;
     case "community":
-        return <UserGroupIcon aria-hidden="true" className="h-6 w-6 mr-2" />;
-    }
+      return <UserGroupIcon aria-hidden="true" className="h-6 w-6 mr-2" />;
+  }
 }
 
 function getLocationAddress(location: Location): string {
@@ -439,6 +458,8 @@ function getLocationAddress(location: Location): string {
       return "Vondelpark Entrance";
     case "lijnbaan":
       return "Lijnbaan 86";
+    case "pdz":
+      return "Pakhuis de Zwijger";
   }
 }
 
@@ -450,6 +471,7 @@ function getLocationCity(location: Location): string {
     case "buurtsalon":
     case "ijhallen":
     case "vondelpark_entrance":
+    case "pdz":
       return "Amsterdam";
     case "lijnbaan":
       return "Rotterdam";
@@ -472,6 +494,8 @@ function getLocationUrl(location: Location): string {
       return "https://maps.app.goo.gl/qSTAemUM9LHrx47FA";
     case "lijnbaan":
       return "https://maps.app.goo.gl/Cht9xNrtYXMDuxqt8";
+    case "pdz":
+      return "https://maps.app.goo.gl/uzTNpxkQ4xVZMBoE8";
   }
 }
 
