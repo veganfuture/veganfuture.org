@@ -1,0 +1,28 @@
+Dear {{name}},
+
+It took a bit longer than usual to send this update, because we were busy exploring whether we could upgrade the location for RAAF4.
+
+Good news!! Pakhuis de Zwijger will be hosting RAAF4.
+
+We already have several speakers lined up, with two confirmed:
+
+- **Kasia Mak** — A community builder and food strategist, and the founder of the Vegan Girls Club, connecting vegan and vegan-curious women in Amsterdam.
+- **Lenneke van Gaal** — A lawyer for the animals and part of Stop Humane Washing, working to challenge misleading claims about animal welfare.
+
+👉 Reserve your free spot here: https://veganfuture.org/raaf/4
+
+We’d also love your help spreading the word — especially beyond activist circles. Invite friends, family, or fellow vegans who care about animals but aren’t yet involved. The more voices we bring together, the stronger our movement becomes.
+
+Event details:
+📍 Pakhuis de Zwijger, Amsterdam
+🗣️ Language: English
+💸 Free (signup required)
+
+We can’t wait to see you at RAAF#4!
+
+Warm regards,
+
+The RAAF Team
+---
+Don’t want to receive these messages anymore? 
+Unsubscribe here: {{unsub_url}}
