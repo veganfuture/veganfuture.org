@@ -39,6 +39,10 @@ program
     parseInt(v, 10),
   )
   .option("--dry-run", "Log what would be sent, but don't send", false)
+  .option(
+    "--event <string>",
+    "Only send to attendees of a specific eventId (e.g. raaf4)",
+  )
   // Optional overrides (keep your fixed defaults but make overrideable)
   .option("--ddb-region <string>", "DynamoDB region", "eu-central-1")
   .option("--ses-region <string>", "SES region", "us-east-1")
@@ -67,6 +71,15 @@ for (const f of [args.text, args.html]) {
 const RATE = Math.max(2, Number(args.rate || 10));
 const DRY = !!args.dryRun;
 const LIMIT = args.limit ? Number(args.limit) : null;
+const EVENT = args.event ? String(args.event).trim() : null;
+const EVENT_ID_REGEX = /^raaf\d+$/;
+
+if (EVENT && !EVENT_ID_REGEX.test(EVENT)) {
+  console.error(`Invalid eventId: ${EVENT}. Expected format: raaf<number>.`);
+  process.exit(1);
+}
+
+const EVENT_COLUMN = EVENT ? `signedup_${EVENT}` : null;
 
 function readFile(p) {
   return fs
@@ -96,17 +109,24 @@ const ddb = DynamoDBDocumentClient.from(
 async function* scanRecipients() {
   let ExclusiveStartKey;
   let seen = 1;
-  
+
   for (;;) {
+    const projection = ["#e", "#n", "canEmailUpdates", "#t"];
+    const expressionNames = {
+      "#e": "email",
+      "#n": "name",
+      "#t": "token",
+    };
+    if (EVENT_COLUMN) {
+      projection.push("#ev");
+      expressionNames["#ev"] = EVENT_COLUMN;
+    }
+
     const out = await ddb.send(
       new ScanCommand({
         TableName: TABLE,
-        ProjectionExpression: "#e, #n, canEmailUpdates, #t, signedup_raaf2",
-        ExpressionAttributeNames: {
-          "#e": "email",
-          "#n": "name",
-          "#t": "token",
-        },
+        ProjectionExpression: projection.join(", "),
+        ExpressionAttributeNames: expressionNames,
         ExclusiveStartKey,
       }),
     );
@@ -116,6 +136,7 @@ async function* scanRecipients() {
       if (it.canEmailUpdates === false) continue;
       const token = it.token;
       if (!token) continue;
+      if (EVENT_COLUMN && it[EVENT_COLUMN] !== true) continue;
 
       yield { email, name: it.name || "", token };
       seen++;

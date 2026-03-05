@@ -5,52 +5,35 @@ const db = new AWS.DynamoDB.DocumentClient();
 const ses = new AWS.SES({ region: "us-east-1" });
 const crypto = require("crypto");
 
-// Public event → column map
-const SIGNUP_COLUMNS = {
-  undefined: "signedup_newsletter",
-  raaf1: "signedup_raaf1",
-  raaf2: "signedup_raaf2",
-  raaf3: "signedup_raaf3",
-};
+const NEWSLETTER_COLUMN = "signedup_newsletter";
+const RAAF_EVENT_ID_REGEX = /^raaf\d+$/;
 
-const EMAIL_MESSAGES = {
-  raaf2: {
-    subject: "RAAF#2 Registration",
+function getSignupColumn(eventId) {
+  if (!eventId) return NEWSLETTER_COLUMN;
+  if (RAAF_EVENT_ID_REGEX.test(eventId)) {
+    return `signedup_${eventId}`;
+  }
+  return undefined;
+}
+
+function getRaafEmailMessage(eventId) {
+  if (!eventId || !RAAF_EVENT_ID_REGEX.test(eventId)) return null;
+  const raafId = eventId.replace("raaf", "");
+
+  return {
+    subject: `RAAF#${raafId} Registration`,
     body: (name) => `Hi ${name},
 
-Thanks for signing up for RAAF#2!
+Thanks for signing up for RAAF#${raafId}!
 
-Doors open on 22nd of August at 18:30 at:
-
-Buurtsalon Jeltje,
-Eerste Helmersstraat 106-N 
-1054 EG Amsterdam
-
-Please be there before 19:00.  
+For more information about RAAF, check out:
+https://veganfuture.org/raaf/${raafId}
 
 Happy to have you there,
 
 — The RAAF Team`,
-  },
-  raaf3: {
-    subject: "RAAF#3 Registration",
-    body: (name) => `Hi ${name},
-
-Thanks for signing up for RAAF#3!
-
-Doors open on 28nd of November at 18:30 at:
-
-Buurtsalon Jeltje,
-Eerste Helmersstraat 106-N 
-1054 EG Amsterdam
-
-Please be there before 19:00.  
-
-Happy to have you there,
-
-— The RAAF Team`,
-  },
-};
+  };
+}
 
 // 128-bit random token, URL-safe
 function newToken() {
@@ -82,7 +65,7 @@ exports.handler = async (event) => {
     };
   }
 
-  const signupColumn = SIGNUP_COLUMNS[eventId];
+  const signupColumn = getSignupColumn(eventId);
   if (!signupColumn) {
     return {
       statusCode: 400,
@@ -121,7 +104,7 @@ exports.handler = async (event) => {
   //--------------------------------------------------------------------------
   // 3) (Optional) send email -------------------------------------------------
   //--------------------------------------------------------------------------
-  const email_message = EMAIL_MESSAGES[eventId];
+  const email_message = getRaafEmailMessage(eventId);
   if (email_message) {
     await ses
       .sendEmail({

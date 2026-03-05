@@ -12,7 +12,7 @@ export type SignupFormProps = {
   /**
    * undefined means signing up for the newsletter
    */
-  eventId?: "raaf2" | "raaf3" | "raaf4";
+  eventId?: string;
   expires?: Date;
 };
 
