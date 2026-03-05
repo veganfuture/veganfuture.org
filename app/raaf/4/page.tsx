@@ -63,6 +63,7 @@ const SPEAKERS: Array<PersonInfo> = [
   {
     fullName: "Kasia Mask",
     title: "Community Builder",
+    organization: "Vegan Girls Club",
     description: `Kasia Mak is a food strategist and marketer, working at the intersection of food innovation, sustainability, and behavior change. With over a decade of experience across companies such as Carlsberg, Burger King, and Just Eat, she has led international marketing initiatives that promote plant-based eating and more sustainable food systems. Beyond her professional work, she is the founder of the Vegan Girls Club, a fast-growing Amsterdam-based community that brings together vegan and vegan-curious women through dinners, events, and collaborations with plant-based brands. Through this community—now connecting more than 1,300 people online and over 150 members locally—she creates a space for connection, inspiration, and collective action towards veganism.`,
     pictureName: "kasia_mak.jpg",
     links: [
@@ -76,13 +77,7 @@ const SPEAKERS: Array<PersonInfo> = [
     fullName: "Lenneke van Gaal",
     title: "Lawyer For The Animals",
     organization: "Stop Humane Washing",
-    description: `Arjan Smits coordinates projects and fundraising for Plenty Food
-            Nederland, supporting plant-based food aid around the world. He
-            studied tropical forestry at Wageningen University, spending time in
-            Cameroon to research how rainforests respond to human disturbance.
-            For over a decade he has also been active with the Partij voor de
-            Dieren, organizing campaigns and protests against animal testing,
-            industrial farming, and ecological destruction.`,
+    description: `Lenneke van Gaal is a lawyer specializing in trademark law, advertising law, and unlawful publications, with nearly fifteen years of experience examining how communication shapes public perception. After becoming vegan, she began critically analyzing the claims made by the animal industry, such as “animal-friendly meat” and idyllic images of farm life, which suggest that the use of animals can be ethical. This led her to found Stop Humane Washing, an initiative that challenges misleading marketing around animal products and exposes how such narratives conceal the realities of animal agriculture.`,
     pictureName: "lenneke_van_gaal.jpg",
     links: [
       {
