@@ -220,7 +220,12 @@ export default function RAAF4() {
       <div className="px-4 pt-4 text-3xl">Speakers:</div>
 
       {SPEAKERS.map((speaker, idx) => (
-        <Person key={idx} person={speaker} eventImagePath={eventImagePath} />
+        <Person
+          key={idx}
+          person={speaker}
+          eventImagePath={eventImagePath}
+          reverseOnDesktop={idx % 2 === 1}
+        />
       ))}
 
       {MORE_SPEAKER_TO_BE_ANNOUNCED ? (
@@ -239,6 +244,7 @@ export default function RAAF4() {
               key={idx}
               person={moderator}
               eventImagePath={eventImagePath}
+              reverseOnDesktop={idx % 2 === 1}
             />
           ))}
         </>
@@ -262,13 +268,19 @@ export default function RAAF4() {
 function Person({
   person,
   eventImagePath,
+  reverseOnDesktop = false,
 }: {
   person: PersonInfo;
   eventImagePath: string;
+  reverseOnDesktop?: boolean;
 }) {
   return (
-    <div className="p-4 flex flex-col md:flex-row items-start gap-4">
-      <div className="flex flex-col flex-1 order-2 md:order-1">
+    <div
+      className={`p-4 flex flex-col md:items-start gap-4 ${
+        reverseOnDesktop ? "md:flex-row-reverse" : "md:flex-row"
+      }`}
+    >
+      <div className="flex flex-col flex-1">
         <span className="text-2xl mb-2">{person.fullName}</span>
         <span className="text-xl mb-4 text-gray-600">
           {person.organization
@@ -301,7 +313,7 @@ function Person({
         </div>
       </div>
 
-      <div className="order-1 md:order-2 hidden md:block">
+      <div className="hidden md:block">
         <Image
           src={`/${eventImagePath}/${person.pictureName}`}
           width={275}
