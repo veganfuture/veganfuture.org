@@ -61,10 +61,10 @@ const MORE_SPEAKER_TO_BE_ANNOUNCED = true;
 
 const SPEAKERS: Array<PersonInfo> = [
   {
-    fullName: "Kasia Mask",
+    fullName: "Kasia Mak",
     title: "Community Builder",
     organization: "Vegan Girls Club",
-    description: `Kasia Mak is a food strategist and marketer, working at the intersection of food innovation, sustainability, and behavior change. With over a decade of experience across companies such as Carlsberg, Burger King, and Just Eat, she has led international marketing initiatives that promote plant-based eating and more sustainable food systems. Beyond her professional work, she is the founder of the Vegan Girls Club, a fast-growing Amsterdam-based community that brings together vegan and vegan-curious women through dinners, events, and collaborations with plant-based brands. Through this community—now connecting more than 1,300 people online and over 150 members locally—she creates a space for connection, inspiration, and collective action towards veganism.`,
+    description: `Kasia is a marketer and strategist on a mission to make our food system healthier, more ethical, and more sustainable. She pivoted her career into the plant-based, moving from Burger King to vegan activism. Her own experiences inspired her to start building Vegan Girls Club, a female-led community to empower and support others on their vegan journeys. Vegan Girls Club has been active for over two years, bringing together more than 300 members and hosting monthly meetups in Amsterdam, and soon beyond.`,
     pictureName: "kasia_mak.jpg",
     links: [
       {
