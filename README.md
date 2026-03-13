@@ -29,7 +29,17 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 To deploy a new version of the frontend you simply need to merge your code into the main branch.
 
-## Serverless Backend, building and deploying
+## Serverless Backend
+
+The backend is deployed serverless on AWS. In order to use the AWS CLI you must first configure your AWS credentials:
+
+```bash
+aws configure
+```
+
+It will ask for the keys. Get the ACCESS KEY and SECRET_ACCESS_KEY from 1Password. Set the default region to: `eu-central-1`.
+
+### Building and eploying
 
 The backend of this website is built using AWS serverless. To first deploy the backend to AWS run:
 
@@ -44,8 +54,6 @@ After the first deploy, you can run:
 sam build -t api/template.yaml
 sam deploy -t api/template.yaml
 ```
-
-## Various Scripts
 
 ### Send RAAF email via SES
 

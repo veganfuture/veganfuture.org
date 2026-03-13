@@ -14,9 +14,13 @@
             pkgs.nodejs_22
             pkgs.nodePackages.typescript
             pkgs.nodePackages.typescript-language-server
-            pkgs.awscli
+            pkgs.awscli2
             pkgs.aws-sam-cli
           ];
+
+          shellHook = ''
+            npm i
+          '';
         };
       }
     );
