@@ -311,11 +311,19 @@ export const events: Event[] = populate([
     description:
       'Special action: we will join forces with Konink and help sell "dogmeat". Check our Signal group for more info.',
   },
+    {
+    type: "outreach",
+    location: "moco",
+    startTime: fromAmsTime("21-03-2026 13:00"),
+    endTime: fromAmsTime("21-03-2026 16:00"),
+  },
   {
     type: "outreach",
     location: "moco",
     startTime: fromAmsTime("22-03-2026 13:00"),
     endTime: fromAmsTime("22-03-2026 16:00"),
+    description:
+      'Special action: we will join forces with Dutch Anti Fur Movement (DAM). From 13:00 - 15:00 we will do regular street outreach. Afterwards we walk to Loro Piana (5 min walk) for 1 hour of fur protest.',
   },
   {
     type: "outreach",
