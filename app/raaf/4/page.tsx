@@ -54,10 +54,11 @@ type PersonInfo = {
   organization?: string;
   description: string;
   pictureName: string;
+  pictureFolder?: string;
   links: Array<Link>;
 };
 
-const MORE_SPEAKER_TO_BE_ANNOUNCED = true;
+const MORE_SPEAKER_TO_BE_ANNOUNCED = false;
 
 const SPEAKERS: Array<PersonInfo> = [
   {
@@ -86,9 +87,68 @@ const SPEAKERS: Array<PersonInfo> = [
       },
     ],
   },
+  {
+    fullName: "Lammert van Raan",
+    title: "Former Member of Parliament",
+    organization: "Party for the Animals",
+    description: `Lammert van Raan is a former Member of Parliament for the Party for the Animals and co-author of the book Hope in the Time of Ecocide. In this book, he explores Indigenous, religious, and spiritual traditions and their relationship with nature. Drawing on these diverse and colourful perspectives, he offers a hopeful vision for restoring our connection with Mother Earth and all its inhabitants through compassion and sustainability.`,
+    pictureName: "lammert.jpg",
+    links: [],
+  },
+  {
+    fullName: "Alexandra",
+    title: "Die radikale veganerin",
+    description: `Alexandra takes to the streets in her fight for animal liberation. Known as @dieradikaleveganerin, this Berlin-based activist uses confrontation as a deliberate tool - bringing the reality of animal exploitation directly into public space, unapologetically and hard to ignore. She founded NEON Protest, an extension of her brand FAIR! LOUD! VEGAN!, where techno music, visceral imagery, and abolitionist messaging collide. Her actions are designed not only to disrupt, but to create space for vegans to process emotions and turn them into effective action. Those emotions are central to Alexandra's work. "I get furious when I see what is done to animals at the hands of humans," she says. Rather than suppressing that anger, she treats it as fuel. Consent is a central theme - both in her activism and in her job as a fetish photographer. She uses exclusively vegan materials on set, rejecting the use of non-human animals as objects.`,
+    pictureName: "alexandra.jpg",
+    links: [],
+  },
 ];
 
-const MODERATORS: Array<PersonInfo> = [];
+const MUSICAL_GUESTS: Array<PersonInfo> = [
+  {
+    fullName: "DINA",
+    title: "Singer",
+    description: `With her subtle, clear voice and unfiltered lyrics, DINA takes you through her grown-up bedtime stories. The true fantasies at first sound innocent but lyrically hit you with a harsh edge of reality. Nevertheless, this music floats through you, so delicate and warm. A bit of jazz, soul and sometimes even hip-hop, everything in her own vulnerable way. Full of harmonies and dancing melodies, the songs evoke a Sunday morning feel in spring with singing birds and a cup of coffee.`,
+    pictureName: "dina.jpg",
+    links: [],
+  },
+];
+
+const MODERATORS: Array<PersonInfo> = [
+  {
+    fullName: "That Chip Guy",
+    title: "Youtuber, WeTheFree organizer",
+    description: `Chip is one of the Netherlands’ most prolific YouTubers on the topic
+      of veganism. Several times a week, he can be found on the streets of
+      Amsterdam engaging people in thoughtful conversations about their
+      values. His livestreams attract extremely large audiences.
+      Beyond his online activism, Chip is also a weightlifter, certified
+      nutritionist, and critical thinker. He brings a skeptical and
+      analytical mindset to everything he does. In addition to his
+      personal work, Chip is an organizer for WeTheFree Amsterdam and
+      serves as the lead frontend developer at WeTheFree.`,
+    links: [
+      {
+        text: "That Chip Guy, Youtube",
+        url: "https://www.youtube.com/@ThatChipGuy",
+      },
+      {
+        text: "Real Chip Guy, Instagram",
+        url: "https://www.instagram.com/realchipguy/",
+      },
+    ],
+    pictureName: "cip.jpg",
+    pictureFolder: "raaf3",
+  },
+  {
+    fullName: "Lodewijk Bogaards",
+    title: "Founder of Vegan Future",
+    description: `Lodewijk Bogaards founded Vegan Future and is an organiser of RAAF. He is involved with Vegan Activists NL and enjoys endlessly optimizing street outreach conversations. He is friends with Chip and a long time meditator, so there should be good energy on stage!`,
+    links: [],
+    pictureName: "lodewijk.jpg",
+    pictureFolder: "raaf2",
+  },
+];
 
 export default function RAAF4() {
   return (
@@ -231,6 +291,22 @@ export default function RAAF4() {
         </div>
       ) : null}
 
+      {MUSICAL_GUESTS.length > 0 ? (
+        <>
+          <div className="px-4 pt-4 text-3xl">Musical guest:</div>
+
+          {MUSICAL_GUESTS.map((guest, idx) => (
+            <Person
+              key={idx}
+              person={guest}
+              eventImagePath={eventImagePath}
+              reverseOnDesktop={idx % 2 === 1}
+              panelClassName="bg-lime-50"
+            />
+          ))}
+        </>
+      ) : null}
+
       {MODERATORS.length > 0 ? (
         <>
           <div className="px-4 pt-4 text-3xl">Moderator:</div>
@@ -288,7 +364,7 @@ function Person({
 
         <div className="mb-4 md:hidden self-center">
           <Image
-            src={`/${eventImagePath}/${person.pictureName}`}
+            src={`/${person.pictureFolder ?? eventImagePath}/${person.pictureName}`}
             width={275}
             height={330}
             alt={`Picture of ${person.fullName}`}
@@ -313,7 +389,7 @@ function Person({
 
       <div className="hidden md:block">
         <Image
-          src={`/${eventImagePath}/${person.pictureName}`}
+          src={`/${person.pictureFolder ?? eventImagePath}/${person.pictureName}`}
           width={275}
           height={330}
           alt={`Picture of ${person.fullName}`}
