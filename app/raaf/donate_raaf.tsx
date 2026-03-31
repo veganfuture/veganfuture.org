@@ -2,10 +2,10 @@ export function DonateRaaf() {
   return (
     <>
       <p className="text-lg mb-4">
-        RAAF is a donation-based event. We do have some costs thoughg. To break
-        even, we need about <strong>5 euros per person</strong>, but keep in
-        mind that some people don&apos;t donate. If you can support us, it would
-        mean the world 💚
+        RAAF is a donation-based event. We do have quite a bit of costs though,
+        so we are hoping that you will donate. To break even, we need about{" "}
+        <strong>5 euros per person</strong>, but keep in mind that some people
+        don&apos;t donate. If you can support us, it would mean the world 💚
       </p>
       <p className="mb-6 text-md text-gray-700">
         You can easily donate through iDEAL:
