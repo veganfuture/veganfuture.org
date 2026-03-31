@@ -93,14 +93,32 @@ const SPEAKERS: Array<PersonInfo> = [
     organization: "Party for the Animals",
     description: `Lammert van Raan is a former Member of Parliament for the Party for the Animals and co-author of the book Hope in the Time of Ecocide. In this book, he explores Indigenous, religious, and spiritual traditions and their relationship with nature. Drawing on these diverse and colourful perspectives, he offers a hopeful vision for restoring our connection with Mother Earth and all its inhabitants through compassion and sustainability.`,
     pictureName: "lammert.jpg",
-    links: [],
+    links: [
+      {
+        text: "Hoop in tijden van ecocide",
+        url: "https://www.nieuwwij.nl/actueel/bijzonder-boek-in-aantocht-hoop-in-tijden-van-ecocide/",
+      },
+    ],
   },
   {
     fullName: "Alexandra",
-    title: "Die radikale veganerin",
+    title: "Die Radikale Veganerin",
     description: `Alexandra takes to the streets in her fight for animal liberation. Known as @dieradikaleveganerin, this Berlin-based activist uses confrontation as a deliberate tool - bringing the reality of animal exploitation directly into public space, unapologetically and hard to ignore. She founded NEON Protest, an extension of her brand FAIR! LOUD! VEGAN!, where techno music, visceral imagery, and abolitionist messaging collide. Her actions are designed not only to disrupt, but to create space for vegans to process emotions and turn them into effective action. Those emotions are central to Alexandra's work. "I get furious when I see what is done to animals at the hands of humans," she says. Rather than suppressing that anger, she treats it as fuel. Consent is a central theme - both in her activism and in her job as a fetish photographer. She uses exclusively vegan materials on set, rejecting the use of non-human animals as objects.`,
     pictureName: "alexandra.jpg",
-    links: [],
+    links: [
+      {
+        text: "Die Radikale Veganerin, Instagram",
+        url: "https://www.instagram.com/dieradikaleveganerin/",
+      },
+      {
+        text: "NEON Protest, Instagram",
+        url: "https://www.instagram.com/neonprotest/",
+      },
+      {
+        text: "NEON Protest",
+        url: "https://neonprotest.org",
+      },
+    ],
   },
 ];
 
@@ -110,7 +128,20 @@ const MUSICAL_GUESTS: Array<PersonInfo> = [
     title: "Singer",
     description: `With her subtle, clear voice and unfiltered lyrics, DINA takes you through her grown-up bedtime stories. The true fantasies at first sound innocent but lyrically hit you with a harsh edge of reality. Nevertheless, this music floats through you, so delicate and warm. A bit of jazz, soul and sometimes even hip-hop, everything in her own vulnerable way. Full of harmonies and dancing melodies, the songs evoke a Sunday morning feel in spring with singing birds and a cup of coffee.`,
     pictureName: "dina.jpg",
-    links: [],
+    links: [
+      {
+        text: "DINA, Instagram",
+        url: "https://www.instagram.com/d.i.n.a.days/",
+      },
+      {
+        text: "DINA, Spotify",
+        url: "https://open.spotify.com/artist/3m1QJ4D9n6Id4x2LoExkDa",
+      },
+      {
+        text: "DINA, Facebook",
+        url: "https://www.facebook.com/dinamusic7",
+      },
+    ],
   },
 ];
 
@@ -144,7 +175,12 @@ const MODERATORS: Array<PersonInfo> = [
     fullName: "Lodewijk Bogaards",
     title: "Founder of Vegan Future",
     description: `Lodewijk Bogaards founded Vegan Future and is an organiser of RAAF. He is involved with Vegan Activists NL and enjoys endlessly optimizing street outreach conversations. He is friends with Chip and a long time meditator, so there should be good energy on stage!`,
-    links: [],
+    links: [
+      {
+        text: "Vegan Activists NL",
+        url: "https://veganactivists.nl",
+      },
+    ],
     pictureName: "lodewijk.jpg",
     pictureFolder: "raaf2",
   },
