@@ -220,6 +220,10 @@ export default function RAAF4() {
                   <table>
                     <tbody>
                       <tr>
+                        <td>17:30</td>
+                        <td>Diner (optional)</td>
+                      </tr>
+                      <tr>
                         <td>18:30</td>
                         <td>Doors open</td>
                       </tr>

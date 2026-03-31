@@ -7,7 +7,9 @@ const { program } = require("commander");
 
 program
   .name("raaf-attendees")
-  .description("List RAAF attendees by event with names and emails")
+  .description(
+    "List RAAF attendees by event with names, emails, and RAAF 4 dinner details",
+  )
   .option("--ddb-region <string>", "DynamoDB region", "eu-central-1")
   .option("--table <string>", "DynamoDB table name", "RAAFSignups")
   .option("--event <string>", "Filter to a single eventId (e.g. raaf4)");
@@ -55,7 +57,12 @@ async function scanAll() {
       for (const eventId of eventIds) {
         if (args.event && args.event !== eventId) continue;
         if (!events.has(eventId)) events.set(eventId, []);
-        events.get(eventId).push({ name, email });
+        events.get(eventId).push({
+          name,
+          email,
+          wantsDinner: item.raaf4_dinner === true,
+          dinnerWishes: (item.raaf4_dinner_wishes || "").trim(),
+        });
       }
     }
 
@@ -78,6 +85,14 @@ async function scanAll() {
         const label = attendee.name
           ? `${attendee.name} <${attendee.email}>`
           : attendee.email;
+        if (eventId === "raaf4") {
+          const dinnerStatus = attendee.wantsDinner ? "yes" : "no";
+          const wishes = attendee.dinnerWishes
+            ? ` | wishes: ${attendee.dinnerWishes}`
+            : "";
+          console.log(`- ${label} | dinner: ${dinnerStatus}${wishes}`);
+          return;
+        }
         console.log(`- ${label}`);
       });
     console.log("");

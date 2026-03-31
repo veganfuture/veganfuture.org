@@ -7,6 +7,8 @@ const crypto = require("crypto");
 
 const NEWSLETTER_COLUMN = "signedup_newsletter";
 const RAAF_EVENT_ID_REGEX = /^raaf\d+$/;
+const RAAF4_DINNER_COLUMN = "raaf4_dinner";
+const RAAF4_DINNER_WISHES_COLUMN = "raaf4_dinner_wishes";
 
 function getSignupColumn(eventId) {
   if (!eventId) return NEWSLETTER_COLUMN;
@@ -16,15 +18,21 @@ function getSignupColumn(eventId) {
   return undefined;
 }
 
-function getRaafEmailMessage(eventId) {
+function getRaafEmailMessage(eventId, wantsDinner) {
   if (!eventId || !RAAF_EVENT_ID_REGEX.test(eventId)) return null;
   const raafId = eventId.replace("raaf", "");
+  const dinnerMessage =
+    eventId === "raaf4" && wantsDinner
+      ? `
+You are also signed up for dinner before the event. Dinner starts at 17:30, is fully vegan, includes one drink, and costs 20 euros to be paid on arrival. If you expect to be late or can no longer make it, please let us know as soon as possible so we can inform the kitchen.`
+      : "";
 
   return {
     subject: `RAAF#${raafId} Registration`,
     body: (name) => `Hi ${name},
 
 Thanks for signing up for RAAF#${raafId}!
+${dinnerMessage}
 
 For more information about RAAF, check out:
 https://veganfuture.org/raaf/${raafId}
@@ -54,7 +62,14 @@ exports.handler = async (event) => {
     };
   }
 
-  const { name, email, canEmailUpdates = false, eventId } = body;
+  const {
+    name,
+    email,
+    canEmailUpdates = false,
+    eventId,
+    wantsDinner = false,
+    dinnerWishes = "",
+  } = body;
 
   if (!name || !email) {
     return {
@@ -73,7 +88,46 @@ exports.handler = async (event) => {
     };
   }
 
-  console.log("SIGNUP:", JSON.stringify({ email, eventId, canEmailUpdates }));
+  console.log(
+    "SIGNUP:",
+    JSON.stringify({ email, eventId, canEmailUpdates, wantsDinner }),
+  );
+
+  const shouldStoreDinner = eventId === "raaf4" && wantsDinner === true;
+  const normalizedDinnerWishes =
+    typeof dinnerWishes === "string" ? dinnerWishes.trim() : "";
+  const updateExpressionParts = [
+    "#signup = :true",
+    "canEmailUpdates = :can",
+    "#ts = if_not_exists(#ts, :ts)",
+    "#name = if_not_exists(#name, :name)",
+    "#t = if_not_exists(#t, :newToken)",
+  ];
+  const expressionAttributeNames = {
+    "#signup": signupColumn,
+    "#ts": "timestamp",
+    "#name": "name",
+    "#t": "token",
+  };
+  const expressionAttributeValues = {
+    ":true": true,
+    ":can": !!canEmailUpdates,
+    ":ts": Date.now(),
+    ":name": name,
+    ":newToken": newToken(),
+  };
+
+  if (shouldStoreDinner) {
+    updateExpressionParts.push("#raaf4Dinner = :dinnerTrue");
+    expressionAttributeNames["#raaf4Dinner"] = RAAF4_DINNER_COLUMN;
+    expressionAttributeValues[":dinnerTrue"] = true;
+
+    if (normalizedDinnerWishes) {
+      updateExpressionParts.push("#raaf4DinnerWishes = :dinnerWishes");
+      expressionAttributeNames["#raaf4DinnerWishes"] = RAAF4_DINNER_WISHES_COLUMN;
+      expressionAttributeValues[":dinnerWishes"] = normalizedDinnerWishes;
+    }
+  }
 
   //--------------------------------------------------------------------------
   // 2) Upsert: flip the specific event flag, refresh canEmailUpdates, update
@@ -83,28 +137,16 @@ exports.handler = async (event) => {
     .update({
       TableName: process.env.TABLE_NAME,
       Key: { email },
-      UpdateExpression:
-        "SET #signup = :true, canEmailUpdates = :can, #ts = if_not_exists(#ts, :ts), #name = if_not_exists(#name, :name), #t = if_not_exists(#t, :newToken)",
-      ExpressionAttributeNames: {
-        "#signup": signupColumn, // dynamic column name
-        "#ts": "timestamp", // "timestamp" is reserved so alias it
-        "#name": "name", // "name" is reserved so alias it
-        "#t": "token",
-      },
-      ExpressionAttributeValues: {
-        ":true": true,
-        ":can": !!canEmailUpdates,
-        ":ts": Date.now(),
-        ":name": name,
-        ":newToken": newToken(),
-      },
+      UpdateExpression: `SET ${updateExpressionParts.join(", ")}`,
+      ExpressionAttributeNames: expressionAttributeNames,
+      ExpressionAttributeValues: expressionAttributeValues,
     })
     .promise();
 
   //--------------------------------------------------------------------------
   // 3) (Optional) send email -------------------------------------------------
   //--------------------------------------------------------------------------
-  const email_message = getRaafEmailMessage(eventId);
+  const email_message = getRaafEmailMessage(eventId, shouldStoreDinner);
   if (email_message) {
     await ses
       .sendEmail({

@@ -20,11 +20,17 @@ export function SignupForm({ eventId, expires }: SignupFormProps) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [canEmailUpdates, setCanEmailUpdates] = useState(true);
+  const [wantsDinner, setWantsDinner] = useState(false);
+  const [dinnerWishes, setDinnerWishes] = useState("");
+  const [lastSubmittedWantsDinner, setLastSubmittedWantsDinner] = useState(false);
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
   const isNewsLetterSignup = eventId === undefined;
+  const supportsDinnerSignup = eventId === "raaf4";
+  const dinnerInfoText =
+    "Dinner starts at 17:30, is fully vegan, includes one drink, and costs 20 euros to be paid on arrival. If you expect to be late or can no longer make it, please let us know as soon as possible so we can inform the kitchen.";
 
   const isExpired = !!expires ? isAfter(Date.now(), expires) : false;
 
@@ -44,7 +50,15 @@ export function SignupForm({ eventId, expires }: SignupFormProps) {
       const res = await fetch(API_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, canEmailUpdates, eventId }),
+        body: JSON.stringify({
+          name,
+          email,
+          canEmailUpdates,
+          eventId,
+          wantsDinner: supportsDinnerSignup ? wantsDinner : false,
+          dinnerWishes:
+            supportsDinnerSignup && wantsDinner ? dinnerWishes.trim() : "",
+        }),
       });
 
       if (!res.ok) {
@@ -53,10 +67,13 @@ export function SignupForm({ eventId, expires }: SignupFormProps) {
       }
 
       // success, reset values
+      setLastSubmittedWantsDinner(wantsDinner);
       setShowConfirmDialog(true);
       setName("");
       setEmail("");
       setCanEmailUpdates(true);
+      setWantsDinner(false);
+      setDinnerWishes("");
     } catch (err: any) {
       setError(
         `Unfortunately something went wrong technically. ` +
@@ -135,6 +152,46 @@ export function SignupForm({ eventId, expires }: SignupFormProps) {
               ""
             )}
 
+            {supportsDinnerSignup ? (
+              <div className="space-y-2 rounded-xl border border-green-300 bg-green-50 p-4">
+                <label
+                  htmlFor="wantsDinner"
+                  className="flex items-center space-x-2"
+                >
+                  <input
+                    id="wantsDinner"
+                    type="checkbox"
+                    className="rounded"
+                    checked={wantsDinner}
+                    onChange={(e) => {
+                      setWantsDinner(e.target.checked);
+                    }}
+                  />
+                  <span>I want to join for dinner</span>
+                </label>
+                <p className="text-sm text-green-900">{dinnerInfoText}</p>
+              </div>
+            ) : (
+              ""
+            )}
+
+            {supportsDinnerSignup && wantsDinner ? (
+              <div>
+                <label htmlFor="dinnerWishes" className="block font-medium">
+                  Any allergies or dietary needs we should know of?
+                </label>
+                <textarea
+                  id="dinnerWishes"
+                  value={dinnerWishes}
+                  onChange={(e) => setDinnerWishes(e.target.value)}
+                  rows={3}
+                  className="mt-1 w-full border border-gray-600 rounded p-2"
+                />
+              </div>
+            ) : (
+              ""
+            )}
+
             <button
               type="submit"
               disabled={isLoading}
@@ -155,6 +212,12 @@ export function SignupForm({ eventId, expires }: SignupFormProps) {
                 <h2 className="text-4xl font-bold mb-4 text-green-700">
                   Thank you for signing up!
                 </h2>
+                {lastSubmittedWantsDinner ? (
+                  <p className="mb-6 rounded-xl border-2 border-green-600 bg-green-50 p-4 text-left text-lg font-medium text-green-900">
+                    You are also signed up for dinner before the event.{" "}
+                    {dinnerInfoText}
+                  </p>
+                ) : null}
                 {!isNewsLetterSignup ? <DonateRaaf /> : <></>}
                 <button
                   onClick={() => setShowConfirmDialog(false)}
