@@ -1,0 +1,25 @@
+Dear {{name}},
+
+Thanks again for signing up for RAAF #4.
+
+The final speakers have now been announced, so be sure to check out the webpage for the full program:
+https://veganfuture.org/raaf/4
+
+We wanted to let you know that there will also be the possibility to join for dinner before the event. This was not yet confirmed at the time you signed up, but it is now.
+
+Dinner starts at 17:30, is fully vegan, includes one drink, and costs 20 euros to be paid on arrival.
+
+If you would like to join for dinner, please send an email to vf.raaf@gmail.com with:
+
+- your name
+- your email address
+- whether you have any specific dietary requirements
+
+If you expect to be late or can no longer make it after signing up for dinner, please let us know as soon as possible so we can inform the kitchen.
+
+It is going to be a fantastic evening, and we are very happy to have you there.
+
+The RAAF Team
+---
+Don’t want to receive these messages anymore?
+Unsubscribe here: {{unsub_url}}
