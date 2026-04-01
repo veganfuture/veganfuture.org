@@ -328,26 +328,28 @@ export const events: Event[] = populate([
   {
     type: "outreach",
     location: "moco",
-    startTime: fromAmsTime("5-04-2026 13:00"),
-    endTime: fromAmsTime("5-04-2026 16:00"),
+    startTime: fromAmsTime("5-04-2026 14:00"),
+    endTime: fromAmsTime("5-04-2026 17:00"),
+    description: 
+      'NEON will also be present on Musuemplein. We will start and end our action together. Check out https://www.richtiglautvegan.de/neon-en for more info about NEON.'
   },
   {
     type: "outreach",
     location: "moco",
-    startTime: fromAmsTime("19-04-2026 13:00"),
-    endTime: fromAmsTime("19-04-2026 16:00"),
+    startTime: fromAmsTime("19-04-2026 14:00"),
+    endTime: fromAmsTime("19-04-2026 17:00"),
   },
   {
     type: "outreach",
     location: "moco",
-    startTime: fromAmsTime("3-05-2026 13:00"),
-    endTime: fromAmsTime("3-05-2026 16:00"),
+    startTime: fromAmsTime("3-05-2026 14:00"),
+    endTime: fromAmsTime("3-05-2026 17:00"),
   },
   {
     type: "outreach",
     location: "moco",
-    startTime: fromAmsTime("17-05-2026 13:00"),
-    endTime: fromAmsTime("17-05-2026 16:00"),
+    startTime: fromAmsTime("17-05-2026 14:00"),
+    endTime: fromAmsTime("17-05-2026 17:00"),
   },
   {
     type: "raaf",
@@ -361,8 +363,8 @@ export const events: Event[] = populate([
   {
     type: "outreach",
     location: "moco",
-    startTime: fromAmsTime("31-05-2026 13:00"),
-    endTime: fromAmsTime("31-05-2026 16:00"),
+    startTime: fromAmsTime("31-05-2026 14:00"),
+    endTime: fromAmsTime("31-05-2026 17:00"),
   },
 ]);
 
