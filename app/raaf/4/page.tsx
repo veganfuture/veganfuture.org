@@ -89,14 +89,17 @@ const SPEAKERS: Array<PersonInfo> = [
   },
   {
     fullName: "Lammert van Raan",
-    title: "Former Member of Parliament",
-    organization: "Party for the Animals",
-    description: `Lammert van Raan is a former Member of Parliament for the Party for the Animals and co-author of the book Hope in the Time of Ecocide. In this book, he explores Indigenous, religious, and spiritual traditions and their relationship with nature. Drawing on these diverse and colourful perspectives, he offers a hopeful vision for restoring our connection with Mother Earth and all its inhabitants through compassion and sustainability.`,
+    title: "Author and campaigner",
+    description: `Lammert van Raan is a former Member of Parliament for the Party for the Animals, where he introduced the Climate Law 1.5 and a law for the Criminalisation of Ecocide. Together with Femke Wijdekop he co-edited the book Hope in Times of Ecocide. In this bundle of essays, Indigenous, religious, and spiritual traditions and their relationship with nature are presented. Drawing on these diverse and colourful perspectives, the book offers a hopeful vision for restoring our connection with Mother Earth and all its inhabitants through compassion and sustainability. Currently Lammert is a campaigner for Ecocide Law.`,
     pictureName: "lammert.jpg",
     links: [
       {
         text: "Hoop in tijden van ecocide",
         url: "https://www.nieuwwij.nl/actueel/bijzonder-boek-in-aantocht-hoop-in-tijden-van-ecocide/",
+      },
+      {
+        text: "Ecocide Law",
+        url: "https://ecocidelaw.com/",
       },
     ],
   },
