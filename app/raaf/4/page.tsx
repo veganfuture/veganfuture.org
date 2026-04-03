@@ -62,28 +62,22 @@ const MORE_SPEAKER_TO_BE_ANNOUNCED = false;
 
 const SPEAKERS: Array<PersonInfo> = [
   {
-    fullName: "Kasia Mak",
-    title: "Community Builder",
-    organization: "Vegan Girls Club",
-    description: `Kasia is a marketer and strategist on a mission to make our food system healthier, more ethical, and more sustainable. She pivoted her career into the plant-based, moving from Burger King to vegan activism. Her own experiences inspired her to start building Vegan Girls Club, a female-led community to empower and support others on their vegan journeys. Vegan Girls Club has been active for over two years, bringing together more than 300 members and hosting monthly meetups in Amsterdam, and soon beyond.`,
-    pictureName: "kasia_mak.jpg",
+    fullName: "Alexandra",
+    title: "Die Radikale Veganerin",
+    description: `Alexandra, also known as Die Radikale Veganerin, is RADICAL! LOUD! VEGAN! This Berlin-based activist uses confrontation as a deliberate tool - bringing the reality of animal exploitation directly into public space, unapologetically and hard to ignore. She founded NEON Protest, an extension of her brand FAIR! LOUD! VEGAN!, where techno music, visceral imagery, and abolitionist messaging collide. Her actions are designed not only to disrupt, but to create space for vegans to process emotions and turn them into effective action. Those emotions are central to Alexandra's work. "I get furious when I see what is done to animals at the hands of humans," she says. Rather than suppressing that anger, she treats it as fuel.`,
+    pictureName: "alexandra.jpg",
     links: [
       {
-        text: "Vegan Girls Club",
-        url: "https://www.instagram.com/vegangirls_club/",
+        text: "Die Radikale Veganerin, Instagram",
+        url: "https://www.instagram.com/dieradikaleveganerin/",
       },
-    ],
-  },
-  {
-    fullName: "Lenneke van Gaal",
-    title: "Lawyer For The Animals",
-    organization: "Stop Humane Washing",
-    description: `Lenneke van Gaal is a lawyer specializing in trademark law, advertising law, and unlawful publications, with nearly fifteen years of experience examining how communication shapes public perception. After becoming vegan, she began critically analyzing the claims made by the animal industry, such as “animal-friendly meat” and idyllic images of farm life, which suggest that the use of animals can be ethical. This led her to found Stop Humane Washing, an initiative that challenges misleading marketing around animal products and exposes how such narratives conceal the realities of animal agriculture.`,
-    pictureName: "lenneke_van_gaal.jpg",
-    links: [
       {
-        text: "Stop Humane Washing",
-        url: "https://stophumanewashing.nl/",
+        text: "NEON Protest, Instagram",
+        url: "https://www.instagram.com/neonprotest/",
+      },
+      {
+        text: "NEON Protest",
+        url: "https://neonprotest.org",
       },
     ],
   },
@@ -104,22 +98,28 @@ const SPEAKERS: Array<PersonInfo> = [
     ],
   },
   {
-    fullName: "Alexandra",
-    title: "Die Radikale Veganerin",
-    description: `Alexandra takes to the streets in her fight for animal liberation. Known as @dieradikaleveganerin, this Berlin-based activist uses confrontation as a deliberate tool - bringing the reality of animal exploitation directly into public space, unapologetically and hard to ignore. She founded NEON Protest, an extension of her brand FAIR! LOUD! VEGAN!, where techno music, visceral imagery, and abolitionist messaging collide. Her actions are designed not only to disrupt, but to create space for vegans to process emotions and turn them into effective action. Those emotions are central to Alexandra's work. "I get furious when I see what is done to animals at the hands of humans," she says. Rather than suppressing that anger, she treats it as fuel. Consent is a central theme - both in her activism and in her job as a fetish photographer. She uses exclusively vegan materials on set, rejecting the use of non-human animals as objects.`,
-    pictureName: "alexandra.jpg",
+    fullName: "Lenneke van Gaal",
+    title: "Lawyer For The Animals",
+    organization: "Stop Humane Washing",
+    description: `Lenneke van Gaal is a lawyer specializing in trademark law, advertising law, and unlawful publications, with nearly fifteen years of experience examining how communication shapes public perception. After becoming vegan, she began critically analyzing the claims made by the animal industry, such as “animal-friendly meat” and idyllic images of farm life, which suggest that the use of animals can be ethical. This led her to found Stop Humane Washing, an initiative that challenges misleading marketing around animal products and exposes how such narratives conceal the realities of animal agriculture.`,
+    pictureName: "lenneke_van_gaal.jpg",
     links: [
       {
-        text: "Die Radikale Veganerin, Instagram",
-        url: "https://www.instagram.com/dieradikaleveganerin/",
+        text: "Stop Humane Washing",
+        url: "https://stophumanewashing.nl/",
       },
+    ],
+  },
+  {
+    fullName: "Kasia Mak",
+    title: "Community Builder",
+    organization: "Vegan Girls Club",
+    description: `Kasia is a marketer and strategist on a mission to make our food system healthier, more ethical, and more sustainable. She pivoted her career into the plant-based, moving from Burger King to vegan activism. Her own experiences inspired her to start building Vegan Girls Club, a female-led community to empower and support others on their vegan journeys. Vegan Girls Club has been active for over two years, bringing together more than 300 members and hosting monthly meetups in Amsterdam, and soon beyond.`,
+    pictureName: "kasia_mak.jpg",
+    links: [
       {
-        text: "NEON Protest, Instagram",
-        url: "https://www.instagram.com/neonprotest/",
-      },
-      {
-        text: "NEON Protest",
-        url: "https://neonprotest.org",
+        text: "Vegan Girls Club",
+        url: "https://www.instagram.com/vegangirls_club/",
       },
     ],
   },
