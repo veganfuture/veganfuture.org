@@ -64,11 +64,23 @@ node scripts/raaf-send.js \
   --subject "RAAF #4 — Announcement" \
   --text scripts/raaf4_announcement.txt \
   --html scripts/raaf4_announcement.html \
-  --event raaf4
+  --event raaf4 \
   --dry-run # <- remove to really send
 ```
 
-Optional flags: `--dry-run`, `--limit <n>`, `--rate <n>`, `--table <name>`, `--ddb-region <region>`, `--ses-region <region>`.
+Optional flags: `--dry-run`, `--limit <n>`, `--rate <n>`, `--event <id>`, `--newsletter`, `--exclude-event <id>`, `--table <name>`, `--ddb-region <region>`, `--ses-region <region>`.
+
+To send to newsletter subscribers who are not already signed up for a specific event, use:
+
+```bash
+node scripts/raaf-send.js \
+  --subject "RAAF #4 — Full Program" \
+  --text scripts/raaf4_announcement.txt \
+  --html scripts/raaf4_announcement.html \
+  --newsletter \
+  --exclude-event raaf4 \
+  --dry-run # <- remove to really send
+```
 
 ### List RAAF attendees
 

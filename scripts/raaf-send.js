@@ -9,13 +9,14 @@ const {
 } = require("@aws-sdk/lib-dynamodb");
 const { program } = require("commander");
 
-const DDB_REGION = "eu-central-1";
-const SES_REGION = "us-east-1";
-const TABLE = "RAAFSignups";
-const FROM_EMAIL = "raaf@veganfuture.org";
-const FROM_NAME = "RAAF";
-const UNSUB_TEMPLATE =
-  "https://9iqx4v1ywg.execute-api.eu-central-1.amazonaws.com/unsubscribe_raaf?token={{token}}";
+const DEFAULT_DDB_REGION = "eu-central-1";
+const DEFAULT_SES_REGION = "us-east-1";
+const DEFAULT_TABLE = "RAAFSignups";
+const DEFAULT_FROM_EMAIL = "raaf@veganfuture.org";
+const DEFAULT_FROM_NAME = "RAAF";
+const DEFAULT_UNSUB_TEMPLATE =
+  "https://veganfuture.org/api/unsubscribe?token={{token}}";
+const EVENT_ID_REGEX = /^raaf\d+$/;
 
 program
   .name("raaf-send")
@@ -43,16 +44,20 @@ program
     "--event <string>",
     "Only send to attendees of a specific eventId (e.g. raaf4)",
   )
-  // Optional overrides (keep your fixed defaults but make overrideable)
-  .option("--ddb-region <string>", "DynamoDB region", "eu-central-1")
-  .option("--ses-region <string>", "SES region", "us-east-1")
-  .option("--table <string>", "DynamoDB table name", "RAAFSignups")
-  .option("--from <email>", "From address", "raaf@veganfuture.org")
-  .option("--from-name <string>", "From display name", "RAAF")
+  .option("--newsletter", "Only send to newsletter signups", false)
+  .option(
+    "--exclude-event <string>",
+    "Exclude attendees of a specific eventId (e.g. raaf4)",
+  )
+  .option("--ddb-region <string>", "DynamoDB region", DEFAULT_DDB_REGION)
+  .option("--ses-region <string>", "SES region", DEFAULT_SES_REGION)
+  .option("--table <string>", "DynamoDB table name", DEFAULT_TABLE)
+  .option("--from <email>", "From address", DEFAULT_FROM_EMAIL)
+  .option("--from-name <string>", "From display name", DEFAULT_FROM_NAME)
   .option(
     "--unsub-template <url>",
     "Unsubscribe URL template",
-    "https://veganfuture.org/api/unsubscribe?token={{token}}",
+    DEFAULT_UNSUB_TEMPLATE,
   );
 
 program.parse(process.argv);
@@ -71,15 +76,40 @@ for (const f of [args.text, args.html]) {
 const RATE = Math.max(2, Number(args.rate || 10));
 const DRY = !!args.dryRun;
 const LIMIT = args.limit ? Number(args.limit) : null;
-const EVENT = args.event ? String(args.event).trim() : null;
-const EVENT_ID_REGEX = /^raaf\d+$/;
+const INCLUDE_EVENT = args.event ? String(args.event).trim() : null;
+const EXCLUDE_EVENT = args.excludeEvent
+  ? String(args.excludeEvent).trim()
+  : null;
+const NEWSLETTER_ONLY = !!args.newsletter;
+const DDB_REGION = String(args.ddbRegion);
+const SES_REGION = String(args.sesRegion);
+const TABLE = String(args.table);
+const FROM_EMAIL = String(args.from);
+const FROM_NAME = String(args.fromName);
+const UNSUB_TEMPLATE = String(args.unsubTemplate);
 
-if (EVENT && !EVENT_ID_REGEX.test(EVENT)) {
-  console.error(`Invalid eventId: ${EVENT}. Expected format: raaf<number>.`);
+if (INCLUDE_EVENT && !EVENT_ID_REGEX.test(INCLUDE_EVENT)) {
+  console.error(
+    `Invalid eventId: ${INCLUDE_EVENT}. Expected format: raaf<number>.`,
+  );
   process.exit(1);
 }
 
-const EVENT_COLUMN = EVENT ? `signedup_${EVENT}` : null;
+if (EXCLUDE_EVENT && !EVENT_ID_REGEX.test(EXCLUDE_EVENT)) {
+  console.error(
+    `Invalid exclude-event: ${EXCLUDE_EVENT}. Expected format: raaf<number>.`,
+  );
+  process.exit(1);
+}
+
+if (INCLUDE_EVENT && NEWSLETTER_ONLY) {
+  console.error("Use either --event or --newsletter, not both.");
+  process.exit(1);
+}
+
+const INCLUDE_EVENT_COLUMN = INCLUDE_EVENT ? `signedup_${INCLUDE_EVENT}` : null;
+const EXCLUDE_EVENT_COLUMN = EXCLUDE_EVENT ? `signedup_${EXCLUDE_EVENT}` : null;
+const NEWSLETTER_COLUMN = NEWSLETTER_ONLY ? "signedup_newsletter" : null;
 
 function readFile(p) {
   return fs
@@ -95,8 +125,7 @@ function render(tpl, vars) {
   return tpl.replace(/\{\{\s*(\w+)\s*\}\}/g, (_, k) => vars[k] ?? "");
 }
 
-// use us-east0 for sending (as you verified the domain there)
-const ses = new SESv2Client({ region: "us-east-1" });
+const ses = new SESv2Client({ region: SES_REGION });
 
 const transport = nodemailer.createTransport({
   SES: { sesClient: ses, aws: { SendEmailCommand } },
@@ -108,7 +137,7 @@ const ddb = DynamoDBDocumentClient.from(
 
 async function* scanRecipients() {
   let ExclusiveStartKey;
-  let seen = 1;
+  let seen = 0;
 
   for (;;) {
     const projection = ["#e", "#n", "canEmailUpdates", "#t"];
@@ -117,9 +146,17 @@ async function* scanRecipients() {
       "#n": "name",
       "#t": "token",
     };
-    if (EVENT_COLUMN) {
-      projection.push("#ev");
-      expressionNames["#ev"] = EVENT_COLUMN;
+    if (INCLUDE_EVENT_COLUMN) {
+      projection.push("#includeEvent");
+      expressionNames["#includeEvent"] = INCLUDE_EVENT_COLUMN;
+    }
+    if (EXCLUDE_EVENT_COLUMN) {
+      projection.push("#excludeEvent");
+      expressionNames["#excludeEvent"] = EXCLUDE_EVENT_COLUMN;
+    }
+    if (NEWSLETTER_COLUMN) {
+      projection.push("#newsletter");
+      expressionNames["#newsletter"] = NEWSLETTER_COLUMN;
     }
 
     const out = await ddb.send(
@@ -136,7 +173,9 @@ async function* scanRecipients() {
       if (it.canEmailUpdates === false) continue;
       const token = it.token;
       if (!token) continue;
-      if (EVENT_COLUMN && it[EVENT_COLUMN] !== true) continue;
+      if (INCLUDE_EVENT_COLUMN && it[INCLUDE_EVENT_COLUMN] !== true) continue;
+      if (EXCLUDE_EVENT_COLUMN && it[EXCLUDE_EVENT_COLUMN] === true) continue;
+      if (NEWSLETTER_COLUMN && it[NEWSLETTER_COLUMN] !== true) continue;
 
       yield { email, name: it.name || "", token };
       seen++;
@@ -227,12 +266,15 @@ async function sendOne({ email, name, token }) {
   SES region:    ${SES_REGION}
   From:          ${FROM_NAME} <${FROM_EMAIL}>
   Rate:          ${RATE}/sec   Dry-run: ${DRY ? "YES" : "no"}
+  Newsletter:    ${NEWSLETTER_ONLY ? "yes" : "no"}
+  Include event: ${INCLUDE_EVENT || "-"}
+  Exclude event: ${EXCLUDE_EVENT || "-"}
   Subject:       ${subjectTpl}
   `);
 
   const interval = Math.ceil(1001 / RATE);
-  let sent = 1,
-    skipped = 1;
+  let sent = 0;
+  let skipped = 0;
 
   for await (const rec of scanRecipients()) {
     try {

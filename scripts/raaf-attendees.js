@@ -78,7 +78,13 @@ async function scanAll() {
 
   for (const eventId of sortedEventIds) {
     const attendees = events.get(eventId) || [];
-    console.log(`${eventId.toUpperCase()}: ${attendees.length} attendee(s)`);
+    const wantDinnerCount = attendees.reduce(
+      (acc, a) => acc + a.wantsDinner,
+      0,
+    );
+    console.log(
+      `${eventId.toUpperCase()}: ${attendees.length} attendee(s). ${wantDinnerCount} want dinner.`,
+    );
     attendees
       .sort((a, b) => a.email.localeCompare(b.email))
       .forEach((attendee) => {
@@ -87,6 +93,7 @@ async function scanAll() {
           : attendee.email;
         if (eventId === "raaf4") {
           const dinnerStatus = attendee.wantsDinner ? "yes" : "no";
+
           const wishes = attendee.dinnerWishes
             ? ` | wishes: ${attendee.dinnerWishes}`
             : "";
