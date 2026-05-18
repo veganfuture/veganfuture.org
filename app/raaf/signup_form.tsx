@@ -29,8 +29,11 @@ export function SignupForm({ eventId, expires }: SignupFormProps) {
 
   const isNewsLetterSignup = eventId === undefined;
   const supportsDinnerSignup = eventId === "raaf4";
+  const dinnerIsFull = eventId === "raaf4";
   const dinnerInfoText =
     "Dinner starts at 17:30, is fully vegan, includes one drink, and costs 20 euros to be paid on arrival. If you expect to be late or can no longer make it, please let us know as soon as possible so we can inform the kitchen.";
+  const dinnerIsFullText =
+    "Unfortunately there is no more room for more people to eat.";
 
   const isExpired = !!expires ? isAfter(Date.now(), expires) : false;
 
@@ -55,9 +58,12 @@ export function SignupForm({ eventId, expires }: SignupFormProps) {
           email,
           canEmailUpdates,
           eventId,
-          wantsDinner: supportsDinnerSignup ? wantsDinner : false,
+          wantsDinner:
+            supportsDinnerSignup && !dinnerIsFull ? wantsDinner : false,
           dinnerWishes:
-            supportsDinnerSignup && wantsDinner ? dinnerWishes.trim() : "",
+            supportsDinnerSignup && !dinnerIsFull && wantsDinner
+              ? dinnerWishes.trim()
+              : "",
         }),
       });
 
@@ -162,20 +168,28 @@ export function SignupForm({ eventId, expires }: SignupFormProps) {
                     id="wantsDinner"
                     type="checkbox"
                     className="rounded"
-                    checked={wantsDinner}
+                    checked={!dinnerIsFull && wantsDinner}
+                    disabled={dinnerIsFull}
                     onChange={(e) => {
                       setWantsDinner(e.target.checked);
                     }}
                   />
-                  <span>I want to join for dinner</span>
+                  <span className={dinnerIsFull ? "line-through" : undefined}>
+                    I want to join for dinner
+                  </span>
                 </label>
+                {dinnerIsFull ? (
+                  <p className="text-sm font-medium text-red-700">
+                    {dinnerIsFullText}
+                  </p>
+                ) : null}
                 <p className="text-sm text-green-900">{dinnerInfoText}</p>
               </div>
             ) : (
               ""
             )}
 
-            {supportsDinnerSignup && wantsDinner ? (
+            {supportsDinnerSignup && !dinnerIsFull && wantsDinner ? (
               <div>
                 <label htmlFor="dinnerWishes" className="block font-medium">
                   Any allergies or dietary needs we should know of?
