@@ -311,7 +311,7 @@ export const events: Event[] = populate([
     description:
       'Special action: we will join forces with Konink and help sell "dogmeat". Check our Signal group for more info.',
   },
-    {
+  {
     type: "outreach",
     location: "moco",
     startTime: fromAmsTime("21-03-2026 13:00"),
@@ -323,15 +323,15 @@ export const events: Event[] = populate([
     startTime: fromAmsTime("22-03-2026 13:00"),
     endTime: fromAmsTime("22-03-2026 16:00"),
     description:
-      'Special action: we will join forces with Dutch Anti Fur Movement (DAM). From 13:00 - 15:00 we will do regular street outreach. Afterwards we walk to Loro Piana (5 min walk) for 1 hour of fur protest.',
+      "Special action: we will join forces with Dutch Anti Fur Movement (DAM). From 13:00 - 15:00 we will do regular street outreach. Afterwards we walk to Loro Piana (5 min walk) for 1 hour of fur protest.",
   },
   {
     type: "outreach",
     location: "moco",
     startTime: fromAmsTime("5-04-2026 14:00"),
     endTime: fromAmsTime("5-04-2026 17:00"),
-    description: 
-      'NEON will also be present on Musuemplein. We will start and end our action together. Check out https://www.richtiglautvegan.de/neon-en for more info about NEON.'
+    description:
+      "NEON will also be present on Musuemplein. We will start and end our action together. Check out https://www.richtiglautvegan.de/neon-en for more info about NEON.",
   },
   {
     type: "outreach",
@@ -365,6 +365,54 @@ export const events: Event[] = populate([
     location: "moco",
     startTime: fromAmsTime("31-05-2026 14:00"),
     endTime: fromAmsTime("31-05-2026 17:00"),
+  },
+  {
+    type: "outreach",
+    location: "moco",
+    startTime: fromAmsTime("14-06-2026 14:00"),
+    endTime: fromAmsTime("14-06-2026 17:00"),
+  },
+  {
+    type: "outreach",
+    location: "moco",
+    startTime: fromAmsTime("28-06-2026 14:00"),
+    endTime: fromAmsTime("28-06-2026 17:00"),
+  },
+  {
+    type: "outreach",
+    location: "moco",
+    startTime: fromAmsTime("12-07-2026 14:00"),
+    endTime: fromAmsTime("12-07-2026 17:00"),
+  },
+  {
+    type: "outreach",
+    location: "moco",
+    startTime: fromAmsTime("26-07-2026 14:00"),
+    endTime: fromAmsTime("26-07-2026 17:00"),
+  },
+  {
+    type: "outreach",
+    location: "moco",
+    startTime: fromAmsTime("09-08-2026 14:00"),
+    endTime: fromAmsTime("09-08-2026 17:00"),
+  },
+  {
+    type: "outreach",
+    location: "moco",
+    startTime: fromAmsTime("23-08-2026 14:00"),
+    endTime: fromAmsTime("23-08-2026 17:00"),
+  },
+  {
+    type: "outreach",
+    location: "moco",
+    startTime: fromAmsTime("06-09-2026 14:00"),
+    endTime: fromAmsTime("06-09-2026 17:00"),
+  },
+  {
+    type: "outreach",
+    location: "moco",
+    startTime: fromAmsTime("20-09-2026 14:00"),
+    endTime: fromAmsTime("20-09-2026 17:00"),
   },
 ]);
 
