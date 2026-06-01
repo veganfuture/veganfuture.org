@@ -369,6 +369,15 @@ export const events: Event[] = populate([
   {
     type: "outreach",
     location: "moco",
+    title: "Street Theatre",
+    startTime: fromAmsTime("13-06-2026 13:00"),
+    endTime: fromAmsTime("13-06-2026 15:00"),
+    description:
+      'We are performing a street theatre play about aliens visiting Earth. Come cheer us on and help outreaching the audience afterwards.',
+  },
+  {
+    type: "outreach",
+    location: "moco",
     startTime: fromAmsTime("14-06-2026 14:00"),
     endTime: fromAmsTime("14-06-2026 17:00"),
   },
