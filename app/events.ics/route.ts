@@ -1,6 +1,6 @@
 import ical, { ICalCalendarMethod, ICalEventData } from "ical-generator";
 import { NextResponse } from "next/server";
-import { events } from "@/lib/events";
+import { getListedEvents } from "@/lib/events";
 import { withBaseUrl } from "@/lib/metadata";
 
 export const runtime = "nodejs"; // ical-generator needs Node APIs
@@ -20,7 +20,7 @@ export async function GET() {
     source: withBaseUrl("events.ics"),
   });
 
-  for (const event of events) {
+  for (const event of getListedEvents()) {
     const data: ICalEventData = {
       id: `${event.eventId}@veganfuture.org`, // stable UID
       start: event.startTime,

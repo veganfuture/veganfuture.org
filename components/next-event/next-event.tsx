@@ -1,11 +1,12 @@
 "use client";
 
-import { events } from "../../lib/events";
+import { getListedEvents } from "../../lib/events";
 import { AgendaItem } from "../agenda-item/agenda-item";
 import { compareAsc, isAfter } from "date-fns";
 
 export function NextEvent() {
-  const allUpcomingEvents = events
+  const allUpcomingEvents = getListedEvents()
+    .slice()
     .sort((a, b) => compareAsc(a.startTime, b.startTime))
     .filter((event) => isAfter(event.endTime, Date.now()));
 

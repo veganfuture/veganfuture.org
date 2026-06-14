@@ -16,10 +16,15 @@ export async function generateMetadata({
 
   const formattedDate = format(event.startTime, "do MMMM");
   const formattedTime = format(event.startTime, "HH:mm");
-  const title = `${event.title}, ${formattedDate} in ${event.locationCity}`;
-  const description = event.description
-    ? event.description
-    : `Join Vegan Future on ${formattedDate} at ${formattedTime} in ${event.locationCity} at ${event.locationAddress} for street outreach.`;
+  const isCancelled = event.status === "cancelled";
+  const title = isCancelled
+    ? `CANCELLED: ${event.title}, ${formattedDate} in ${event.locationCity}`
+    : `${event.title}, ${formattedDate} in ${event.locationCity}`;
+  const description = isCancelled
+    ? `This event has been cancelled. The original time was ${formattedDate} at ${formattedTime} in ${event.locationCity} at ${event.locationAddress}.`
+    : event.description
+      ? event.description
+      : `Join Vegan Future on ${formattedDate} at ${formattedTime} in ${event.locationCity} at ${event.locationAddress} for street outreach.`;
 
   return {
     ...BASE_METADATA,
@@ -49,28 +54,55 @@ export default function EventPage({
 }) {
   const event = events.find((e) => e.id.toString() === params.event_id);
   if (!event) return notFound();
+  const isCancelled = event.status === "cancelled";
 
   return (
     <>
       <div className="text-2xl font-bold p-4 font-comfortaa">
+        {isCancelled ? "CANCELLED: " : ""}
         {event.title}, {format(event.startTime, "do MMMM yyyy")}
       </div>
+      {isCancelled ? (
+        <div className="mx-4 mb-2 rounded-lg border-2 border-red-700 bg-red-100 px-4 py-3 text-lg font-bold uppercase tracking-wide text-red-900">
+          Cancelled
+        </div>
+      ) : null}
       <div className="p-4">
-        Join us on <strong>{format(event.startTime, "do MMMM yyyy")}</strong>{" "}
-        for outreach at 📍
-        {event.locationUrl ? (
-          <Link href={event.locationUrl}>
-            {event.locationAddress}, {event.locationCity}
-          </Link>
+        {isCancelled ? (
+          <>
+            This event was planned for{" "}
+            <strong>{format(event.startTime, "do MMMM yyyy")}</strong> at{" "}
+            <strong>{format(event.startTime, "HH:mm")}</strong> at 📍
+            {event.locationUrl ? (
+              <Link href={event.locationUrl}>
+                {event.locationAddress}, {event.locationCity}
+              </Link>
+            ) : (
+              <span>
+                {event.locationAddress}, {event.locationCity}
+              </span>
+            )}
+            . It has been <strong>cancelled</strong>.
+          </>
         ) : (
-          <span>
-            {event.locationAddress}, {event.locationCity}
-          </span>
+          <>
+            Join us on <strong>{format(event.startTime, "do MMMM yyyy")}</strong>{" "}
+            for outreach at 📍
+            {event.locationUrl ? (
+              <Link href={event.locationUrl}>
+                {event.locationAddress}, {event.locationCity}
+              </Link>
+            ) : (
+              <span>
+                {event.locationAddress}, {event.locationCity}
+              </span>
+            )}
+            . We <strong>start at {format(event.startTime, "HH:mm")}</strong> and
+            will continue until {format(event.endTime, "HH:mm")}. Please{" "}
+            <Link href="/join_us">join our Signal group</Link> if you intend to
+            join.
+          </>
         )}
-        . We <strong>start at {format(event.startTime, "HH:mm")}</strong> and
-        will continue until {format(event.endTime, "HH:mm")}. Please{" "}
-        <Link href="/join_us">join our Signal group</Link> if you intend to
-        join.
       </div>
       {event.description ? (
         <div className="p-4">{event.description}</div>

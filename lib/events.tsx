@@ -19,11 +19,13 @@ export type Location =
   | "pdz";
 
 export type EventType = "outreach" | "vaam" | "raaf" | "community";
+export type EventStatus = "scheduled" | "cancelled";
 
 export type Event = {
   startTime: TZDate;
   endTime: TZDate;
   type: EventType;
+  status: EventStatus;
   location?: Location;
   locationUrl: string;
   locationAddress: string;
@@ -55,6 +57,10 @@ const fromAmsTime = (str: string): TZDate => {
 };
 export function getEventByEventId(eventId: string): Event | undefined {
   return events.find((event) => event.eventId == eventId);
+}
+
+export function getListedEvents(): Event[] {
+  return events.filter((event) => event.status !== "cancelled");
 }
 
 export const events: Event[] = populate([
@@ -373,13 +379,14 @@ export const events: Event[] = populate([
     startTime: fromAmsTime("13-06-2026 13:00"),
     endTime: fromAmsTime("13-06-2026 15:00"),
     description:
-      'We are performing a street theatre play about aliens visiting Earth. Come cheer us on and help outreaching the audience afterwards.',
+      "We are performing a street theatre play about aliens visiting Earth. Come cheer us on and help outreaching the audience afterwards.",
   },
   {
     type: "outreach",
     location: "moco",
     startTime: fromAmsTime("14-06-2026 14:00"),
     endTime: fromAmsTime("14-06-2026 17:00"),
+    status: "cancelled",
   },
   {
     type: "outreach",
@@ -439,6 +446,7 @@ function populate(
     | "locationCity"
     | "title"
     | "eventId"
+    | "status"
   >[],
 ): Event[] {
   return events.map((event, idx) => {
@@ -474,6 +482,7 @@ function populate(
       locationAddress: locationAddress,
       locationCity: locationCity,
       icon: event.icon || getEventIcon(event.type),
+      status: event.status || "scheduled",
       title: title,
       url: url,
       eventId: event.eventId || getEventId(event.type, idx),
