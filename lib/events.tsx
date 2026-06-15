@@ -16,6 +16,7 @@ export type Location =
   | "ijhallen"
   | "vondelpark_entrance"
   | "lijnbaan"
+  | "haarlem"
   | "pdz";
 
 export type EventType = "outreach" | "vaam" | "raaf" | "community";
@@ -396,6 +397,12 @@ export const events: Event[] = populate([
   },
   {
     type: "outreach",
+    location: "haarlem",
+    startTime: fromAmsTime("28-06-2026 13:00"),
+    endTime: fromAmsTime("28-06-2026 16:00"),
+  },
+  {
+    type: "outreach",
     location: "moco",
     startTime: fromAmsTime("12-07-2026 14:00"),
     endTime: fromAmsTime("12-07-2026 17:00"),
@@ -534,6 +541,8 @@ function getLocationAddress(location: Location): string {
       return "Vondelpark Entrance";
     case "lijnbaan":
       return "Lijnbaan 86";
+    case "haarlem":
+      return "Grote markt";
     case "pdz":
       return "Pakhuis de Zwijger";
   }
@@ -551,6 +560,8 @@ function getLocationCity(location: Location): string {
       return "Amsterdam";
     case "lijnbaan":
       return "Rotterdam";
+    case "haarlem":
+      return "Haarlem";
   }
 }
 
@@ -572,6 +583,8 @@ function getLocationUrl(location: Location): string {
       return "https://maps.app.goo.gl/Cht9xNrtYXMDuxqt8";
     case "pdz":
       return "https://maps.app.goo.gl/uzTNpxkQ4xVZMBoE8";
+    case "haarlem":
+      return "https://maps.app.goo.gl/sM1UtRyXv9u2CHkF6";
   }
 }
 

@@ -10,9 +10,16 @@ export function NextEvent() {
     .sort((a, b) => compareAsc(a.startTime, b.startTime))
     .filter((event) => isAfter(event.endTime, Date.now()));
 
+  let seenCities = new Set<string>();
   const upcomingOutreachEvent = allUpcomingEvents
     .filter((event) => event.type == "outreach")
-    .slice(0, 1);
+    .filter((event) => {
+      if (seenCities.has(event.locationCity)) {
+        return false;
+      }
+      seenCities.add(event.locationCity);
+      return true;
+    }, []);
   const upcomingOther = allUpcomingEvents
     .filter((event) => event.type != "outreach")
     .slice(0, 1);
