@@ -395,6 +395,7 @@ export const events: Event[] = populate([
     location: "moco",
     startTime: fromAmsTime("28-06-2026 14:00"),
     endTime: fromAmsTime("28-06-2026 17:00"),
+    status: "cancelled",
   },
   {
     type: "outreach",

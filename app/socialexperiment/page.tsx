@@ -39,6 +39,14 @@ export default function SocialExperiment() {
         <li className="list-disc mx-8">
           <a
             className="underline"
+            href="https://docs.google.com/document/d/18t-03QYYdq2I9VuG4QgYzx8TYjX9Z7__pwjI3axCnqY/edit?usp=sharing"
+          >
+            Social Experiment 3.3
+          </a>
+        </li>
+        <li className="list-disc mx-8">
+          <a
+            className="underline"
             href="https://docs.google.com/document/d/1R-ugpBKJRocU_DRdw2qQRVZgcK-ECjfeYmJtEXPNq0E/edit?usp=sharing"
           >
             Social Experiment 3.1
