@@ -16,7 +16,8 @@ export type Location =
   | "ijhallen"
   | "vondelpark_entrance"
   | "lijnbaan"
-  | "haarlem"
+  | "haarlem-grotemarkt"
+  | "haarlem-spekstraat"
   | "pdz";
 
 export type EventType = "outreach" | "vaam" | "raaf" | "community";
@@ -397,7 +398,7 @@ export const events: Event[] = populate([
   },
   {
     type: "outreach",
-    location: "haarlem",
+    location: "haarlem-spekstraat",
     startTime: fromAmsTime("28-06-2026 13:00"),
     endTime: fromAmsTime("28-06-2026 16:00"),
   },
@@ -541,8 +542,10 @@ function getLocationAddress(location: Location): string {
       return "Vondelpark Entrance";
     case "lijnbaan":
       return "Lijnbaan 86";
-    case "haarlem":
+    case "haarlem-grotemarkt":
       return "Grote markt";
+    case "haarlem-spekstraat":
+      return "Kruising Grote houtstraat en Spekstraat";
     case "pdz":
       return "Pakhuis de Zwijger";
   }
@@ -560,7 +563,9 @@ function getLocationCity(location: Location): string {
       return "Amsterdam";
     case "lijnbaan":
       return "Rotterdam";
-    case "haarlem":
+    case "haarlem-grotemarkt":
+      return "Haarlem";
+    case "haarlem-spekstraat":
       return "Haarlem";
   }
 }
@@ -583,8 +588,10 @@ function getLocationUrl(location: Location): string {
       return "https://maps.app.goo.gl/Cht9xNrtYXMDuxqt8";
     case "pdz":
       return "https://maps.app.goo.gl/uzTNpxkQ4xVZMBoE8";
-    case "haarlem":
+    case "haarlem-grotemarkt":
       return "https://maps.app.goo.gl/sM1UtRyXv9u2CHkF6";
+    case "haarlem-spekstraat":
+      return "https://maps.app.goo.gl/hxGgWuYjHAkGXe786";
   }
 }
 
