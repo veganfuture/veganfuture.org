@@ -18,7 +18,8 @@ export type Location =
   | "lijnbaan"
   | "haarlem-grotemarkt"
   | "haarlem-spekstraat"
-  | "pdz";
+  | "pdz"
+  | "hartebrugkerk-leiden";
 
 export type EventType = "outreach" | "vaam" | "raaf" | "community";
 export type EventStatus = "scheduled" | "cancelled";
@@ -411,6 +412,12 @@ export const events: Event[] = populate([
   },
   {
     type: "outreach",
+    location: "hartebrugkerk-leiden",
+    startTime: fromAmsTime("18-07-2026 13:00"),
+    endTime: fromAmsTime("18-07-2026 16:00"),
+  },
+  {
+    type: "outreach",
     location: "moco",
     startTime: fromAmsTime("26-07-2026 14:00"),
     endTime: fromAmsTime("26-07-2026 17:00"),
@@ -466,7 +473,7 @@ function populate(
     if (!relUrl) throw new Error(`Missing url for event ${event}`);
     const title = event.title || getEventTitle(event.type);
     if (title === undefined)
-      throw new Error(`Event ${event} does not have a title!`);
+      throw new Error(`Event ${JSON.stringify(event)} does not have a title!`);
 
     const locationUrl =
       event.locationUrl || (event.location && getLocationUrl(event.location));
@@ -476,11 +483,11 @@ function populate(
     const locationCity =
       event.locationCity || (event.location && getLocationCity(event.location));
     if (!locationUrl)
-      throw new Error(`Event ${event} is missing a location url`);
+      throw new Error(`Event ${JSON.stringify(event)} is missing a location url`);
     if (!locationCity)
-      throw new Error(`Event ${event} is missing a location city`);
+      throw new Error(`Event ${JSON.stringify(event)} is missing a location city`);
     if (!locationAddress)
-      throw new Error(`Event ${event} is missing a location text`);
+      throw new Error(`Event ${JSON.stringify(event)} is missing a location text`);
 
     const url = withBaseUrl(relUrl);
 
@@ -549,6 +556,8 @@ function getLocationAddress(location: Location): string {
       return "Kruising Grote houtstraat en Spekstraat";
     case "pdz":
       return "Pakhuis de Zwijger";
+    case "hartebrugkerk-leiden":
+      return "naast de Hartebrugkerk";
   }
 }
 
@@ -568,6 +577,8 @@ function getLocationCity(location: Location): string {
       return "Haarlem";
     case "haarlem-spekstraat":
       return "Haarlem";
+    case "hartebrugkerk-leiden":
+      return "Leiden";
   }
 }
 
@@ -593,6 +604,8 @@ function getLocationUrl(location: Location): string {
       return "https://maps.app.goo.gl/sM1UtRyXv9u2CHkF6";
     case "haarlem-spekstraat":
       return "https://maps.app.goo.gl/hxGgWuYjHAkGXe786";
+    case "hartebrugkerk-leiden":
+      return "https://maps.app.goo.gl/RJxfWkcHLkuQw3W97";
   }
 }
 
