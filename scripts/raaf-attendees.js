@@ -12,7 +12,8 @@ program
   )
   .option("--ddb-region <string>", "DynamoDB region", "eu-central-1")
   .option("--table <string>", "DynamoDB table name", "RAAFSignups")
-  .option("--event <string>", "Filter to a single eventId (e.g. raaf4)");
+  .option("--event <string>", "Filter to a single eventId (e.g. raaf4)")
+  .option("--dinner-only", "Show only people who want to have dinner");
 
 program.parse(process.argv);
 const args = program.opts();
@@ -93,6 +94,10 @@ async function scanAll() {
           : attendee.email;
         if (eventId === "raaf4") {
           const dinnerStatus = attendee.wantsDinner ? "yes" : "no";
+
+          if (args.dinnerOnly && !attendee.wantsDinner) {
+            return;
+          }
 
           const wishes = attendee.dinnerWishes
             ? ` | wishes: ${attendee.dinnerWishes}`
