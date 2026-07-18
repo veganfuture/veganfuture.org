@@ -424,6 +424,12 @@ export const events: Event[] = populate([
   },
   {
     type: "outreach",
+    location: "hartebrugkerk-leiden",
+    startTime: fromAmsTime("1-08-2026 13:00"),
+    endTime: fromAmsTime("1-08-2026 16:00"),
+  },
+  {
+    type: "outreach",
     location: "moco",
     startTime: fromAmsTime("09-08-2026 14:00"),
     endTime: fromAmsTime("09-08-2026 17:00"),
@@ -433,6 +439,12 @@ export const events: Event[] = populate([
     location: "moco",
     startTime: fromAmsTime("23-08-2026 14:00"),
     endTime: fromAmsTime("23-08-2026 17:00"),
+  },
+  {
+    type: "outreach",
+    location: "hartebrugkerk-leiden",
+    startTime: fromAmsTime("5-09-2026 13:00"),
+    endTime: fromAmsTime("5-09-2026 16:00"),
   },
   {
     type: "outreach",
@@ -446,6 +458,24 @@ export const events: Event[] = populate([
     startTime: fromAmsTime("20-09-2026 14:00"),
     endTime: fromAmsTime("20-09-2026 17:00"),
   },
+  {
+    type: "outreach",
+    location: "hartebrugkerk-leiden",
+    startTime: fromAmsTime("26-09-2026 13:00"),
+    endTime: fromAmsTime("26-09-2026 16:00"),
+  },  
+  {
+    type: "outreach",
+    location: "hartebrugkerk-leiden",
+    startTime: fromAmsTime("7-11-2026 13:00"),
+    endTime: fromAmsTime("7-11-2026 16:00"),
+  },  
+  {
+    type: "outreach",
+    location: "hartebrugkerk-leiden",
+    startTime: fromAmsTime("5-12-2026 13:00"),
+    endTime: fromAmsTime("5-12-2026 16:00"),
+  },  
 ]);
 
 /**
