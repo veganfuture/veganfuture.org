@@ -442,6 +442,12 @@ export const events: Event[] = populate([
   },
   {
     type: "outreach",
+    location: "haarlem-grotemarkt",
+    startTime: fromAmsTime("26-08-2026 13:00"),
+    endTime: fromAmsTime("26-08-2026 16:00"),
+  },
+  {
+    type: "outreach",
     location: "hartebrugkerk-leiden",
     startTime: fromAmsTime("5-09-2026 13:00"),
     endTime: fromAmsTime("5-09-2026 16:00"),
@@ -463,19 +469,19 @@ export const events: Event[] = populate([
     location: "hartebrugkerk-leiden",
     startTime: fromAmsTime("26-09-2026 13:00"),
     endTime: fromAmsTime("26-09-2026 16:00"),
-  },  
+  },
   {
     type: "outreach",
     location: "hartebrugkerk-leiden",
     startTime: fromAmsTime("7-11-2026 13:00"),
     endTime: fromAmsTime("7-11-2026 16:00"),
-  },  
+  },
   {
     type: "outreach",
     location: "hartebrugkerk-leiden",
     startTime: fromAmsTime("5-12-2026 13:00"),
     endTime: fromAmsTime("5-12-2026 16:00"),
-  },  
+  },
 ]);
 
 /**
@@ -513,11 +519,17 @@ function populate(
     const locationCity =
       event.locationCity || (event.location && getLocationCity(event.location));
     if (!locationUrl)
-      throw new Error(`Event ${JSON.stringify(event)} is missing a location url`);
+      throw new Error(
+        `Event ${JSON.stringify(event)} is missing a location url`,
+      );
     if (!locationCity)
-      throw new Error(`Event ${JSON.stringify(event)} is missing a location city`);
+      throw new Error(
+        `Event ${JSON.stringify(event)} is missing a location city`,
+      );
     if (!locationAddress)
-      throw new Error(`Event ${JSON.stringify(event)} is missing a location text`);
+      throw new Error(
+        `Event ${JSON.stringify(event)} is missing a location text`,
+      );
 
     const url = withBaseUrl(relUrl);
 
