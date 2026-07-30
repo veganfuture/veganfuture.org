@@ -41,6 +41,18 @@ export type Event = {
   eventId: string;
 };
 
+type PartialEVent = PartialBy<
+  Omit<Event, "id">,
+  | "url"
+  | "locationUrl"
+  | "icon"
+  | "locationAddress"
+  | "locationCity"
+  | "title"
+  | "eventId"
+  | "status"
+>;
+
 /**
  * Parse "24-01-2025 18:30" as Amsterdam wall-clock time
  * and return a TZDate bound to Europe/Amsterdam.
@@ -488,28 +500,13 @@ export const events: Event[] = populate([
  * Automatically populates the events with a bunch of properties that
  * I don't want to repeat and am afraid to mess up :)
  */
-function populate(
-  events: PartialBy<
-    Omit<Event, "id">,
-    | "url"
-    | "locationUrl"
-    | "icon"
-    | "locationAddress"
-    | "locationCity"
-    | "title"
-    | "eventId"
-    | "status"
-  >[],
-): Event[] {
+function populate(events: PartialEVent[]): Event[] {
   return events.map((event, idx) => {
     const relUrl = (event.url || getUrl(event.type))?.replace(
       "[event_id]",
       idx.toString(),
     );
     if (!relUrl) throw new Error(`Missing url for event ${event}`);
-    const title = event.title || getEventTitle(event.type);
-    if (title === undefined)
-      throw new Error(`Event ${JSON.stringify(event)} does not have a title!`);
 
     const locationUrl =
       event.locationUrl || (event.location && getLocationUrl(event.location));
@@ -530,7 +527,10 @@ function populate(
       throw new Error(
         `Event ${JSON.stringify(event)} is missing a location text`,
       );
-
+    const title = event.title || getEventTitle(event.type, locationCity);
+    if (title === undefined) {
+      throw new Error(`Event ${JSON.stringify(event)} does not have a title!`);
+    }
     const url = withBaseUrl(relUrl);
 
     return {
@@ -552,10 +552,13 @@ function getEventId(eventType: EventType, id: number): string {
   return `${eventType}${id}`;
 }
 
-function getEventTitle(eventType: EventType): string | undefined {
+function getEventTitle(
+  eventType: EventType,
+  locationCity: string,
+): string | undefined {
   switch (eventType) {
     case "outreach":
-      return "Street Outreach";
+      return `Street Outreach (${locationCity})`;
     case "vaam":
       return "VAAM (Vegan Activists of Amsterdam Meetup)";
     case "raaf":
