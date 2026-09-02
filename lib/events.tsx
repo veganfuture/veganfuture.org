@@ -466,13 +466,13 @@ export const events: Event[] = populate([
   },
   {
     type: "outreach",
-    location: "moco",
+    location: "rijks",
     startTime: fromAmsTime("06-09-2026 13:00"),
     endTime: fromAmsTime("06-09-2026 16:00"),
   },
   {
     type: "outreach",
-    location: "moco",
+    location: "rijks",
     startTime: fromAmsTime("20-09-2026 13:00"),
     endTime: fromAmsTime("20-09-2026 16:00"),
   },
