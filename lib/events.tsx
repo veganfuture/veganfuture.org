@@ -484,15 +484,68 @@ export const events: Event[] = populate([
   },
   {
     type: "outreach",
+    location: "rijks",
+    title: "Dierendagdemo + Outreach",
+    description:
+      "On this special occasion we are all marching from Dam square at 13:00 to Museumplein. Once at Museumplein we will get an opportunity to do some outreach, Vegan Future style",
+    startTime: fromAmsTime("04-10-2026 13:00"),
+    endTime: fromAmsTime("04-10-2026 17:00"),
+  },
+  {
+    type: "outreach",
     location: "hartebrugkerk-leiden",
     startTime: fromAmsTime("7-11-2026 13:00"),
     endTime: fromAmsTime("7-11-2026 16:00"),
   },
   {
     type: "outreach",
+    location: "rijks",
+    startTime: fromAmsTime("18-10-2026 13:00"),
+    endTime: fromAmsTime("18-10-2026 16:00"),
+  },
+  {
+    type: "outreach",
     location: "hartebrugkerk-leiden",
     startTime: fromAmsTime("5-12-2026 13:00"),
     endTime: fromAmsTime("5-12-2026 16:00"),
+  },
+  {
+    type: "outreach",
+    location: "rijks",
+    description:
+      "After we are done with outreach we can to dinner together and will then celebrate world vegan dag with a movie night at Plantage dock. Get your tickets here: https://vegan-amsterdam.weticket.io/world-vegan-day-movie-night",
+    startTime: fromAmsTime("1-11-2026 13:00"),
+    endTime: fromAmsTime("1-11-2026 16:00"),
+  },
+  {
+    type: "outreach",
+    location: "rijks",
+    startTime: fromAmsTime("18-10-2026 13:00"),
+    endTime: fromAmsTime("18-10-2026 16:00"),
+  },
+  {
+    type: "outreach",
+    location: "rijks",
+    startTime: fromAmsTime("15-11-2026 13:00"),
+    endTime: fromAmsTime("15-11-2026 16:00"),
+  },
+  {
+    type: "outreach",
+    location: "rijks",
+    startTime: fromAmsTime("29-11-2026 13:00"),
+    endTime: fromAmsTime("29-11-2026 16:00"),
+  },
+  {
+    type: "outreach",
+    location: "rijks",
+    startTime: fromAmsTime("13-12-2026 13:00"),
+    endTime: fromAmsTime("13-12-2026 16:00"),
+  },
+  {
+    type: "outreach",
+    location: "rijks",
+    startTime: fromAmsTime("27-12-2026 13:00"),
+    endTime: fromAmsTime("27-12-2026 16:00"),
   },
 ]);
 
