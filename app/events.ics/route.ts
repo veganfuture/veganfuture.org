@@ -1,6 +1,7 @@
 import ical, { ICalCalendarMethod, ICalEventData } from "ical-generator";
 import { NextResponse } from "next/server";
 import { getListedEvents } from "@/lib/events";
+import { fetchVeganFutureOutreachEvents } from "@/lib/veganactivists";
 import { withBaseUrl } from "@/lib/metadata";
 
 export const runtime = "nodejs"; // ical-generator needs Node APIs
@@ -20,7 +21,12 @@ export async function GET() {
     source: withBaseUrl("events.ics"),
   });
 
-  for (const event of getListedEvents()) {
+  const outreachEvents = await fetchVeganFutureOutreachEvents();
+  const events = [...getListedEvents(), ...outreachEvents].filter(
+    (event) => event.status !== "cancelled",
+  );
+
+  for (const event of events) {
     const data: ICalEventData = {
       id: `${event.eventId}@veganfuture.org`, // stable UID
       start: event.startTime,

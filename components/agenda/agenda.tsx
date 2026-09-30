@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { AgendaItem } from "../../components/agenda-item/agenda-item";
 import { isAfter } from "date-fns";
 import { getListedEvents, Event, EventType } from "../../lib/events";
+import { useVeganFutureOutreachEvents } from "../../lib/use-vegan-future-outreach-events";
 import { TabProps, Tabs } from "@/components/tabs/tabs";
 
 export type AgendaProps = {
@@ -12,6 +13,10 @@ export type AgendaProps = {
 
 export function Agenda({ filterOnTypes }: AgendaProps) {
   const [isUpcomingSelected, setUpcomingSelected] = useState(true);
+  const outreachEvents = useVeganFutureOutreachEvents();
+  const events = [...getListedEvents(), ...outreachEvents].filter(
+    (event) => event.status !== "cancelled",
+  );
 
   const tabs: Array<TabProps> = [
     { title: "Upcoming events" },
@@ -46,20 +51,23 @@ export function Agenda({ filterOnTypes }: AgendaProps) {
       </div>
 
       <div>
-        {getListedEvents().filter(eventFilter).map((event, idx) => (
-          <AgendaItem
-            key={idx}
-            eventId={event.id}
-            icon={event.icon}
-            url={event.url}
-            title={event.title}
-            location={event.locationAddress}
-            locationUrl={event.locationUrl}
-            startTime={event.startTime}
-            endTime={event.endTime}
-            description={event.description}
-          />
-        ))}
+        {events
+          .filter(eventFilter)
+          .sort((a, b) => a.startTime.getTime() - b.startTime.getTime())
+          .map((event, idx) => (
+            <AgendaItem
+              key={idx}
+              eventId={event.id}
+              icon={event.icon}
+              url={event.url}
+              title={event.title}
+              location={event.locationAddress}
+              locationUrl={event.locationUrl}
+              startTime={event.startTime}
+              endTime={event.endTime}
+              description={event.description}
+            />
+          ))}
       </div>
     </>
   );
