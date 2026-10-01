@@ -10,7 +10,7 @@ type PartialBy<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
 
 export type Location = "EAO" | "buurtsalon" | "pdz";
 
-export type EventType = "outreach" | "vaam" | "raaf" | "community";
+export type EventType = "outreach" | "vaam" | "raaf" | "community" | "other";
 export type EventStatus = "scheduled" | "cancelled";
 
 export type Event = {
@@ -63,8 +63,10 @@ export function getEventByEventId(eventId: string): Event | undefined {
   return events.find((event) => event.eventId == eventId);
 }
 
+// Includes cancelled events - callers decide whether/how to show them
+// (e.g. the agenda marks them as cancelled rather than hiding them).
 export function getListedEvents(): Event[] {
-  return events.filter((event) => event.status !== "cancelled");
+  return events;
 }
 
 /**
@@ -211,6 +213,7 @@ export function getEventIcon(eventType: EventType): React.ReactNode {
     case "raaf":
       return <UserGroupIcon aria-hidden="true" className="h-6 w-6 mr-2" />;
     case "community":
+    case "other":
       return <UserGroupIcon aria-hidden="true" className="h-6 w-6 mr-2" />;
   }
 }

@@ -14,9 +14,7 @@ export type AgendaProps = {
 export function Agenda({ filterOnTypes }: AgendaProps) {
   const [isUpcomingSelected, setUpcomingSelected] = useState(true);
   const outreachEvents = useVeganFutureOutreachEvents();
-  const events = [...getListedEvents(), ...outreachEvents].filter(
-    (event) => event.status !== "cancelled",
-  );
+  const events = [...getListedEvents(), ...outreachEvents];
 
   const tabs: Array<TabProps> = [
     { title: "Upcoming events" },
@@ -66,6 +64,7 @@ export function Agenda({ filterOnTypes }: AgendaProps) {
               startTime={event.startTime}
               endTime={event.endTime}
               description={event.description}
+              cancelled={event.status === "cancelled"}
             />
           ))}
       </div>

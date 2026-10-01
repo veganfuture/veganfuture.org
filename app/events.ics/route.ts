@@ -1,4 +1,8 @@
-import ical, { ICalCalendarMethod, ICalEventData } from "ical-generator";
+import ical, {
+  ICalCalendarMethod,
+  ICalEventData,
+  ICalEventStatus,
+} from "ical-generator";
 import { NextResponse } from "next/server";
 import { getListedEvents } from "@/lib/events";
 import { fetchVeganFutureOutreachEvents } from "@/lib/veganactivists";
@@ -22,9 +26,7 @@ export async function GET() {
   });
 
   const outreachEvents = await fetchVeganFutureOutreachEvents();
-  const events = [...getListedEvents(), ...outreachEvents].filter(
-    (event) => event.status !== "cancelled",
-  );
+  const events = [...getListedEvents(), ...outreachEvents];
 
   for (const event of events) {
     const data: ICalEventData = {
@@ -36,6 +38,10 @@ export async function GET() {
       location: `${event.locationAddress}, ${event.locationCity}`,
       url: event.url,
       timezone: event.startTime.timeZone,
+      status:
+        event.status === "cancelled"
+          ? ICalEventStatus.CANCELLED
+          : ICalEventStatus.CONFIRMED,
     };
     cal.createEvent(data);
   }
