@@ -1,5 +1,6 @@
 import { TZDate } from "@date-fns/tz";
 import { Event, getEventIcon } from "./events";
+import { withBaseUrl } from "./metadata";
 
 // This is called client-side (see lib/use-vegan-future-outreach-events.ts).
 // veganactivists.nl sends `Access-Control-Allow-Origin: https://veganfuture.org`
@@ -25,6 +26,8 @@ type VeganActivistsEvent = {
   endAt: string | null;
   municipalityName: string | null;
   locationDescription: string;
+  locationLat: number | null;
+  locationLng: number | null;
   publisherOrgId: string | null;
   status: "draft" | "hidden" | "visible" | "cancelled";
 };
@@ -58,7 +61,6 @@ function cleanDescription(raw: string | null): string | undefined {
 
 function toEvent(event: VeganActivistsEvent, idx: number): Event {
   const locationCity = event.municipalityName || "Amsterdam";
-  const eventUrl = `https://veganactivists.nl/nl/events/${event.slug}`;
   const title =
     event.titleEn || event.titleNl || `Street Outreach (${locationCity})`;
   // Vegan Future's org feed isn't exclusively Street Outreach (e.g. a demo
@@ -66,6 +68,15 @@ function toEvent(event: VeganActivistsEvent, idx: number): Event {
   // with the outreach icon and listing on /street_outreach - when the title
   // says so; anything else falls back to a generic "other" event.
   const type = /outreach/i.test(title) ? "outreach" : "other";
+
+  // Shown as a veganfuture.org page rather than linking out to
+  // veganactivists.nl - see app/street_outreach/view/page.tsx, which looks
+  // this event back up by slug client-side.
+  const url = withBaseUrl(`/street_outreach/view?slug=${event.slug}`);
+  const locationUrl =
+    event.locationLat != null && event.locationLng != null
+      ? `https://www.google.com/maps/search/?api=1&query=${event.locationLat},${event.locationLng}`
+      : `https://veganactivists.nl/nl/events/${event.slug}`;
 
   return {
     type,
@@ -77,8 +88,8 @@ function toEvent(event: VeganActivistsEvent, idx: number): Event {
       event.municipalityName,
     ),
     locationCity,
-    locationUrl: eventUrl,
-    url: eventUrl,
+    locationUrl,
+    url,
     title,
     description:
       cleanDescription(event.descriptionEn) ||
