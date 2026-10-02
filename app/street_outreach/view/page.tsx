@@ -2,7 +2,7 @@
 
 import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { EventDetail } from "@/components/event-detail/event-detail";
+import { LiveEventDetail } from "@/components/event-detail/live-event-detail";
 import { fetchVeganFutureOutreachEvents } from "@/lib/veganactivists";
 import { Event } from "@/lib/events";
 
@@ -43,7 +43,7 @@ function EventView() {
   if (event === null) {
     return <div className="p-4">Event not found.</div>;
   }
-  return <EventDetail event={event} />;
+  return <LiveEventDetail event={event} />;
 }
 
 export default function EventViewPage() {

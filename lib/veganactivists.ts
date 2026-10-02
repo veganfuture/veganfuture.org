@@ -73,10 +73,14 @@ function toEvent(event: VeganActivistsEvent, idx: number): Event {
   // veganactivists.nl - see app/street_outreach/view/page.tsx, which looks
   // this event back up by slug client-side.
   const url = withBaseUrl(`/street_outreach/view?slug=${event.slug}`);
-  const locationUrl =
-    event.locationLat != null && event.locationLng != null
-      ? `https://www.google.com/maps/search/?api=1&query=${event.locationLat},${event.locationLng}`
-      : `https://veganactivists.nl/nl/events/${event.slug}`;
+  const hasCoordinates =
+    event.locationLat != null && event.locationLng != null;
+  const locationUrl = hasCoordinates
+    ? `https://www.google.com/maps/search/?api=1&query=${event.locationLat},${event.locationLng}`
+    : `https://veganactivists.nl/nl/events/${event.slug}`;
+  const locationEmbedUrl = hasCoordinates
+    ? `https://www.google.com/maps?q=${event.locationLat},${event.locationLng}&output=embed`
+    : undefined;
 
   return {
     type,
@@ -89,6 +93,7 @@ function toEvent(event: VeganActivistsEvent, idx: number): Event {
     ),
     locationCity,
     locationUrl,
+    locationEmbedUrl,
     url,
     title,
     description:

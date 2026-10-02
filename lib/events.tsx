@@ -20,6 +20,7 @@ export type Event = {
   status: EventStatus;
   location?: Location;
   locationUrl: string;
+  locationEmbedUrl?: string;
   locationAddress: string;
   locationCity: string;
   url: string;
