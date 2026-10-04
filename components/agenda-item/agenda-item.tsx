@@ -9,7 +9,6 @@ type AgendaItemProps = {
   locationUrl?: string;
   startTime: Date;
   endTime: Date;
-  description?: string;
   icon: React.ReactNode;
   eventId: number;
   cancelled?: boolean;
@@ -23,7 +22,6 @@ export function AgendaItem({
   startTime,
   endTime,
   icon,
-  description,
   cancelled,
 }: AgendaItemProps) {
   return (
@@ -66,7 +64,6 @@ export function AgendaItem({
           {format(startTime, "HH:mm")} to {format(endTime, "HH:mm")}
         </strong>
       </p>
-      {description ? <p>{description}</p> : <></>}
       <p>
         Location:{" "}
         {locationUrl ? <Link href={locationUrl}>{location}</Link> : location}

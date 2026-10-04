@@ -2,6 +2,7 @@ import Link from "next/link";
 import { format } from "date-fns/format";
 import { Event } from "@/lib/events";
 import { OutreachDescription } from "@/app/street_outreach/outreach_description";
+import { linkify } from "@/lib/linkify";
 
 export function EventDetail({ event }: { event: Event }) {
   const isCancelled = event.status === "cancelled";
@@ -55,7 +56,9 @@ export function EventDetail({ event }: { event: Event }) {
         )}
       </div>
       {event.description ? (
-        <div className="p-4">{event.description}</div>
+        <div className="p-4 whitespace-pre-line">
+          {linkify(event.description)}
+        </div>
       ) : (
         <></>
       )}

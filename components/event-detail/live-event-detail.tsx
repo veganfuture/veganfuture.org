@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { format } from "date-fns/format";
 import { Event } from "@/lib/events";
+import { linkify } from "@/lib/linkify";
 
 // Unlike EventDetail (used for our own hand-authored events), this doesn't
 // assume the event is a Vegan Future street outreach: the text shown here is
@@ -29,6 +30,16 @@ export function LiveEventDetail({ event }: { event: Event }) {
           {event.locationAddress}, {event.locationCity}
         </Link>
       </div>
+      {event.flyerImageUrl ? (
+        <div className="px-4 pb-4">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={event.flyerImageUrl}
+            alt={`Flyer for ${event.title}`}
+            className="w-full rounded-lg"
+          />
+        </div>
+      ) : null}
       {event.locationEmbedUrl ? (
         <div className="px-4 pb-4">
           <iframe
@@ -43,7 +54,9 @@ export function LiveEventDetail({ event }: { event: Event }) {
         </div>
       ) : null}
       {event.description ? (
-        <div className="p-4 whitespace-pre-line">{event.description}</div>
+        <div className="p-4 whitespace-pre-line">
+          {linkify(event.description)}
+        </div>
       ) : null}
       <div className="p-4">
         Want to join? <Link href="/join_us">Join our Signal group</Link>.
