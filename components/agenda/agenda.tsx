@@ -63,7 +63,6 @@ export function Agenda({ filterOnTypes }: AgendaProps) {
               locationUrl={event.locationUrl}
               startTime={event.startTime}
               endTime={event.endTime}
-              description={event.description}
               cancelled={event.status === "cancelled"}
             />
           ))}

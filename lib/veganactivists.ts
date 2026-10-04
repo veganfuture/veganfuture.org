@@ -29,8 +29,19 @@ type VeganActivistsEvent = {
   locationLat: number | null;
   locationLng: number | null;
   publisherOrgId: string | null;
+  flyerFullImageId: string | null;
+  flyerPreviewImageId: string | null;
+  flyerThumbnailImageId: string | null;
   status: "draft" | "hidden" | "visible" | "cancelled";
 };
+
+// Flyer images are served straight from veganactivists.nl by image id,
+// e.g. https://veganactivists.nl/images/<id> - there's no API field with the
+// full URL, just the bare ids above.
+function flyerImageUrl(event: VeganActivistsEvent): string | undefined {
+  const imageId = event.flyerPreviewImageId || event.flyerFullImageId;
+  return imageId ? `https://veganactivists.nl/images/${imageId}` : undefined;
+}
 
 type ListEventsResponse = {
   events: VeganActivistsEvent[];
@@ -94,6 +105,7 @@ function toEvent(event: VeganActivistsEvent, idx: number): Event {
     locationCity,
     locationUrl,
     locationEmbedUrl,
+    flyerImageUrl: flyerImageUrl(event),
     url,
     title,
     description:

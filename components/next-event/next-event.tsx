@@ -45,7 +45,6 @@ export function NextEvent() {
             locationUrl={event.locationUrl}
             startTime={event.startTime}
             endTime={event.endTime}
-            description={event.description}
           />
         ))}
       </>

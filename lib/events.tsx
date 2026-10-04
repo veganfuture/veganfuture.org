@@ -21,6 +21,7 @@ export type Event = {
   location?: Location;
   locationUrl: string;
   locationEmbedUrl?: string;
+  flyerImageUrl?: string;
   locationAddress: string;
   locationCity: string;
   url: string;
