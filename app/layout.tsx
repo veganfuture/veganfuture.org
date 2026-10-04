@@ -27,41 +27,46 @@ export default function RootLayout({
           </div>
 
           <main className="flex-grow w-full p-2">
-            <div className="mx-auto lg:max-w-[80%] w-full">
-              {children}
+            <div className="mx-auto lg:max-w-[80%]">
+              <div className="mx-auto max-w-7xl">{children}</div>
             </div>
           </main>
 
           <footer className="w-full bg-black text-white py-6">
-            <div className="max-w-[80%] mx-auto flex flex-col md:flex-row justify-between items-center gap-2 text-sm">
-              <p>Free to use. No rights reserved. With love from Vegan Future 💚</p>
-              <div className="flex items-center gap-4">
+            <div className="mx-auto lg:max-w-[80%]">
+              <div className="mx-auto max-w-7xl flex flex-col md:flex-row justify-between items-center gap-2 text-sm">
+                <p>
+                  Free to use. No rights reserved. With love from Vegan Future
+                  💚
+                </p>
                 <div className="flex items-center gap-4">
-                  <a
-                    href="https://www.youtube.com/@kindfuturenow"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="YouTube"
-                    className="text-gray-500 hover:text-red-600 transition"
-                  >
-                    <FaYoutube className="h-6 w-6" />
-                  </a>
+                  <div className="flex items-center gap-4">
+                    <a
+                      href="https://www.youtube.com/@kindfuturenow"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="YouTube"
+                      className="text-gray-500 hover:text-red-600 transition"
+                    >
+                      <FaYoutube className="h-6 w-6" />
+                    </a>
 
-                  <a
-                    href="https://www.instagram.com/kindfuturenow"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Instagram"
-                    className="text-gray-500 hover:text-pink-600 transition"
-                  >
-                    <FaInstagram className="h-6 w-6" />
-                  </a>
-                  <Link
-                    href="/contact"
-                    className="hover:underline text-white/80 hover:text-white"
-                  >
-                    Contact us
-                  </Link>
+                    <a
+                      href="https://www.instagram.com/kindfuturenow"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Instagram"
+                      className="text-gray-500 hover:text-pink-600 transition"
+                    >
+                      <FaInstagram className="h-6 w-6" />
+                    </a>
+                    <Link
+                      href="/contact"
+                      className="hover:underline text-white/80 hover:text-white"
+                    >
+                      Contact us
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
