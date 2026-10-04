@@ -8,20 +8,9 @@ import { withBaseUrl } from "./metadata";
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 type PartialBy<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
 
-export type Location =
-  | "moco"
-  | "EAO"
-  | "rijks"
-  | "buurtsalon"
-  | "ijhallen"
-  | "vondelpark_entrance"
-  | "lijnbaan"
-  | "haarlem-grotemarkt"
-  | "haarlem-spekstraat"
-  | "pdz"
-  | "hartebrugkerk-leiden";
+export type Location = "EAO" | "buurtsalon" | "pdz";
 
-export type EventType = "outreach" | "vaam" | "raaf" | "community";
+export type EventType = "outreach" | "vaam" | "raaf" | "community" | "other";
 export type EventStatus = "scheduled" | "cancelled";
 
 export type Event = {
@@ -31,6 +20,7 @@ export type Event = {
   status: EventStatus;
   location?: Location;
   locationUrl: string;
+  locationEmbedUrl?: string;
   locationAddress: string;
   locationCity: string;
   url: string;
@@ -74,10 +64,19 @@ export function getEventByEventId(eventId: string): Event | undefined {
   return events.find((event) => event.eventId == eventId);
 }
 
+// Includes cancelled events - callers decide whether/how to show them
+// (e.g. the agenda marks them as cancelled rather than hiding them).
 export function getListedEvents(): Event[] {
-  return events.filter((event) => event.status !== "cancelled");
+  return events;
 }
 
+/**
+ * Street outreach ("outreach") events used to be hardcoded here too, but are
+ * now fetched client-side from veganactivists.nl instead - see
+ * lib/veganactivists.ts. This file only keeps events that don't have a
+ * matching entry over there (VAAM meetups, RAAF editions, one-off community
+ * events with their own write-up page).
+ */
 export const events: Event[] = populate([
   {
     type: "vaam",
@@ -89,70 +88,6 @@ export const events: Event[] = populate([
       "A meetup for activists in Amsterdam to come together, inspire each other and talk strategy.",
   },
   {
-    type: "outreach",
-    url: "https://www.meetup.com/vegan-future-amsterdam/events/305681981/",
-    location: "moco",
-    startTime: fromAmsTime("26-1-2025 13:00"),
-    endTime: fromAmsTime("26-1-2025 16:00"),
-  },
-  {
-    type: "outreach",
-    url: "https://www.meetup.com/vegan-future-amsterdam/events/305681983/",
-    location: "moco",
-    startTime: fromAmsTime("9-2-2025 13:00"),
-    endTime: fromAmsTime("9-2-2025 16:00"),
-  },
-  {
-    type: "outreach",
-    url: "https://www.meetup.com/vegan-future-amsterdam/events/305681985/",
-    location: "moco",
-    startTime: fromAmsTime("23-2-2025 13:00"),
-    endTime: fromAmsTime("23-2-2025 16:00"),
-  },
-  {
-    type: "outreach",
-    url: "https://www.meetup.com/vegan-future-amsterdam/events/305681987/",
-    location: "moco",
-    startTime: fromAmsTime("9-3-2025 13:00"),
-    endTime: fromAmsTime("9-3-2025 16:00"),
-  },
-  {
-    type: "outreach",
-    url: "https://www.meetup.com/vegan-future-amsterdam/events/305681989/",
-    location: "moco",
-    startTime: fromAmsTime("23-3-2025 13:00"),
-    endTime: fromAmsTime("23-3-2025 16:00"),
-  },
-  {
-    type: "outreach",
-    url: "https://www.meetup.com/vegan-future-amsterdam/events/305681992/",
-    location: "moco",
-    startTime: fromAmsTime("6-4-2025 13:00"),
-    endTime: fromAmsTime("6-4-2025 16:00"),
-    description: 'Special action: we\'re selling Konink "dogmeat" this time :)',
-  },
-  {
-    type: "outreach",
-    url: "https://www.meetup.com/vegan-future-amsterdam/events/305681993/",
-    location: "moco",
-    startTime: fromAmsTime("20-4-2025 13:00"),
-    endTime: fromAmsTime("20-4-2025 16:00"),
-  },
-  {
-    type: "outreach",
-    url: "https://www.meetup.com/vegan-future-amsterdam/events/305681994/",
-    location: "moco",
-    startTime: fromAmsTime("4-5-2025 13:00"),
-    endTime: fromAmsTime("4-5-2025 16:00"),
-  },
-  {
-    type: "outreach",
-    url: "https://www.meetup.com/vegan-future-amsterdam/events/305681995/",
-    location: "moco",
-    startTime: fromAmsTime("18-5-2025 13:00"),
-    endTime: fromAmsTime("18-5-2025 16:00"),
-  },
-  {
     type: "raaf",
     title: "RAAF #1",
     url: "/raaf/1",
@@ -160,42 +95,6 @@ export const events: Event[] = populate([
     startTime: fromAmsTime("23-5-2025 18:30"),
     endTime: fromAmsTime("23-5-2025 21:30"),
     eventId: "raaf1",
-  },
-  {
-    type: "outreach",
-    location: "moco",
-    startTime: fromAmsTime("1-6-2025 15:30"),
-    endTime: fromAmsTime("1-6-2025 17:30"),
-  },
-  {
-    type: "outreach",
-    location: "rijks",
-    startTime: fromAmsTime("15-6-2025 14:00"),
-    endTime: fromAmsTime("15-6-2025 17:00"),
-  },
-  {
-    type: "outreach",
-    location: "moco",
-    startTime: fromAmsTime("29-6-2025 14:00"),
-    endTime: fromAmsTime("29-6-2025 17:00"),
-  },
-  {
-    type: "outreach",
-    location: "moco",
-    startTime: fromAmsTime("13-7-2025 14:00"),
-    endTime: fromAmsTime("13-7-2025 17:00"),
-  },
-  {
-    type: "outreach",
-    location: "moco",
-    startTime: fromAmsTime("27-7-2025 14:00"),
-    endTime: fromAmsTime("27-7-2025 17:00"),
-  },
-  {
-    type: "outreach",
-    location: "ijhallen",
-    startTime: fromAmsTime("10-8-2025 14:00"),
-    endTime: fromAmsTime("10-8-2025 17:00"),
   },
   {
     type: "raaf",
@@ -207,57 +106,6 @@ export const events: Event[] = populate([
     eventId: "raaf2",
   },
   {
-    type: "outreach",
-    location: "moco",
-    startTime: fromAmsTime("24-8-2025 14:00"),
-    endTime: fromAmsTime("24-8-2025 17:00"),
-  },
-  {
-    type: "outreach",
-    location: "moco",
-    startTime: fromAmsTime("7-9-2025 14:00"),
-    endTime: fromAmsTime("7-9-2025 17:00"),
-  },
-  {
-    type: "outreach",
-    location: "moco",
-    startTime: fromAmsTime("21-9-2025 14:00"),
-    endTime: fromAmsTime("21-9-2025 17:00"),
-  },
-  {
-    type: "outreach",
-    location: "vondelpark_entrance",
-    title: "Street Outreach (human milk)",
-    startTime: fromAmsTime("5-10-2025 14:00"),
-    endTime: fromAmsTime("5-10-2025 17:00"),
-    description:
-      'We are going to "sell" human milk. If you want to participate please wear something official looking and preferably light blue (color of the supposed human milk brand). Besides selling human milk you are also welcome to do outreach in any other style you like. We wil bring signs for people who want to do the social experiment.',
-  },
-  {
-    type: "outreach",
-    location: "moco",
-    startTime: fromAmsTime("19-10-2025 13:00"),
-    endTime: fromAmsTime("19-10-2025 16:00"),
-  },
-  {
-    type: "outreach",
-    location: "moco",
-    startTime: fromAmsTime("2-11-2025 13:00"),
-    endTime: fromAmsTime("2-11-2025 16:00"),
-  },
-  {
-    type: "outreach",
-    location: "lijnbaan",
-    startTime: fromAmsTime("8-11-2025 13:45"),
-    endTime: fromAmsTime("8-11-2025 17:00"),
-  },
-  {
-    type: "outreach",
-    location: "moco",
-    startTime: fromAmsTime("16-11-2025 13:00"),
-    endTime: fromAmsTime("16-11-2025 16:00"),
-  },
-  {
     type: "raaf",
     location: "buurtsalon",
     title: "RAAF 3rd edition",
@@ -265,30 +113,6 @@ export const events: Event[] = populate([
     endTime: fromAmsTime("28-11-2025 21:30"),
     url: "/raaf/3",
     eventId: "raaf3",
-  },
-  {
-    type: "outreach",
-    location: "moco",
-    startTime: fromAmsTime("30-11-2025 13:00"),
-    endTime: fromAmsTime("30-11-2025 16:00"),
-  },
-  {
-    type: "outreach",
-    location: "moco",
-    startTime: fromAmsTime("14-12-2025 13:00"),
-    endTime: fromAmsTime("14-12-2025 16:00"),
-  },
-  {
-    type: "outreach",
-    location: "moco",
-    startTime: fromAmsTime("28-12-2025 13:00"),
-    endTime: fromAmsTime("28-12-2025 16:00"),
-  },
-  {
-    type: "outreach",
-    location: "moco",
-    startTime: fromAmsTime("11-01-2026 13:00"),
-    endTime: fromAmsTime("11-01-2026 16:00"),
   },
   {
     type: "community",
@@ -301,78 +125,6 @@ export const events: Event[] = populate([
     endTime: fromAmsTime("18-01-2026 20:30"),
   },
   {
-    type: "outreach",
-    location: "moco",
-    startTime: fromAmsTime("25-01-2026 13:00"),
-    endTime: fromAmsTime("25-01-2026 16:00"),
-  },
-  {
-    type: "outreach",
-    location: "moco",
-    startTime: fromAmsTime("08-02-2026 13:00"),
-    endTime: fromAmsTime("08-02-2026 16:00"),
-  },
-  {
-    type: "outreach",
-    location: "moco",
-    startTime: fromAmsTime("14-02-2026 13:00"),
-    endTime: fromAmsTime("14-02-2026 16:00"),
-  },
-  {
-    type: "outreach",
-    location: "moco",
-    startTime: fromAmsTime("22-02-2026 13:00"),
-    endTime: fromAmsTime("22-02-2026 16:00"),
-  },
-  {
-    type: "outreach",
-    location: "moco",
-    startTime: fromAmsTime("08-03-2026 13:00"),
-    endTime: fromAmsTime("08-03-2026 16:00"),
-    description:
-      'Special action: we will join forces with Konink and help sell "dogmeat". Check our Signal group for more info.',
-  },
-  {
-    type: "outreach",
-    location: "moco",
-    startTime: fromAmsTime("21-03-2026 13:00"),
-    endTime: fromAmsTime("21-03-2026 16:00"),
-  },
-  {
-    type: "outreach",
-    location: "moco",
-    startTime: fromAmsTime("22-03-2026 13:00"),
-    endTime: fromAmsTime("22-03-2026 16:00"),
-    description:
-      "Special action: we will join forces with Dutch Anti Fur Movement (DAM). From 13:00 - 15:00 we will do regular street outreach. Afterwards we walk to Loro Piana (5 min walk) for 1 hour of fur protest.",
-  },
-  {
-    type: "outreach",
-    location: "moco",
-    startTime: fromAmsTime("5-04-2026 14:00"),
-    endTime: fromAmsTime("5-04-2026 17:00"),
-    description:
-      "NEON will also be present on Musuemplein. We will start and end our action together. Check out https://www.richtiglautvegan.de/neon-en for more info about NEON.",
-  },
-  {
-    type: "outreach",
-    location: "moco",
-    startTime: fromAmsTime("19-04-2026 14:00"),
-    endTime: fromAmsTime("19-04-2026 17:00"),
-  },
-  {
-    type: "outreach",
-    location: "moco",
-    startTime: fromAmsTime("3-05-2026 14:00"),
-    endTime: fromAmsTime("3-05-2026 17:00"),
-  },
-  {
-    type: "outreach",
-    location: "moco",
-    startTime: fromAmsTime("17-05-2026 14:00"),
-    endTime: fromAmsTime("17-05-2026 17:00"),
-  },
-  {
     type: "raaf",
     location: "pdz",
     title: "RAAF 4th edition",
@@ -380,172 +132,6 @@ export const events: Event[] = populate([
     endTime: fromAmsTime("22-05-2026 21:30"),
     url: "/raaf/4",
     eventId: "raaf4",
-  },
-  {
-    type: "outreach",
-    location: "moco",
-    startTime: fromAmsTime("31-05-2026 14:00"),
-    endTime: fromAmsTime("31-05-2026 17:00"),
-  },
-  {
-    type: "outreach",
-    location: "moco",
-    title: "Street Theatre",
-    startTime: fromAmsTime("13-06-2026 13:00"),
-    endTime: fromAmsTime("13-06-2026 15:00"),
-    description:
-      "We are performing a street theatre play about aliens visiting Earth. Come cheer us on and help outreaching the audience afterwards.",
-  },
-  {
-    type: "outreach",
-    location: "moco",
-    startTime: fromAmsTime("14-06-2026 14:00"),
-    endTime: fromAmsTime("14-06-2026 17:00"),
-    status: "cancelled",
-  },
-  {
-    type: "outreach",
-    location: "moco",
-    startTime: fromAmsTime("28-06-2026 14:00"),
-    endTime: fromAmsTime("28-06-2026 17:00"),
-    status: "cancelled",
-  },
-  {
-    type: "outreach",
-    location: "haarlem-spekstraat",
-    startTime: fromAmsTime("28-06-2026 13:00"),
-    endTime: fromAmsTime("28-06-2026 16:00"),
-  },
-  {
-    type: "outreach",
-    location: "moco",
-    startTime: fromAmsTime("12-07-2026 14:00"),
-    endTime: fromAmsTime("12-07-2026 17:00"),
-  },
-  {
-    type: "outreach",
-    location: "hartebrugkerk-leiden",
-    startTime: fromAmsTime("18-07-2026 13:00"),
-    endTime: fromAmsTime("18-07-2026 16:00"),
-  },
-  {
-    type: "outreach",
-    location: "moco",
-    startTime: fromAmsTime("26-07-2026 14:30"),
-    endTime: fromAmsTime("26-07-2026 17:30"),
-  },
-  {
-    type: "outreach",
-    location: "hartebrugkerk-leiden",
-    startTime: fromAmsTime("1-08-2026 13:00"),
-    endTime: fromAmsTime("1-08-2026 16:00"),
-  },
-  {
-    type: "outreach",
-    location: "moco",
-    startTime: fromAmsTime("09-08-2026 14:00"),
-    endTime: fromAmsTime("09-08-2026 17:00"),
-  },
-  {
-    type: "outreach",
-    location: "moco",
-    startTime: fromAmsTime("23-08-2026 13:00"),
-    endTime: fromAmsTime("23-08-2026 16:00"),
-  },
-  {
-    type: "outreach",
-    location: "haarlem-grotemarkt",
-    startTime: fromAmsTime("26-08-2026 13:00"),
-    endTime: fromAmsTime("26-08-2026 16:00"),
-  },
-  {
-    type: "outreach",
-    location: "hartebrugkerk-leiden",
-    startTime: fromAmsTime("5-09-2026 13:00"),
-    endTime: fromAmsTime("5-09-2026 16:00"),
-  },
-  {
-    type: "outreach",
-    location: "rijks",
-    startTime: fromAmsTime("06-09-2026 13:00"),
-    endTime: fromAmsTime("06-09-2026 16:00"),
-  },
-  {
-    type: "outreach",
-    location: "rijks",
-    startTime: fromAmsTime("20-09-2026 13:00"),
-    endTime: fromAmsTime("20-09-2026 16:00"),
-  },
-  {
-    type: "outreach",
-    location: "hartebrugkerk-leiden",
-    startTime: fromAmsTime("26-09-2026 13:00"),
-    endTime: fromAmsTime("26-09-2026 16:00"),
-  },
-  {
-    type: "outreach",
-    location: "rijks",
-    title: "Dierendagdemo + Outreach",
-    description:
-      "On this special occasion we are all marching from Dam square at 13:00 to Museumplein. Once at Museumplein we will get an opportunity to do some outreach, Vegan Future style",
-    startTime: fromAmsTime("04-10-2026 13:00"),
-    endTime: fromAmsTime("04-10-2026 17:00"),
-  },
-  {
-    type: "outreach",
-    location: "hartebrugkerk-leiden",
-    startTime: fromAmsTime("7-11-2026 13:00"),
-    endTime: fromAmsTime("7-11-2026 16:00"),
-  },
-  {
-    type: "outreach",
-    location: "rijks",
-    startTime: fromAmsTime("18-10-2026 13:00"),
-    endTime: fromAmsTime("18-10-2026 16:00"),
-  },
-  {
-    type: "outreach",
-    location: "hartebrugkerk-leiden",
-    startTime: fromAmsTime("5-12-2026 13:00"),
-    endTime: fromAmsTime("5-12-2026 16:00"),
-  },
-  {
-    type: "outreach",
-    location: "rijks",
-    description:
-      "After we are done with outreach we can to dinner together and will then celebrate world vegan dag with a movie night at Plantage dock. Get your tickets here: https://vegan-amsterdam.weticket.io/world-vegan-day-movie-night",
-    startTime: fromAmsTime("1-11-2026 13:00"),
-    endTime: fromAmsTime("1-11-2026 16:00"),
-  },
-  {
-    type: "outreach",
-    location: "rijks",
-    startTime: fromAmsTime("18-10-2026 13:00"),
-    endTime: fromAmsTime("18-10-2026 16:00"),
-  },
-  {
-    type: "outreach",
-    location: "rijks",
-    startTime: fromAmsTime("15-11-2026 13:00"),
-    endTime: fromAmsTime("15-11-2026 16:00"),
-  },
-  {
-    type: "outreach",
-    location: "rijks",
-    startTime: fromAmsTime("29-11-2026 13:00"),
-    endTime: fromAmsTime("29-11-2026 16:00"),
-  },
-  {
-    type: "outreach",
-    location: "rijks",
-    startTime: fromAmsTime("13-12-2026 13:00"),
-    endTime: fromAmsTime("13-12-2026 16:00"),
-  },
-  {
-    type: "outreach",
-    location: "rijks",
-    startTime: fromAmsTime("27-12-2026 13:00"),
-    endTime: fromAmsTime("27-12-2026 16:00"),
   },
 ]);
 
@@ -619,7 +205,7 @@ function getEventTitle(
   }
 }
 
-function getEventIcon(eventType: EventType): React.ReactNode {
+export function getEventIcon(eventType: EventType): React.ReactNode {
   switch (eventType) {
     case "outreach":
       return <MegaphoneIcon aria-hidden="true" className="h-6 w-6 mr-2" />;
@@ -628,82 +214,39 @@ function getEventIcon(eventType: EventType): React.ReactNode {
     case "raaf":
       return <UserGroupIcon aria-hidden="true" className="h-6 w-6 mr-2" />;
     case "community":
+    case "other":
       return <UserGroupIcon aria-hidden="true" className="h-6 w-6 mr-2" />;
   }
 }
 
 function getLocationAddress(location: Location): string {
   switch (location) {
-    case "moco":
-      return "Museumplein across the Moco museum";
-    case "rijks":
-      return "Sidewalk at RIJKS restaurant";
     case "EAO":
       return "Effective Altruism Office";
     case "buurtsalon":
       return "Buurtsalon Jeltje";
-    case "ijhallen":
-      return "Ijhallen (NDSM)";
-    case "vondelpark_entrance":
-      return "Vondelpark Entrance";
-    case "lijnbaan":
-      return "Lijnbaan 86";
-    case "haarlem-grotemarkt":
-      return "Grote markt";
-    case "haarlem-spekstraat":
-      return "Kruising Grote houtstraat en Spekstraat";
     case "pdz":
       return "Pakhuis de Zwijger";
-    case "hartebrugkerk-leiden":
-      return "naast de Hartebrugkerk";
   }
 }
 
 function getLocationCity(location: Location): string {
   switch (location) {
-    case "moco":
-    case "rijks":
     case "EAO":
     case "buurtsalon":
-    case "ijhallen":
-    case "vondelpark_entrance":
     case "pdz":
       return "Amsterdam";
-    case "lijnbaan":
-      return "Rotterdam";
-    case "haarlem-grotemarkt":
-      return "Haarlem";
-    case "haarlem-spekstraat":
-      return "Haarlem";
-    case "hartebrugkerk-leiden":
-      return "Leiden";
   }
 }
 
 function getLocationUrl(location: Location): string {
   switch (location) {
-    case "moco":
-      return "https://maps.app.goo.gl/wciocBEZLbGSwyq4A";
-    case "rijks":
-      return "https://maps.app.goo.gl/UQP221BB2yxwDros7";
     case "EAO":
       return "https://maps.app.goo.gl/YLVoWa3kSzMViz5C9";
     case "buurtsalon":
       return "https://maps.app.goo.gl/Uq8NWo2djUAw7x7H9";
-    case "ijhallen":
-      return "https://maps.app.goo.gl/PkjLaBFM4zrPC8eX6";
-    case "vondelpark_entrance":
-      return "https://maps.app.goo.gl/qSTAemUM9LHrx47FA";
-    case "lijnbaan":
-      return "https://maps.app.goo.gl/Cht9xNrtYXMDuxqt8";
     case "pdz":
       return "https://maps.app.goo.gl/uzTNpxkQ4xVZMBoE8";
-    case "haarlem-grotemarkt":
-      return "https://maps.app.goo.gl/sM1UtRyXv9u2CHkF6";
-    case "haarlem-spekstraat":
-      return "https://maps.app.goo.gl/hxGgWuYjHAkGXe786";
-    case "hartebrugkerk-leiden":
-      return "https://maps.app.goo.gl/RJxfWkcHLkuQw3W97";
   }
 }
 

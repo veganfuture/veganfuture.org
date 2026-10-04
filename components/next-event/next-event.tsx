@@ -1,12 +1,14 @@
 "use client";
 
 import { getListedEvents } from "../../lib/events";
+import { useVeganFutureOutreachEvents } from "../../lib/use-vegan-future-outreach-events";
 import { AgendaItem } from "../agenda-item/agenda-item";
 import { compareAsc, isAfter } from "date-fns";
 
 export function NextEvent() {
-  const allUpcomingEvents = getListedEvents()
-    .slice()
+  const outreachEvents = useVeganFutureOutreachEvents();
+  const allUpcomingEvents = [...getListedEvents(), ...outreachEvents]
+    .filter((event) => event.status !== "cancelled")
     .sort((a, b) => compareAsc(a.startTime, b.startTime))
     .filter((event) => isAfter(event.endTime, Date.now()));
 
