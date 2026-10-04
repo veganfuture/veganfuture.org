@@ -27,3 +27,20 @@ export function linkify(text: string): React.ReactNode {
     );
   });
 }
+
+// Source descriptions use a variable number of blank lines between
+// paragraphs (sometimes one, sometimes two or three) - normalize that to one
+// paragraph break each so spacing stays consistent instead of ballooning.
+export function Description({ text }: { text: string }) {
+  const paragraphs = text.trim().split(/\n{2,}/);
+
+  return (
+    <div className="space-y-2">
+      {paragraphs.map((paragraph, idx) => (
+        <p key={idx} className="whitespace-pre-line">
+          {linkify(paragraph)}
+        </p>
+      ))}
+    </div>
+  );
+}

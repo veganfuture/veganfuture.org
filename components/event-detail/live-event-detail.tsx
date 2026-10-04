@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { format } from "date-fns/format";
 import { Event } from "@/lib/events";
-import { linkify } from "@/lib/linkify";
+import { Description } from "@/lib/linkify";
 
 // Unlike EventDetail (used for our own hand-authored events), this doesn't
 // assume the event is a Vegan Future street outreach: the text shown here is
@@ -36,7 +36,7 @@ export function LiveEventDetail({ event }: { event: Event }) {
           <img
             src={event.flyerImageUrl}
             alt={`Flyer for ${event.title}`}
-            className="w-full rounded-lg"
+            className="max-h-96 w-full rounded-lg object-cover"
           />
         </div>
       ) : null}
@@ -54,8 +54,8 @@ export function LiveEventDetail({ event }: { event: Event }) {
         </div>
       ) : null}
       {event.description ? (
-        <div className="p-4 whitespace-pre-line">
-          {linkify(event.description)}
+        <div className="p-4">
+          <Description text={event.description} />
         </div>
       ) : null}
       <div className="p-4">
